@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>โรงเรียนวัดบ้านฉาง - School Portal & Community Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Sarabun', 'Noto Sans SC', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.25s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+  <!-- TOP NAVIGATION BAR -->
+  <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+      <!-- School Logo & Title -->
+      <div class="flex items-center space-x-3">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-500 text-indigo-950 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-white/20">
+          🏫
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base sm:text-lg font-bold tracking-tight" id="schoolNameNav">โรงเรียนวัดบ้านฉาง</h1>
+            <span class="bg-amber-400/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-300/30">Official Portal</span>
+          </div>
+          <p class="text-xs text-indigo-200" id="schoolSubNav">สพป.ระยอง เขต 1 | ศูนย์ข้อมูลสารสนเทศและกิจกรรมโรงเรียน</p>
+        </div>
+      </div>
+
+      <!-- Navigation & Action Links -->
+      <div class="flex items-center flex-wrap gap-2 text-xs">
+        <!-- Language Switcher -->
+        <div class="inline-flex rounded-lg bg-indigo-950/70 p-1 border border-indigo-700/50">
+          <button onclick="setPortalLanguage('th')" id="portalLangBtn-th" class="px-2.5 py-1 rounded font-bold bg-amber-400 text-indigo-950 transition">ไทย</button>
+          <button onclick="setPortalLanguage('en')" id="portalLangBtn-en" class="px-2.5 py-1 rounded text-indigo-200 hover:text-white transition">EN</button>
+          <button onclick="setPortalLanguage('zh')" id="portalLangBtn-zh" class="px-2.5 py-1 rounded text-indigo-200 hover:text-white transition">中文</button>
+        </div>
+
+        <!-- Quick Nav Buttons -->
+        <button onclick="scrollToSection('section-blog')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
+          📢 <span id="navBlogText">ข่าวและกิจกรรม</span>
+        </button>
+        <button onclick="scrollToSection('section-calendar')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
+          📅 <span id="navCalText">ปฏิทินการศึกษา</span>
+        </button>
+        <button onclick="scrollToSection('section-roster')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
+          👥 <span id="navRosterText">รายชื่อนักเรียน</span>
+        </button>
+        <button onclick="openEmbedHelperModal()" class="px-3 py-1.5 bg-amber-500 hover:bg-amber-400 text-indigo-950 font-bold rounded-lg shadow transition flex items-center gap-1">
+          🔗 <span id="btnEmbedSite">ฝังใน Google Sites</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-blue-900 text-white py-10 px-4 sm:px-6 relative overflow-hidden shadow-inner">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-center relative z-10">
+      <div class="md:col-span-2 space-y-3">
+        <span class="inline-block bg-amber-400/20 text-amber-300 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-amber-300/30" id="heroBadge">
+          ยินดีต้อนรับสู่พื้นที่การเรียนรู้ยุคใหม่
+        </span>
+        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight" id="heroHeading">
+          ร่วมสร้างอนาคตทางการศึกษา พัฒนาศักยภาพสู่ความเป็นเลิศ
+        </h2>
+        <p class="text-xs sm:text-sm text-indigo-100 max-w-2xl leading-relaxed" id="heroSubheading">
+          พื้นที่เผยแพร่ข่าวสาร ประชาสัมพันธ์กิจกรรมการเรียนการสอน ปฏิทินการศึกษา และข้อมูลนักเรียนรายชั้นเรียนทั้ง 12 ห้องเรียน พร้อมเชื่อมโยงกับระบบประเมินผลการเรียนรู้ ปพ.5 ออนไลน์
+        </p>
+        <div class="pt-2 flex flex-wrap gap-2.5">
+          <button onclick="openAddPostModal()" class="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5">
+            ✏️ <span id="heroBtnNewPost">โพสต์ข่าวหรือกิจกรรมใหม่</span>
+          </button>
+          <button onclick="scrollToSection('section-roster')" class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-xs backdrop-blur-sm border border-white/20 transition">
+            🔍 <span id="heroBtnViewRoster">สืบค้นบัญชีรายชื่อนักเรียน</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Cards -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shadow-lg">
+          <div class="text-2xl font-black text-amber-300">12</div>
+          <div class="text-[11px] text-indigo-100 font-medium" id="metricClasses">ห้องเรียน (ป.1 - ป.6)</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shadow-lg">
+          <div class="text-2xl font-black text-emerald-300" id="metricTotalStudents">120+</div>
+          <div class="text-[11px] text-indigo-100 font-medium" id="metricStudents">นักเรียนในระบบ</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shadow-lg">
+          <div class="text-2xl font-black text-blue-300" id="metricPostsCount">6</div>
+          <div class="text-[11px] text-indigo-100 font-medium" id="metricEvents">ข่าวกิจกรรมล่าสุด</div>
+        </div>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shadow-lg">
+          <div class="text-2xl font-black text-purple-300">2569</div>
+          <div class="text-[11px] text-indigo-100 font-medium" id="metricYear">ปีการศึกษา</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN PORTAL BODY -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-12">
+
+    <!-- ===================================================================
+         SECTION 1: SCHOOL NEWS & EVENTS BLOG
+         =================================================================== -->
+    <section id="section-blog" class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+        <div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+            📰 <span id="blogTitle">ข่าวสารและกิจกรรมโรงเรียน (School News & Events)</span>
+          </h3>
+          <p class="text-xs text-slate-500" id="blogSubtitle">อัปเดตความเคลื่อนไหว ประกาศโรงเรียน ผลงานนักเรียน และกิจกรรมสำคัญ</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <!-- Category Filter -->
+          <select id="postCategoryFilter" onchange="renderPosts()" class="bg-white border border-slate-300 text-xs rounded-lg px-3 py-1.5 font-medium outline-none shadow-sm focus:border-indigo-500">
+            <option value="all">📁 ทุกหมวดหมู่ (All)</option>
+            <option value="announcement">📢 ประกาศโรงเรียน</option>
+            <option value="activity">🏆 กิจกรรม & การแข่งขัน</option>
+            <option value="academic">📚 วิชาการ & การสอบ</option>
+            <option value="general">🌟 ทั่วไป</option>
+          </select>
+          <button onclick="openAddPostModal()" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
+            ➕ <span id="btnNewPost">เพิ่มบทความ</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Blog Grid -->
+      <div id="blogPostsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Rendered dynamically -->
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 2: SCHOOL ACADEMIC CALENDAR
+         =================================================================== -->
+    <section id="section-calendar" class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+        <div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+            📅 <span id="calTitle">ปฏิทินการศึกษาและกิจกรรม (School Academic Calendar)</span>
+          </h3>
+          <p class="text-xs text-slate-500" id="calSubtitle">กำหนดการเปิด-ปิดภาคเรียน กำหนดการสอบ และวันสำคัญประจำปีการศึกษา 2569</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="openAddEventModal()" class="px-3.5 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
+            ➕ <span id="btnNewEvent">เพิ่มกิจกรรมในปฏิทิน</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- Calendar Grid (Left 2 cols) -->
+        <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="text-base font-bold text-slate-800" id="calMonthYearDisplay">พฤษภาคม 2569</span>
+              <span class="text-xs bg-indigo-100 text-indigo-800 font-semibold px-2 py-0.5 rounded-full" id="calTermBadge">ภาคเรียนที่ 1</span>
+            </div>
+            <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-50">
+              <button onclick="changeCalendarMonth(-1)" class="px-2.5 py-1 text-slate-600 hover:bg-white rounded transition font-bold text-xs">‹ ก่อนหน้า</button>
+              <button onclick="changeCalendarMonth(1)" class="px-2.5 py-1 text-slate-600 hover:bg-white rounded transition font-bold text-xs">ถัดไป ›</button>
+            </div>
+          </div>
+
+          <!-- Weekday Labels -->
+          <div class="grid grid-cols-7 text-center font-bold text-xs text-slate-500 border-b border-slate-100 pb-2">
+            <span class="text-red-500">อา</span>
+            <span>จ</span>
+            <span>อ</span>
+            <span>พ</span>
+            <span>พฤ</span>
+            <span>ศ</span>
+            <span class="text-indigo-600">ส</span>
+          </div>
+
+          <!-- Calendar Days Grid -->
+          <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1.5 text-xs">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Upcoming Highlights / Timeline (Right 1 col) -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-1.5">
+              📌 <span id="upcomingHeading">กำหนดการสำคัญประจำภาคเรียน</span>
+            </h4>
+            <div id="upcomingEventsList" class="space-y-3 custom-scroll overflow-y-auto max-h-[350px]">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 italic">
+            * กำหนดการอาจมีการเปลี่ยนแปลงตามประกาศของกระทรวงศึกษาธิการ
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         SECTION 3: EMBEDDED STUDENTS LIST DIRECTORY
+         =================================================================== -->
+    <section id="section-roster" class="space-y-4">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
+        <div>
+          <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
+            👥 <span id="rosterSectionTitle">ทำเนียบรายชื่อนักเรียนรายห้อง (Student Roster Directory)</span>
+          </h3>
+          <p class="text-xs text-slate-500" id="rosterSectionSub">ค้นหารายชื่อนักเรียน เลขประจำตัว และสถานะของทั้ง 12 ห้องเรียน (ป.1/1 - ป.6/2)</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- Class Selector -->
+          <select id="portalClassSelect" onchange="loadClassRoster(this.value)" class="bg-white border border-slate-300 text-xs font-semibold rounded-lg px-3 py-1.5 outline-none shadow-sm focus:border-indigo-500">
+            <optgroup label="ชั้นประถมศึกษาปีที่ 1">
+              <option value="p1_1" selected>ชั้น ป.1/1</option>
+              <option value="p1_2">ชั้น ป.1/2</option>
+            </optgroup>
+            <optgroup label="ชั้นประถมศึกษาปีที่ 2">
+              <option value="p2_1">ชั้น ป.2/1</option>
+              <option value="p2_2">ชั้น ป.2/2</option>
+            </optgroup>
+            <optgroup label="ชั้นประถมศึกษาปีที่ 3">
+              <option value="p3_1">ชั้น ป.3/1</option>
+              <option value="p3_2">ชั้น ป.3/2</option>
+            </optgroup>
+            <optgroup label="ชั้นประถมศึกษาปีที่ 4">
+              <option value="p4_1">ชั้น ป.4/1</option>
+              <option value="p4_2">ชั้น ป.4/2</option>
+            </optgroup>
+            <optgroup label="ชั้นประถมศึกษาปีที่ 5">
+              <option value="p5_1">ชั้น ป.5/1</option>
+              <option value="p5_2">ชั้น ป.5/2</option>
+            </optgroup>
+            <optgroup label="ชั้นประถมศึกษาปีที่ 6">
+              <option value="p6_1">ชั้น ป.6/1</option>
+              <option value="p6_2">ชั้น ป.6/2</option>
+            </optgroup>
+          </select>
+
+          <!-- Search Input -->
+          <div class="relative">
+            <input type="text" id="rosterSearchInput" oninput="filterRosterTable()" placeholder="ค้นหาชื่อ หรือ รหัสนักเรียน..." class="bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs outline-none focus:border-indigo-500 w-44 sm:w-56 shadow-sm">
+            <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
+          </div>
+
+          <!-- Export CSV -->
+          <button onclick="exportCurrentRosterCSV()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
+            📥 <span>ส่งออก CSV</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Students Table -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+        <div class="px-5 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2">
+          <div>
+            ห้องเรียนปัจจุบัน: <strong class="text-indigo-900" id="currentViewingClassLabel">ชั้น ป.1/1</strong> 
+            | จำนวนนักเรียน: <strong class="text-slate-900" id="currentClassStudentCount">0 คน</strong>
+          </div>
+          <div class="text-[11px] text-slate-500 italic">
+            * ข้อมูลเชื่อมโยงกับระบบฐานข้อมูล ปพ.5 ออนไลน์
+          </div>
+        </div>
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-700 font-semibold uppercase tracking-wider">
+              <tr>
+                <th class="py-3 px-3 text-center w-12">ที่</th>
+                <th class="py-3 px-3 w-28">เลขประจำตัว</th>
+                <th class="py-3 px-3 w-36">เลขประชาชน</th>
+                <th class="py-3 px-3 w-24">คำนำหน้า</th>
+                <th class="py-3 px-4">ชื่อ - นามสกุล</th>
+                <th class="py-3 px-3 text-center w-20">เพศ</th>
+                <th class="py-3 px-3 text-center w-24">สถานะ</th>
+              </tr>
+            </thead>
+            <tbody id="portalRosterTableBody" class="divide-y divide-slate-100">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
+      <div class="space-y-1">
+        <p class="text-slate-200 font-bold text-sm">โรงเรียนวัดบ้านฉาง (Wat Banchang School)</p>
+        <p class="text-[11px]">สำนักงานเขตพื้นที่การศึกษาประถมศึกษาระยอง เขต 1 (สพป.ระยอง เขต 1)</p>
+      </div>
+      <div class="text-right text-[11px] space-y-1">
+        <p>© 2569 โรงเรียนวัดบ้านฉาง. All rights reserved.</p>
+        <p class="text-slate-500">ระบบสารสนเทศเพื่อการบริหารจัดการศึกษาออนไลน์ (School Management & PP.5)</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL 1: ADD BLOG POST / ANNOUNCEMENT -->
+  <div id="addPostModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200 animate-fadeIn">
+      <div class="bg-indigo-900 px-5 py-4 text-white flex justify-between items-center">
+        <h3 class="font-bold text-sm flex items-center gap-2">
+          📢 <span id="modalAddPostTitle">เพิ่มข่าวสารหรือกิจกรรมใหม่</span>
+        </h3>
+        <button onclick="closeAddPostModal()" class="text-indigo-300 hover:text-white text-lg leading-none font-bold">✕</button>
+      </div>
+      <div class="p-5 space-y-3.5 text-xs max-h-[80vh] overflow-y-auto custom-scroll">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">หัวข้อข่าว / กิจกรรม: *</label>
+          <input type="text" id="postTitleInput" placeholder="เช่น การประชุมผู้ปกครองภาคเรียนที่ 1 ประจำปี 2569" class="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:border-indigo-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">หมวดหมู่:</label>
+            <select id="postCategoryInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
+              <option value="announcement">📢 ประกาศโรงเรียน</option>
+              <option value="activity">🏆 กิจกรรม & การแข่งขัน</option>
+              <option value="academic">📚 วิชาการ & การสอบ</option>
+              <option value="general">🌟 ทั่วไป</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">วันที่ประกาศ:</label>
+            <input type="date" id="postDateInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">ลิงก์รูปภาพประกอบ (URL รูปภาพ หรือเว้นว่างได้):</label>
+          <input type="url" id="postImageUrlInput" placeholder="https://images.unsplash.com/photo-..." class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
+          <p class="text-[10px] text-slate-400 mt-1">* หากไม่ใส่รูป ระบบจะใช้รูปภาพการศึกษาเริ่มต้นให้อัตโนมัติ</p>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">เนื้อหาข่าว / รายละเอียด: *</label>
+          <textarea id="postContentInput" rows="4" placeholder="พิมพ์รายละเอียดของข่าวหรือกิจกรรมที่ต้องการประชาสัมพันธ์..." class="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:border-indigo-500 custom-scroll"></textarea>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">ผู้ประกาศ / กลุ่มสาระฯ:</label>
+          <input type="text" id="postAuthorInput" placeholder="เช่น งานประชาสัมพันธ์โรงเรียนวัดบ้านฉาง" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
+        </div>
+      </div>
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
+        <button onclick="closeAddPostModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
+        <button onclick="saveNewBlogPost()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">เผยแพร่ข่าว</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: ADD CALENDAR EVENT -->
+  <div id="addEventModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden border border-slate-200 animate-fadeIn">
+      <div class="bg-emerald-800 px-5 py-4 text-white flex justify-between items-center">
+        <h3 class="font-bold text-sm flex items-center gap-2">
+          📅 <span>เพิ่มกิจกรรมในปฏิทินการศึกษา</span>
+        </h3>
+        <button onclick="closeAddEventModal()" class="text-emerald-200 hover:text-white text-lg leading-none font-bold">✕</button>
+      </div>
+      <div class="p-5 space-y-3.5 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">ชื่อกิจกรรม / วันสำคัญ: *</label>
+          <input type="text" id="eventTitleInput" placeholder="เช่น สอบกลางภาคเรียนที่ 1" class="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:border-indigo-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">วันที่เริ่มต้น: *</label>
+            <input type="date" id="eventStartDateInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">วันที่สิ้นสุด (ถ้ามี):</label>
+            <input type="date" id="eventEndDateInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">ประเภทกิจกรรม:</label>
+          <select id="eventTypeInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
+            <option value="academic">📚 วิชาการ / การสอบ</option>
+            <option value="activity">🏆 กิจกรรมพัฒนาผู้เรียน</option>
+            <option value="holiday">🚫 วันหยุดราชการ / ปิดภาคเรียน</option>
+            <option value="meeting">🤝 ประชุมผู้ปกครอง / คณะครู</option>
+          </select>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">รายละเอียดเพิ่มเติม:</label>
+          <input type="text" id="eventDescInput" placeholder="เช่น ทุกระดับชั้น ป.1 - ป.6" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
+        </div>
+      </div>
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
+        <button onclick="closeAddEventModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
+        <button onclick="saveNewCalendarEvent()" class="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg font-bold shadow">บันทึกกิจกรรม</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: GOOGLE SITES EMBED HELPER -->
+  <div id="embedModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full overflow-hidden border border-slate-200 animate-fadeIn">
+      <div class="bg-indigo-900 px-5 py-4 text-white flex justify-between items-center">
+        <h3 class="font-bold text-sm flex items-center gap-2">
+          🔗 <span>วิธีนำหน้านี้ไปฝังใน Google Sites</span>
+        </h3>
+        <button onclick="closeEmbedHelperModal()" class="text-indigo-300 hover:text-white text-lg leading-none font-bold">✕</button>
+      </div>
+      <div class="p-5 space-y-4 text-xs text-slate-600 max-h-[80vh] overflow-y-auto custom-scroll">
+        <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-100 text-indigo-950 space-y-1">
+          <p class="font-bold">💡 คำแนะนำสำหรับการติดตั้ง:</p>
+          <p>คุณครูสามารถนำหน้านี้ไปวางเป็น <strong>"หน้าหลักโรงเรียน (Home / Portal)"</strong> ใน Google Sites เพื่อให้นักเรียน ผู้ปกครอง และครูเข้ามาติดตามข่าวสาร ดูปฏิทิน และตรวจสอบรายชื่อนักเรียนได้ตลอดเวลา</p>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-800 mb-1">โค้ด Embed iframe (สำหรับ Google Sites):</label>
+          <textarea id="embedCodeText" readonly rows="4" class="w-full font-mono text-[11px] bg-slate-100 p-2.5 rounded-lg border border-slate-300 outline-none text-slate-800 custom-scroll"></textarea>
+          <button onclick="copyPortalEmbedCode()" class="mt-2 px-3 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold text-xs shadow flex items-center gap-1">
+            📋 <span>คัดลอกโค้ด Embed</span>
+          </button>
+        </div>
+
+        <div class="space-y-2 border-t border-slate-200 pt-3">
+          <p class="font-bold text-slate-800">ขั้นตอนการติดตั้งใน Google Sites:</p>
+          <ol class="list-decimal pl-5 space-y-1 text-slate-700 text-[11px]">
+            <li>เปิด <strong>sites.google.com</strong> และเข้าไปที่ไซต์ของโรงเรียน</li>
+            <li>ที่แถบด้านขวา เลือกเมนู <strong>"แทรก (Insert)" &gt; "ฝัง (Embed)"</strong></li>
+            <li>เลือกแท็บ <strong>"ฝังโค้ด (Embed code)"</strong> แล้ววางโค้ดที่คัดลอกด้านบน หรือเลือกแท็บ <strong>"ตาม URL (By URL)"</strong> หากนำไฟล์ขึ้น GitHub Pages / Netlify</li>
+            <li>ลากปรับขยายความกว้างกล่องให้เต็มหน้าจอ และกด <strong>"เผยแพร่ (Publish)"</strong></li>
+          </ol>
+        </div>
+      </div>
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end text-xs">
+        <button onclick="closeEmbedHelperModal()" class="px-4 py-1.5 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700">เข้าใจแล้ว / ปิดหน้าต่าง</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="portalToast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center space-x-2 text-xs font-semibold z-50 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none">
+    <span id="portalToastIcon" class="text-emerald-400">✓</span>
+    <span id="portalToastMessage">ดำเนินการสำเร็จ</span>
+  </div>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    /* =====================================================================
+       1. INITIAL DATA & STORAGE
+       ===================================================================== */
+    const PORTAL_STORAGE_KEY = 'school_portal_hub_data_v1';
+    const PP5_SHARED_KEY = 'pp5_online_state_v3';
+    let currentPortalLang = 'th';
+
+    // Calendar state
+    let calCurrentYear = 2026;
+    let calCurrentMonth = 4; // 0-indexed: 4 = May
+
+    const THAI_MONTH_NAMES = [
+      'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
+      'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
+    ];
+
+    const CLASS_LABELS = {
+      p1_1: 'ชั้น ป.1/1', p1_2: 'ชั้น ป.1/2',
+      p2_1: 'ชั้น ป.2/1', p2_2: 'ชั้น ป.2/2',
+      p3_1: 'ชั้น ป.3/1', p3_2: 'ชั้น ป.3/2',
+      p4_1: 'ชั้น ป.4/1', p4_2: 'ชั้น ป.4/2',
+      p5_1: 'ชั้น ป.5/1', p5_2: 'ชั้น ป.5/2',
+      p6_1: 'ชั้น ป.6/1', p6_2: 'ชั้น ป.6/2'
+    };
+
+    // Default Seed Blog Posts
+    const DEFAULT_BLOG_POSTS = [
+      {
+        id: 'post_1',
+        title: 'พิธีไหว้ครูและเปิดภาคเรียนที่ 1 ประจำปีการศึกษา 2569',
+        category: 'activity',
+        date: '2026-05-18',
+        author: 'งานประชาสัมพันธ์โรงเรียน',
+        imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80',
+        content: 'โรงเรียนวัดบ้านฉางจัดพิธีไหว้ครูประจำปีการศึกษา 2569 เพื่อให้นักเรียนได้แสดงความกตัญญูกตเวทิตาต่อครูบาอาจารย์ พร้อมมอบเกียรติบัตรแก่นักเรียนผู้มีผลการเรียนยอดเยี่ยมและความประพฤติดีเด่น'
+      },
+      {
+        id: 'post_2',
+        title: 'กำหนดการสอบกลางภาคเรียนที่ 1 และแนวทางการเตรียมตัวของนักเรียน',
+        category: 'academic',
+        date: '2026-07-20',
+        author: 'ฝ่ายวิชาการ',
+        imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80',
+        content: 'แจ้งกำหนดการสอบวัดผลกลางภาคเรียนที่ 1 ระหว่างวันที่ 28-30 กรกฎาคม 2569 ขอให้ผู้ปกครองช่วยดูแลกวดขันการทบทวนบทเรียนและเตรียมความพร้อมของนักเรียนตามตารางสอบที่แนบในระบบ'
+      },
+      {
+        id: 'post_3',
+        title: 'ขอแสดงความยินดีกับตัวแทนนักเรียน คว้าเหรียญทองการแข่งขันคณิตศาสตร์ระดับเขต',
+        category: 'activity',
+        date: '2026-08-14',
+        author: 'กลุ่มสาระการเรียนรู้คณิตศาสตร์',
+        imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=700&q=80',
+        content: 'ขอแสดงความชื่นชม เด็กชายกัณฑ์พัฒน์ ดีเจริญ และ เด็กหญิงปานไพลิน แสงนิกร ตัวแทนนักเรียนชั้นประถมศึกษาปีที่ 1 ที่ได้รับรางวัลเหรียญทองในการแข่งขันคิดเลขเร็วและทักษะคณิตศาสตร์ สพป.ระยอง เขต 1'
+      },
+      {
+        id: 'post_4',
+        title: 'ประกาศเปิดใช้งานระบบบันทึกผลการพัฒนาคุณภาพผู้เรียน (ปพ.5) ออนไลน์',
+        category: 'announcement',
+        date: '2026-05-10',
+        author: 'ศูนย์สารสนเทศและเทคโนโลยี',
+        imageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=80',
+        content: 'เพื่อการบริหารจัดการศึกษาที่มีประสิทธิภาพ โรงเรียนได้เปิดระบบ ปพ.5 ออนไลน์เต็มรูปแบบ รองรับการบันทึกเวลาเรียน คะแนนเก็บตัวชี้วัด และการตัดเกรดของทั้ง 12 ห้องเรียน'
+      }
+    ];
+
+    // Default Seed Calendar Events
+    const DEFAULT_CALENDAR_EVENTS = [
+      { id: 'ev_1', title: 'วันเปิดภาคเรียนที่ 1/2569', startDate: '2026-05-14', endDate: '2026-05-14', type: 'academic', desc: 'เปิดเรียนวันแรก ทุกระดับชั้น' },
+      { id: 'ev_2', title: 'วันวิสาขบูชา (วันหยุดราชการ)', startDate: '2026-05-31', endDate: '2026-05-31', type: 'holiday', desc: 'หยุดเรียน 1 วัน' },
+      { id: 'ev_3', title: 'สอบกลางภาคเรียนที่ 1', startDate: '2026-07-28', endDate: '2026-07-30', type: 'academic', desc: 'ชั้น ป.1 - ป.6' },
+      { id: 'ev_4', title: 'วันแม่แห่งชาติ (วันหยุดราชการ)', startDate: '2026-08-12', endDate: '2026-08-12', type: 'holiday', desc: 'หยุดเรียน 1 วัน' },
+      { id: 'ev_5', title: 'สอบปลายภาคเรียนที่ 1', startDate: '2026-10-05', endDate: '2026-10-09', type: 'academic', desc: 'ประเมินผลปลายภาคเรียนที่ 1' },
+      { id: 'ev_6', title: 'วันปิดภาคเรียนที่ 1', startDate: '2026-10-10', endDate: '2026-11-01', type: 'holiday', desc: 'ปิดภาคเรียนที่ 1' },
+      { id: 'ev_7', title: 'วันเปิดภาคเรียนที่ 2/2569', startDate: '2026-11-02', endDate: '2026-11-02', type: 'academic', desc: 'เปิดเรียนภาคเรียนที่ 2' },
+      { id: 'ev_8', title: 'กิจกรรมแข่งขันกีฬาสีสัมพันธ์', startDate: '2026-12-18', endDate: '2026-12-18', type: 'activity', desc: 'สนามฟุตบอลโรงเรียน' },
+      { id: 'ev_9', title: 'สอบปลายภาคเรียนที่ 2/2569', startDate: '2027-03-22', endDate: '2027-03-26', type: 'academic', desc: 'สิ้นสุดการประเมินผลประจำปี' }
+    ];
+
+    let portalData = {
+      posts: DEFAULT_BLOG_POSTS,
+      events: DEFAULT_CALENDAR_EVENTS
+    };
+
+    /* =====================================================================
+       2. DATA PERSISTENCE & SYNC WITH PP.5
+       ==================================================================== */
+    function loadPortalData() {
+      try {
+        const saved = localStorage.getItem(PORTAL_STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && Array.isArray(parsed.posts)) {
+            portalData = parsed;
+          }
+        }
+      } catch (e) {
+        console.warn("Using default portal seed data", e);
+      }
+    }
+
+    function savePortalData() {
+      try {
+        localStorage.setItem(PORTAL_STORAGE_KEY, JSON.stringify(portalData));
+        showToast("บันทึกข้อมูลเรียบร้อยแล้ว");
+      } catch (e) {
+        console.error("Failed to save portal data", e);
+      }
+    }
+
+    // Attempt to load student rosters directly from the active PP5 system storage
+    function getRosterForClass(classKey) {
+      try {
+        const pp5Raw = localStorage.getItem(PP5_SHARED_KEY);
+        if (pp5Raw) {
+          const pp5State = JSON.parse(pp5Raw);
+          if (pp5State && pp5State.classes && pp5State.classes[classKey] && Array.isArray(pp5State.classes[classKey].students)) {
+            return pp5State.classes[classKey].students;
+          }
+        }
+      } catch (err) {
+        console.warn("Could not read shared PP5 storage, generating fallback roster", err);
+      }
+
+      // Fallback roster if PP5 localStorage hasn't been initialized yet
+      return generateFallbackClassStudents(classKey);
+    }
+
+    function generateFallbackClassStudents(classKey) {
+      const match = classKey.match(/p(\d)_(\d)/);
+      const grade = match ? parseInt(match[1]) : 1;
+      const room = match ? parseInt(match[2]) : 1;
+
+      const sampleNames = [
+        { id: 9614, pre: 'เด็กชาย', n: 'กัณฑ์พัฒน์ ดีเจริญ', g: 'ชาย' },
+        { id: 9616, pre: 'เด็กหญิง', n: 'ปานไพลิน แสงนิกร', g: 'หญิง' },
+        { id: 9617, pre: 'เด็กหญิง', n: 'รุจิษยา เย็นรักษา', g: 'หญิง' },
+        { id: 9619, pre: 'เด็กชาย', n: 'จิรวัฒน์ บุญรักษา', g: 'ชาย' },
+        { id: 9620, pre: 'เด็กชาย', n: 'กรตชกร เนตรแสงสี', g: 'ชาย' },
+        { id: 9621, pre: 'เด็กชาย', n: 'ชัยภัทร จันทร์ยิ้ม', g: 'ชาย' },
+        { id: 9622, pre: 'เด็กหญิง', n: 'ธิดารัตน์ บัวใบ', g: 'หญิง' },
+        { id: 9623, pre: 'เด็กชาย', n: 'กิตตินันต์ เชาว์เรืองทวีกุล', g: 'ชาย' }
+      ];
+
+      return sampleNames.map((item, idx) => ({
+        no: idx + 1,
+        id: String(item.id + (grade * 100) + (room * 10)),
+        idCard: `120090196${idx}${grade}${room}`,
+        prefix: item.pre,
+        name: item.n,
+        gender: item.g,
+        status: 'ปกติ'
+      }));
+    }
+
+    /* =====================================================================
+       3. BLOG MODULE & POST MANAGEMENT
+       ===================================================================== */
+    function renderPosts() {
+      const filter = document.getElementById('postCategoryFilter').value;
+      const grid = document.getElementById('blogPostsGrid');
+      grid.innerHTML = '';
+
+      let list = portalData.posts || [];
+      if (filter !== 'all') {
+        list = list.filter(p => p.category === filter);
+      }
+
+      // Update metrics badge
+      const metricBadge = document.getElementById('metricPostsCount');
+      if (metricBadge) metricBadge.innerText = (portalData.posts || []).length;
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center text-slate-400 bg-white rounded-2xl border border-slate-200">
+            <p class="text-sm font-semibold">ยังไม่มีบทความในหมวดหมู่นี้</p>
+            <p class="text-xs mt-1">คลิกปุ่ม "เพิ่มบทความ" เพื่อสร้างข่าวสารหรือกิจกรรมใหม่</p>
+          </div>
+        `;
+        return;
+      }
+
+      list.forEach((post, index) => {
+        const categoryBadge = getCategoryBadge(post.category);
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-200 overflow-hidden flex flex-col justify-between group';
+
+        const imageSrc = post.imageUrl || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80';
+
+        card.innerHTML = `
+          <div>
+            <div class="h-44 overflow-hidden relative bg-slate-100">
+              <img src="${imageSrc}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/600x400/1e293b/ffffff?text=School+News'">
+              <div class="absolute top-3 left-3">
+                ${categoryBadge}
+              </div>
+            </div>
+            <div class="p-4 space-y-2">
+              <div class="flex items-center justify-between text-[11px] text-slate-400">
+                <span>📅 ${formatThaiDate(post.date)}</span>
+                <span>✍️ ${post.author || 'โรงเรียนวัดบ้านฉาง'}</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm leading-snug line-clamp-2 hover:text-indigo-700 transition cursor-pointer" onclick="viewPostDetail('${post.id}')">
+                ${post.title}
+              </h4>
+              <p class="text-slate-600 text-xs line-clamp-3 leading-relaxed">
+                ${post.content}
+              </p>
+            </div>
+          </div>
+          <div class="p-4 pt-0 border-t border-slate-50 flex items-center justify-between text-xs">
+            <button onclick="viewPostDetail('${post.id}')" class="text-indigo-700 font-bold hover:underline flex items-center gap-1">
+              อ่านรายละเอียด »
+            </button>
+            <button onclick="deletePost(${index})" class="text-slate-400 hover:text-red-600 text-[11px] transition">
+              ลบ
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function getCategoryBadge(cat) {
+      if (cat === 'announcement') return `<span class="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">📢 ประกาศ</span>`;
+      if (cat === 'activity') return `<span class="bg-emerald-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">🏆 กิจกรรม</span>`;
+      if (cat === 'academic') return `<span class="bg-blue-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">📚 วิชาการ</span>`;
+      return `<span class="bg-indigo-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow">🌟 ทั่วไป</span>`;
+    }
+
+    function openAddPostModal() {
+      document.getElementById('postTitleInput').value = '';
+      document.getElementById('postContentInput').value = '';
+      document.getElementById('postImageUrlInput').value = '';
+      document.getElementById('postAuthorInput').value = 'งานประชาสัมพันธ์โรงเรียนวัดบ้านฉาง';
+      document.getElementById('postDateInput').value = new Date().toISOString().split('T')[0];
+      document.getElementById('addPostModal').classList.remove('hidden');
+    }
+
+    function closeAddPostModal() {
+      document.getElementById('addPostModal').classList.add('hidden');
+    }
+
+    function saveNewBlogPost() {
+      const title = document.getElementById('postTitleInput').value.trim();
+      const content = document.getElementById('postContentInput').value.trim();
+      const category = document.getElementById('postCategoryInput').value;
+      const date = document.getElementById('postDateInput').value || new Date().toISOString().split('T')[0];
+      const imageUrl = document.getElementById('postImageUrlInput').value.trim();
+      const author = document.getElementById('postAuthorInput').value.trim() || 'โรงเรียนวัดบ้านฉาง';
+
+      if (!title || !content) {
+        alert('กรุณากรอกหัวข้อข่าวและรายละเอียดเนื้อหาให้ครบถ้วน');
+        return;
+      }
+
+      const newPost = {
+        id: 'post_' + Date.now(),
+        title,
+        content,
+        category,
+        date,
+        imageUrl,
+        author
+      };
+
+      portalData.posts.unshift(newPost);
+      savePortalData();
+      renderPosts();
+      closeAddPostModal();
+      showToast('เผยแพร่ข่าวสารเรียบร้อยแล้ว');
+    }
+
+    function deletePost(index) {
+      if (confirm('คุณต้องการลบข่าวหรือกิจกรรมนี้ใช่หรือไม่?')) {
+        portalData.posts.splice(index, 1);
+        savePortalData();
+        renderPosts();
+        showToast('ลบข่าวสารเรียบร้อยแล้ว');
+      }
+    }
+
+    function viewPostDetail(postId) {
+      const p = portalData.posts.find(item => item.id === postId);
+      if (!p) return;
+      alert(`【 ${p.title} 】\n\nวันที่: ${formatThaiDate(p.date)}\nผู้ประกาศ: ${p.author}\n\n${p.content}`);
+    }
+
+    /* =====================================================================
+       4. ACADEMIC CALENDAR MODULE
+       ===================================================================== */
+    function renderCalendar() {
+      const grid = document.getElementById('calendarDaysGrid');
+      const headerDisplay = document.getElementById('calMonthYearDisplay');
+      const termBadge = document.getElementById('calTermBadge');
+
+      const bYear = calCurrentYear + 543;
+      headerDisplay.innerText = `${THAI_MONTH_NAMES[calCurrentMonth]} พ.ศ. ${bYear}`;
+
+      // Check Term 1 vs Term 2
+      // May to Oct = Term 1 | Nov to Apr = Term 2
+      const isTerm1 = (calCurrentMonth >= 4 && calCurrentMonth <= 9);
+      termBadge.innerText = isTerm1 ? 'ภาคเรียนที่ 1' : 'ภาคเรียนที่ 2';
+      termBadge.className = isTerm1 
+        ? 'text-xs bg-blue-100 text-blue-900 font-semibold px-2 py-0.5 rounded-full'
+        : 'text-xs bg-amber-100 text-amber-900 font-semibold px-2 py-0.5 rounded-full';
+
+      grid.innerHTML = '';
+
+      const firstDayIndex = new Date(calCurrentYear, calCurrentMonth, 1).getDay();
+      const totalDays = new Date(calCurrentYear, calCurrentMonth + 1, 0).getDate();
+
+      // Empty padding cells for start of month
+      for (let i = 0; i < firstDayIndex; i++) {
+        const emptyCell = document.createElement('div');
+        emptyCell.className = 'h-16 p-1 rounded-xl bg-slate-50/50 border border-transparent';
+        grid.appendChild(emptyCell);
+      }
+
+      // Fill in actual days
+      for (let d = 1; d <= totalDays; d++) {
+        const isoDate = `${calCurrentYear}-${String(calCurrentMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const dayEvents = (portalData.events || []).filter(e => {
+          if (!e.endDate) return e.startDate === isoDate;
+          return isoDate >= e.startDate && isoDate <= e.endDate;
+        });
+
+        const dayCell = document.createElement('div');
+        dayCell.className = 'h-16 p-1.5 rounded-xl border border-slate-200 bg-white hover:border-indigo-400 transition flex flex-col justify-between overflow-hidden cursor-pointer';
+        dayCell.onclick = () => showDateEvents(isoDate, dayEvents);
+
+        let eventTags = '';
+        dayEvents.forEach(ev => {
+          let badgeColor = 'bg-blue-100 text-blue-800';
+          if (ev.type === 'holiday') badgeColor = 'bg-red-100 text-red-800';
+          else if (ev.type === 'activity') badgeColor = 'bg-emerald-100 text-emerald-800';
+          eventTags += `<span class="truncate px-1 py-0.2 rounded text-[9px] font-bold ${badgeColor} block mb-0.5">${ev.title}</span>`;
+        });
+
+        dayCell.innerHTML = `
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-800 text-xs">${d}</span>
+            ${dayEvents.length > 0 ? '<span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>' : ''}
+          </div>
+          <div class="overflow-y-auto custom-scroll flex-1 mt-0.5">
+            ${eventTags}
+          </div>
+        `;
+        grid.appendChild(dayCell);
+      }
+
+      renderUpcomingEvents();
+    }
+
+    function changeCalendarMonth(delta) {
+      calCurrentMonth += delta;
+      if (calCurrentMonth > 11) {
+        calCurrentMonth = 0;
+        calCurrentYear++;
+      } else if (calCurrentMonth < 0) {
+        calCurrentMonth = 11;
+        calCurrentYear--;
+      }
+      renderCalendar();
+    }
+
+    function renderUpcomingEvents() {
+      const container = document.getElementById('upcomingEventsList');
+      container.innerHTML = '';
+
+      const sorted = [...(portalData.events || [])].sort((a, b) => a.startDate.localeCompare(b.startDate));
+
+      if (sorted.length === 0) {
+        container.innerHTML = `<p class="text-xs text-slate-400 italic">ไม่มีกำหนดการสำคัญ</p>`;
+        return;
+      }
+
+      sorted.forEach((ev, idx) => {
+        let tagColor = 'border-l-blue-500 bg-blue-50/50';
+        let badge = '📚 วิชาการ';
+        if (ev.type === 'holiday') {
+          tagColor = 'border-l-red-500 bg-red-50/50';
+          badge = '🚫 วันหยุด';
+        } else if (ev.type === 'activity') {
+          tagColor = 'border-l-emerald-500 bg-emerald-50/50';
+          badge = '🏆 กิจกรรม';
+        }
+
+        const div = document.createElement('div');
+        div.className = `p-2.5 rounded-lg border border-slate-200 border-l-4 ${tagColor} space-y-1`;
+        div.innerHTML = `
+          <div class="flex items-center justify-between text-[10px]">
+            <span class="font-bold text-slate-500">📅 ${formatThaiDate(ev.startDate)} ${ev.endDate && ev.endDate !== ev.startDate ? ' - ' + formatThaiDate(ev.endDate) : ''}</span>
+            <span class="font-bold">${badge}</span>
+          </div>
+          <div class="font-bold text-slate-800 text-xs">${ev.title}</div>
+          ${ev.desc ? `<div class="text-[11px] text-slate-600">${ev.desc}</div>` : ''}
+          <div class="flex justify-end pt-1">
+            <button onclick="deleteCalendarEvent(${idx})" class="text-[10px] text-slate-400 hover:text-red-600">ลบกำหนดการ</button>
+          </div>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    function showDateEvents(isoDate, events) {
+      if (events.length === 0) {
+        if (confirm(`วันที่ ${formatThaiDate(isoDate)} ยังไม่มีกิจกรรม คุณต้องการเพิ่มกิจกรรมในวันนี้หรือไม่?`)) {
+          openAddEventModal(isoDate);
+        }
+        return;
+      }
+      let msg = `📅 กำหนดการสำหรับวันที่ ${formatThaiDate(isoDate)}:\n\n`;
+      events.forEach((e, i) => {
+        msg += `${i + 1}. ${e.title} (${e.desc || '-'})\n`;
+      });
+      alert(msg);
+    }
+
+    function openAddEventModal(presetDate = '') {
+      document.getElementById('eventTitleInput').value = '';
+      document.getElementById('eventDescInput').value = '';
+      document.getElementById('eventStartDateInput').value = presetDate || new Date().toISOString().split('T')[0];
+      document.getElementById('eventEndDateInput').value = presetDate || '';
+      document.getElementById('addEventModal').classList.remove('hidden');
+    }
+
+    function closeAddEventModal() {
+      document.getElementById('addEventModal').classList.add('hidden');
+    }
+
+    function saveNewCalendarEvent() {
+      const title = document.getElementById('eventTitleInput').value.trim();
+      const startDate = document.getElementById('eventStartDateInput').value;
+      const endDate = document.getElementById('eventEndDateInput').value || startDate;
+      const type = document.getElementById('eventTypeInput').value;
+      const desc = document.getElementById('eventDescInput').value.trim();
+
+      if (!title || !startDate) {
+        alert('กรุณากรอกชื่อกิจกรรมและวันที่เริ่มต้น');
+        return;
+      }
+
+      const newEvent = {
+        id: 'ev_' + Date.now(),
+        title,
+        startDate,
+        endDate,
+        type,
+        desc
+      };
+
+      portalData.events.push(newEvent);
+      savePortalData();
+      renderCalendar();
+      closeAddEventModal();
+      showToast('บันทึกกิจกรรมลงในปฏิทินเรียบร้อย');
+    }
+
+    function deleteCalendarEvent(index) {
+      if (confirm('คุณต้องการลบกิจกรรมนี้ออกจากปฏิทินใช่หรือไม่?')) {
+        portalData.events.splice(index, 1);
+        savePortalData();
+        renderCalendar();
+        showToast('ลบกิจกรรมเรียบร้อยแล้ว');
+      }
+    }
+
+    /* =====================================================================
+       5. STUDENT ROSTER VIEWER & SEARCH MODULE
+       ===================================================================== */
+    let currentViewingStudents = [];
+
+    function loadClassRoster(classKey) {
+      const label = CLASS_LABELS[classKey] || classKey;
+      document.getElementById('currentViewingClassLabel').innerText = label;
+
+      currentViewingStudents = getRosterForClass(classKey);
+      document.getElementById('currentClassStudentCount').innerText = `${currentViewingStudents.length} คน`;
+
+      // Update aggregate metric
+      const totalStudentsBadge = document.getElementById('metricTotalStudents');
+      if (totalStudentsBadge) {
+        totalStudentsBadge.innerText = `${currentViewingStudents.length * 12}`;
+      }
+
+      renderRosterTable(currentViewingStudents);
+    }
+
+    function renderRosterTable(students) {
+      const tbody = document.getElementById('portalRosterTableBody');
+      tbody.innerHTML = '';
+
+      if (!students || students.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="7" class="py-8 text-center text-slate-400">ไม่พบรายชื่อนักเรียนในห้องเรียนนี้</td>
+          </tr>
+        `;
+        return;
+      }
+
+      students.forEach(s => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 text-center font-bold text-slate-700">${s.no}</td>
+          <td class="py-2.5 px-3 font-semibold text-indigo-900 font-mono">${s.id}</td>
+          <td class="py-2.5 px-3 text-slate-600 font-mono">${s.idCard || '-'}</td>
+          <td class="py-2.5 px-3 text-slate-700">${s.prefix || ''}</td>
+          <td class="py-2.5 px-4 font-bold text-slate-900">${s.name || ''}</td>
+          <td class="py-2.5 px-3 text-center">${s.gender === 'หญิง' ? '♀️ หญิง' : '♂️ ชาย'}</td>
+          <td class="py-2.5 px-3 text-center">
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">${s.status || 'ปกติ'}</span>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterRosterTable() {
+      const query = document.getElementById('rosterSearchInput').value.trim().toLowerCase();
+      if (!query) {
+        renderRosterTable(currentViewingStudents);
+        return;
+      }
+
+      const filtered = currentViewingStudents.filter(s => {
+        const full = `${s.id} ${s.prefix}${s.name} ${s.idCard || ''}`.toLowerCase();
+        return full.includes(query);
+      });
+
+      renderRosterTable(filtered);
+    }
+
+    function exportCurrentRosterCSV() {
+      const classKey = document.getElementById('portalClassSelect').value;
+      const classLabel = CLASS_LABELS[classKey] || classKey;
+
+      if (!currentViewingStudents || currentViewingStudents.length === 0) {
+        alert('ไม่มีข้อมูลนักเรียนสำหรับส่งออก');
+        return;
+      }
+
+      const headers = ['ที่', 'เลขประจำตัว', 'เลขประจำตัวประชาชน', 'คำนำหน้า', 'ชื่อ-สกุล', 'เพศ', 'สถานะ'];
+      const escape = (val) => '"' + String(val || '').replace(/"/g, '""') + '"';
+
+      const rows = [headers.map(escape).join(',')];
+      currentViewingStudents.forEach(s => {
+        rows.push([
+          s.no,
+          s.id,
+          s.idCard || '',
+          s.prefix || '',
+          s.name || '',
+          s.gender || '',
+          s.status || 'ปกติ'
+        ].map(escape).join(','));
+      });
+
+      const csvString = '\uFEFF' + rows.join('\r\n');
+      const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `รายชื่อนักเรียน_${classLabel.replace(/[\s\/]/g, '_')}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      showToast('ส่งออกไฟล์ CSV สำเร็จ');
+    }
+
+    /* =====================================================================
+       6. EMBEDDING & UTILITY HELPERS
+       ===================================================================== */
+    function openEmbedHelperModal() {
+      const currentUrl = window.location.href;
+      const iframeCode = `<iframe src="${currentUrl}" width="100%" height="900" frameborder="0" style="border:0; border-radius:12px; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);" allowfullscreen></iframe>`;
+      document.getElementById('embedCodeText').value = iframeCode;
+      document.getElementById('embedModal').classList.remove('hidden');
+    }
+
+    function closeEmbedHelperModal() {
+      document.getElementById('embedModal').classList.add('hidden');
+    }
+
+    function copyPortalEmbedCode() {
+      const text = document.getElementById('embedCodeText');
+      text.select();
+      text.setSelectionRange(0, 99999);
+      document.execCommand('copy');
+      showToast('คัดลอกโค้ด Embed เรียบร้อยแล้ว');
+    }
+
+    function scrollToSection(sectionId) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function formatThaiDate(dateStr) {
+      if (!dateStr) return '-';
+      const parts = dateStr.split('-');
+      if (parts.length !== 3) return dateStr;
+      const y = parseInt(parts[0]) + 543;
+      const m = parseInt(parts[1]) - 1;
+      const d = parseInt(parts[2]);
+      return `${d} ${THAI_MONTH_NAMES[m]} ${y}`;
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('portalToast');
+      const text = document.getElementById('portalToastMessage');
+      if (!toast || !text) return;
+      text.innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    }
+
+    function setPortalLanguage(lang) {
+      currentPortalLang = lang;
+      ['th', 'en', 'zh'].forEach(l => {
+        const btn = document.getElementById(`portalLangBtn-${l}`);
+        if (!btn) return;
+        if (l === lang) {
+          btn.className = 'px-2.5 py-1 rounded font-bold bg-amber-400 text-indigo-950 transition';
+        } else {
+          btn.className = 'px-2.5 py-1 rounded text-indigo-200 hover:text-white transition';
+        }
+      });
+
+      if (lang === 'en') {
+        document.getElementById('schoolSubNav').innerText = 'Rayong Primary Educational Service Area 1 | School Portal';
+        document.getElementById('navBlogText').innerText = 'News & Events';
+        document.getElementById('navCalText').innerText = 'Calendar';
+        document.getElementById('navRosterText').innerText = 'Student Roster';
+        document.getElementById('heroHeading').innerText = 'Empowering Students Toward Excellence & Lifelong Learning';
+        document.getElementById('blogTitle').innerText = 'School News & Community Updates';
+      } else if (lang === 'zh') {
+        document.getElementById('schoolSubNav').innerText = '罗勇府第一小学教育区 | 学校官方门户与社区中心';
+        document.getElementById('navBlogText').innerText = '学校动态';
+        document.getElementById('navCalText').innerText = '校历日程';
+        document.getElementById('navRosterText').innerText = '学生名册';
+        document.getElementById('heroHeading').innerText = '携手共创教育未来 培养卓越品学人才';
+        document.getElementById('blogTitle').innerText = '校园新闻与活动动态';
+      } else {
+        document.getElementById('schoolSubNav').innerText = 'สพป.ระยอง เขต 1 | ศูนย์ข้อมูลสารสนเทศและกิจกรรมโรงเรียน';
+        document.getElementById('navBlogText').innerText = 'ข่าวและกิจกรรม';
+        document.getElementById('navCalText').innerText = 'ปฏิทินการศึกษา';
+        document.getElementById('navRosterText').innerText = 'รายชื่อนักเรียน';
+        document.getElementById('heroHeading').innerText = 'ร่วมสร้างอนาคตทางการศึกษา พัฒนาศักยภาพสู่ความเป็นเลิศ';
+        document.getElementById('blogTitle').innerText = 'ข่าวสารและกิจกรรมโรงเรียน (School News & Events)';
+      }
+    }
+
+    /* =====================================================================
+       7. INITIALIZATION ON WINDOW LOAD
+       ===================================================================== */
+    window.onload = function() {
+      loadPortalData();
+      renderPosts();
+      renderCalendar();
+      loadClassRoster('p1_1');
+    };
+  </script>
+</body>
+</html>
