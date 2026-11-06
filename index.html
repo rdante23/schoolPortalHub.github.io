@@ -103,11 +103,11 @@
       <!-- Quick Metrics Cards -->
       <div class="grid grid-cols-2 gap-3">
         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shadow-lg">
-          <div class="text-2xl font-black text-amber-300">12</div>
-          <div class="text-[11px] text-indigo-100 font-medium" id="metricClasses">ห้องเรียน (ป.1 - ป.6)</div>
+          <div class="text-2xl font-black text-amber-300">24</div>
+          <div class="text-[11px] text-indigo-100 font-medium" id="metricClasses">ห้องเรียน (อ.1 - ม.3)</div>
         </div>
         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shadow-lg">
-          <div class="text-2xl font-black text-emerald-300" id="metricTotalStudents">120+</div>
+          <div class="text-2xl font-black text-emerald-300" id="metricTotalStudents">240+</div>
           <div class="text-[11px] text-indigo-100 font-medium" id="metricStudents">นักเรียนในระบบ</div>
         </div>
         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10 text-center shadow-lg">
@@ -232,34 +232,40 @@
           <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
             👥 <span id="rosterSectionTitle">ทำเนียบรายชื่อนักเรียนรายห้อง (Student Roster Directory)</span>
           </h3>
-          <p class="text-xs text-slate-500" id="rosterSectionSub">ค้นหารายชื่อนักเรียน เลขประจำตัว และสถานะของทั้ง 12 ห้องเรียน (ป.1/1 - ป.6/2)</p>
+          <p class="text-xs text-slate-500" id="rosterSectionSub">ค้นหารายชื่อนักเรียน เลขประจำตัว และสถานะของทั้ง 24 ห้องเรียน (อนุบาล 1 - มัธยมศึกษาปีที่ 3)</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-          <!-- Class Selector -->
+          <!-- Class Selector (24 Classes) -->
           <select id="portalClassSelect" onchange="loadClassRoster(this.value)" class="bg-white border border-slate-300 text-xs font-semibold rounded-lg px-3 py-1.5 outline-none shadow-sm focus:border-indigo-500">
-            <optgroup label="ชั้นประถมศึกษาปีที่ 1">
+            <optgroup label="ระดับชั้นอนุบาล (Kindergarten)">
+              <option value="k1_1">ชั้น อ.1/1</option>
+              <option value="k1_2">ชั้น อ.1/2</option>
+              <option value="k2_1">ชั้น อ.2/1</option>
+              <option value="k2_2">ชั้น อ.2/2</option>
+              <option value="k3_1">ชั้น อ.3/1</option>
+              <option value="k3_2">ชั้น อ.3/2</option>
+            </optgroup>
+            <optgroup label="ระดับชั้นประถมศึกษา (Primary)">
               <option value="p1_1" selected>ชั้น ป.1/1</option>
               <option value="p1_2">ชั้น ป.1/2</option>
-            </optgroup>
-            <optgroup label="ชั้นประถมศึกษาปีที่ 2">
               <option value="p2_1">ชั้น ป.2/1</option>
               <option value="p2_2">ชั้น ป.2/2</option>
-            </optgroup>
-            <optgroup label="ชั้นประถมศึกษาปีที่ 3">
               <option value="p3_1">ชั้น ป.3/1</option>
               <option value="p3_2">ชั้น ป.3/2</option>
-            </optgroup>
-            <optgroup label="ชั้นประถมศึกษาปีที่ 4">
               <option value="p4_1">ชั้น ป.4/1</option>
               <option value="p4_2">ชั้น ป.4/2</option>
-            </optgroup>
-            <optgroup label="ชั้นประถมศึกษาปีที่ 5">
               <option value="p5_1">ชั้น ป.5/1</option>
               <option value="p5_2">ชั้น ป.5/2</option>
-            </optgroup>
-            <optgroup label="ชั้นประถมศึกษาปีที่ 6">
               <option value="p6_1">ชั้น ป.6/1</option>
               <option value="p6_2">ชั้น ป.6/2</option>
+            </optgroup>
+            <optgroup label="ระดับชั้นมัธยมศึกษาตอนต้น (Secondary)">
+              <option value="s1_1">ชั้น ม.1/1</option>
+              <option value="s1_2">ชั้น ม.1/2</option>
+              <option value="s2_1">ชั้น ม.2/1</option>
+              <option value="s2_2">ชั้น ม.2/2</option>
+              <option value="s3_1">ชั้น ม.3/1</option>
+              <option value="s3_2">ชั้น ม.3/2</option>
             </optgroup>
           </select>
 
@@ -268,6 +274,11 @@
             <input type="text" id="rosterSearchInput" oninput="filterRosterTable()" placeholder="ค้นหาชื่อ หรือ รหัสนักเรียน..." class="bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs outline-none focus:border-indigo-500 w-44 sm:w-56 shadow-sm">
             <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
           </div>
+
+          <!-- Upload CSV Button -->
+          <button onclick="openPortalUploadModal()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
+            📂 <span>อัปโหลดรายชื่อ (CSV)</span>
+          </button>
 
           <!-- Export CSV -->
           <button onclick="exportCurrentRosterCSV()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
@@ -284,7 +295,7 @@
             | จำนวนนักเรียน: <strong class="text-slate-900" id="currentClassStudentCount">0 คน</strong>
           </div>
           <div class="text-[11px] text-slate-500 italic">
-            * ข้อมูลเชื่อมโยงกับระบบฐานข้อมูล ปพ.5 ออนไลน์
+            * ข้อมูลเชื่อมโยงกับฐานข้อมูลรายชื่อ 24 ห้องเรียน
           </div>
         </div>
         <div class="overflow-x-auto custom-scroll">
@@ -458,6 +469,113 @@
     </div>
   </div>
 
+  <!-- MODAL 4: UPLOAD STUDENTS CSV FOR ROSTER -->
+  <div id="portalUploadModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[90vh]">
+      <div class="bg-emerald-800 px-5 py-4 text-white flex justify-between items-center">
+        <h3 class="font-bold text-sm flex items-center gap-2">
+          📂 <span>อัปโหลดรายชื่อนักเรียนด้วยไฟล์ CSV (24 ห้องเรียน)</span>
+        </h3>
+        <button onclick="closePortalUploadModal()" class="text-emerald-200 hover:text-white text-lg leading-none font-bold">✕</button>
+      </div>
+      <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
+        <!-- Drag & Drop Zone -->
+        <div class="bg-emerald-50/60 border-2 border-dashed border-emerald-300 rounded-2xl p-5 text-center hover:bg-emerald-50 transition cursor-pointer" onclick="document.getElementById('portalCsvFileInput').click()">
+          <input type="file" id="portalCsvFileInput" accept=".csv,text/csv" onchange="handlePortalCSVUpload(event)" class="hidden">
+          <div class="text-3xl mb-1">📄</div>
+          <p class="font-bold text-sm text-slate-800">คลิกเลือกไฟล์ CSV หรือลากไฟล์มาวางที่นี่</p>
+          <p class="text-slate-500 text-[11px] mt-0.5">รองรับไฟล์ CSV ภาษาไทย (UTF-8) ตามรูปแบบมาตรฐาน ปพ.5</p>
+        </div>
+
+        <!-- Target Class & Duplicate Settings -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">ห้องเรียนเป้าหมาย (หากในไฟล์ไม่มีคอลัมน์ห้องเรียน):</label>
+            <select id="portalUploadTargetClass" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs font-semibold outline-none focus:border-indigo-500">
+              <optgroup label="ระดับชั้นอนุบาล">
+                <option value="k1_1">ชั้น อ.1/1</option>
+                <option value="k1_2">ชั้น อ.1/2</option>
+                <option value="k2_1">ชั้น อ.2/1</option>
+                <option value="k2_2">ชั้น อ.2/2</option>
+                <option value="k3_1">ชั้น อ.3/1</option>
+                <option value="k3_2">ชั้น อ.3/2</option>
+              </optgroup>
+              <optgroup label="ระดับชั้นประถมศึกษา">
+                <option value="p1_1" selected>ชั้น ป.1/1</option>
+                <option value="p1_2">ชั้น ป.1/2</option>
+                <option value="p2_1">ชั้น ป.2/1</option>
+                <option value="p2_2">ชั้น ป.2/2</option>
+                <option value="p3_1">ชั้น ป.3/1</option>
+                <option value="p3_2">ชั้น ป.3/2</option>
+                <option value="p4_1">ชั้น ป.4/1</option>
+                <option value="p4_2">ชั้น ป.4/2</option>
+                <option value="p5_1">ชั้น ป.5/1</option>
+                <option value="p5_2">ชั้น ป.5/2</option>
+                <option value="p6_1">ชั้น ป.6/1</option>
+                <option value="p6_2">ชั้น ป.6/2</option>
+              </optgroup>
+              <optgroup label="ระดับชั้นมัธยมศึกษาตอนต้น">
+                <option value="s1_1">ชั้น ม.1/1</option>
+                <option value="s1_2">ชั้น ม.1/2</option>
+                <option value="s2_1">ชั้น ม.2/1</option>
+                <option value="s2_2">ชั้น ม.2/2</option>
+                <option value="s3_1">ชั้น ม.3/1</option>
+                <option value="s3_2">ชั้น ม.3/2</option>
+              </optgroup>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">การจัดการข้อมูล:</label>
+            <select id="portalUploadMode" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs outline-none focus:border-indigo-500">
+              <option value="replace">แทนที่รายชื่อเดิมในห้องนั้นทั้งหมด</option>
+              <option value="append">เพิ่มต่อท้ายรายชื่อเดิม (อัปเดตเมื่อรหัสซ้ำ)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Preview Container -->
+        <div id="portalCsvPreviewContainer" class="hidden space-y-2">
+          <div class="flex items-center justify-between font-bold text-slate-800">
+            <span>ตัวอย่างข้อมูลที่ตรวจพบ (<span id="portalPreviewCount">0</span> คน):</span>
+            <span id="portalPreviewClassBadge" class="text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded text-[11px]"></span>
+          </div>
+          <div class="border border-slate-200 rounded-xl overflow-x-auto max-h-48 custom-scroll">
+            <table class="w-full text-left text-[11px]">
+              <thead class="bg-slate-100 text-slate-700 sticky top-0 font-semibold">
+                <tr>
+                  <th class="p-1.5 text-center w-10">ที่</th>
+                  <th class="p-1.5 w-20">รหัสนักเรียน</th>
+                  <th class="p-1.5 w-28">เลขประชาชน</th>
+                  <th class="p-1.5 w-16">คำนำหน้า</th>
+                  <th class="p-1.5">ชื่อ - นามสกุล</th>
+                  <th class="p-1.5 text-center w-12">เพศ</th>
+                  <th class="p-1.5 text-center w-16">ห้อง</th>
+                </tr>
+              </thead>
+              <tbody id="portalPreviewTableBody" class="divide-y divide-slate-100">
+                <!-- Preview rows -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Download Template Link -->
+        <div class="flex items-center justify-between pt-1 text-[11px]">
+          <span class="text-slate-500">* คอลัมน์ที่รองรับ: ที่, เลขประจำตัวนักเรียน, เลขประชาชน, คำนำหน้า, ชื่อ, นามสกุล, เพศ, สถานะ, ห้องเรียน</span>
+          <button onclick="downloadPortalTemplateCSV()" class="text-indigo-700 font-bold hover:underline">
+            📥 ดาวน์โหลดไฟล์ตัวอย่าง (Template CSV)
+          </button>
+        </div>
+      </div>
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
+        <button onclick="closePortalUploadModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
+        <button id="btnConfirmPortalUpload" onclick="confirmPortalUpload()" class="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg font-bold shadow disabled:opacity-40 disabled:pointer-events-none" disabled>
+          ยืนยันการนำเข้าข้อมูล
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION -->
   <div id="portalToast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center space-x-2 text-xs font-semibold z-50 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none">
     <span id="portalToastIcon" class="text-emerald-400">✓</span>
@@ -482,13 +600,23 @@
       'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
     ];
 
+    // FULL 24 CLASSES STRUCTURE (K1-K3, P1-P6, S1-S3, 2 classes each)
     const CLASS_LABELS = {
+      // Kindergarten (6 classes)
+      k1_1: 'ชั้น อ.1/1', k1_2: 'ชั้น อ.1/2',
+      k2_1: 'ชั้น อ.2/1', k2_2: 'ชั้น อ.2/2',
+      k3_1: 'ชั้น อ.3/1', k3_2: 'ชั้น อ.3/2',
+      // Primary (12 classes)
       p1_1: 'ชั้น ป.1/1', p1_2: 'ชั้น ป.1/2',
       p2_1: 'ชั้น ป.2/1', p2_2: 'ชั้น ป.2/2',
       p3_1: 'ชั้น ป.3/1', p3_2: 'ชั้น ป.3/2',
       p4_1: 'ชั้น ป.4/1', p4_2: 'ชั้น ป.4/2',
       p5_1: 'ชั้น ป.5/1', p5_2: 'ชั้น ป.5/2',
-      p6_1: 'ชั้น ป.6/1', p6_2: 'ชั้น ป.6/2'
+      p6_1: 'ชั้น ป.6/1', p6_2: 'ชั้น ป.6/2',
+      // Secondary (6 classes)
+      s1_1: 'ชั้น ม.1/1', s1_2: 'ชั้น ม.1/2',
+      s2_1: 'ชั้น ม.2/1', s2_2: 'ชั้น ม.2/2',
+      s3_1: 'ชั้น ม.3/1', s3_2: 'ชั้น ม.3/2'
     };
 
     // Default Seed Blog Posts
@@ -546,7 +674,8 @@
 
     let portalData = {
       posts: DEFAULT_BLOG_POSTS,
-      events: DEFAULT_CALENDAR_EVENTS
+      events: DEFAULT_CALENDAR_EVENTS,
+      rosters: {} // stores uploaded rosters for all 24 classes
     };
 
     /* =====================================================================
@@ -559,6 +688,7 @@
           const parsed = JSON.parse(saved);
           if (parsed && Array.isArray(parsed.posts)) {
             portalData = parsed;
+            if (!portalData.rosters) portalData.rosters = {};
           }
         }
       } catch (e) {
@@ -575,8 +705,12 @@
       }
     }
 
-    // Attempt to load student rosters directly from the active PP5 system storage
+    // Attempt to load student rosters: Priority 1: Portal stored rosters, Priority 2: Shared PP5 storage, Priority 3: Generated fallback
     function getRosterForClass(classKey) {
+      if (portalData.rosters && portalData.rosters[classKey] && portalData.rosters[classKey].length > 0) {
+        return portalData.rosters[classKey];
+      }
+
       try {
         const pp5Raw = localStorage.getItem(PP5_SHARED_KEY);
         if (pp5Raw) {
@@ -589,14 +723,24 @@
         console.warn("Could not read shared PP5 storage, generating fallback roster", err);
       }
 
-      // Fallback roster if PP5 localStorage hasn't been initialized yet
+      // Fallback roster if no data has been uploaded yet
       return generateFallbackClassStudents(classKey);
     }
 
     function generateFallbackClassStudents(classKey) {
-      const match = classKey.match(/p(\d)_(\d)/);
-      const grade = match ? parseInt(match[1]) : 1;
-      const room = match ? parseInt(match[2]) : 1;
+      // Determine grade letter and prefix
+      let gradeName = 'ป.1';
+      let baseOffset = 1000;
+      if (classKey.startsWith('k')) {
+        gradeName = 'อ.' + classKey.charAt(1);
+        baseOffset = 100 * parseInt(classKey.charAt(1));
+      } else if (classKey.startsWith('p')) {
+        gradeName = 'ป.' + classKey.charAt(1);
+        baseOffset = 1000 * parseInt(classKey.charAt(1));
+      } else if (classKey.startsWith('s')) {
+        gradeName = 'ม.' + classKey.charAt(1);
+        baseOffset = 5000 + (1000 * parseInt(classKey.charAt(1)));
+      }
 
       const sampleNames = [
         { id: 9614, pre: 'เด็กชาย', n: 'กัณฑ์พัฒน์ ดีเจริญ', g: 'ชาย' },
@@ -611,8 +755,8 @@
 
       return sampleNames.map((item, idx) => ({
         no: idx + 1,
-        id: String(item.id + (grade * 100) + (room * 10)),
-        idCard: `120090196${idx}${grade}${room}`,
+        id: String(item.id + baseOffset),
+        idCard: `120090196${idx}${baseOffset}`,
         prefix: item.pre,
         name: item.n,
         gender: item.g,
@@ -754,189 +898,10 @@
     }
 
     /* =====================================================================
-       4. ACADEMIC CALENDAR MODULE
-       ===================================================================== */
-    function renderCalendar() {
-      const grid = document.getElementById('calendarDaysGrid');
-      const headerDisplay = document.getElementById('calMonthYearDisplay');
-      const termBadge = document.getElementById('calTermBadge');
-
-      const bYear = calCurrentYear + 543;
-      headerDisplay.innerText = `${THAI_MONTH_NAMES[calCurrentMonth]} พ.ศ. ${bYear}`;
-
-      // Check Term 1 vs Term 2
-      // May to Oct = Term 1 | Nov to Apr = Term 2
-      const isTerm1 = (calCurrentMonth >= 4 && calCurrentMonth <= 9);
-      termBadge.innerText = isTerm1 ? 'ภาคเรียนที่ 1' : 'ภาคเรียนที่ 2';
-      termBadge.className = isTerm1 
-        ? 'text-xs bg-blue-100 text-blue-900 font-semibold px-2 py-0.5 rounded-full'
-        : 'text-xs bg-amber-100 text-amber-900 font-semibold px-2 py-0.5 rounded-full';
-
-      grid.innerHTML = '';
-
-      const firstDayIndex = new Date(calCurrentYear, calCurrentMonth, 1).getDay();
-      const totalDays = new Date(calCurrentYear, calCurrentMonth + 1, 0).getDate();
-
-      // Empty padding cells for start of month
-      for (let i = 0; i < firstDayIndex; i++) {
-        const emptyCell = document.createElement('div');
-        emptyCell.className = 'h-16 p-1 rounded-xl bg-slate-50/50 border border-transparent';
-        grid.appendChild(emptyCell);
-      }
-
-      // Fill in actual days
-      for (let d = 1; d <= totalDays; d++) {
-        const isoDate = `${calCurrentYear}-${String(calCurrentMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-        const dayEvents = (portalData.events || []).filter(e => {
-          if (!e.endDate) return e.startDate === isoDate;
-          return isoDate >= e.startDate && isoDate <= e.endDate;
-        });
-
-        const dayCell = document.createElement('div');
-        dayCell.className = 'h-16 p-1.5 rounded-xl border border-slate-200 bg-white hover:border-indigo-400 transition flex flex-col justify-between overflow-hidden cursor-pointer';
-        dayCell.onclick = () => showDateEvents(isoDate, dayEvents);
-
-        let eventTags = '';
-        dayEvents.forEach(ev => {
-          let badgeColor = 'bg-blue-100 text-blue-800';
-          if (ev.type === 'holiday') badgeColor = 'bg-red-100 text-red-800';
-          else if (ev.type === 'activity') badgeColor = 'bg-emerald-100 text-emerald-800';
-          eventTags += `<span class="truncate px-1 py-0.2 rounded text-[9px] font-bold ${badgeColor} block mb-0.5">${ev.title}</span>`;
-        });
-
-        dayCell.innerHTML = `
-          <div class="flex items-center justify-between">
-            <span class="font-bold text-slate-800 text-xs">${d}</span>
-            ${dayEvents.length > 0 ? '<span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>' : ''}
-          </div>
-          <div class="overflow-y-auto custom-scroll flex-1 mt-0.5">
-            ${eventTags}
-          </div>
-        `;
-        grid.appendChild(dayCell);
-      }
-
-      renderUpcomingEvents();
-    }
-
-    function changeCalendarMonth(delta) {
-      calCurrentMonth += delta;
-      if (calCurrentMonth > 11) {
-        calCurrentMonth = 0;
-        calCurrentYear++;
-      } else if (calCurrentMonth < 0) {
-        calCurrentMonth = 11;
-        calCurrentYear--;
-      }
-      renderCalendar();
-    }
-
-    function renderUpcomingEvents() {
-      const container = document.getElementById('upcomingEventsList');
-      container.innerHTML = '';
-
-      const sorted = [...(portalData.events || [])].sort((a, b) => a.startDate.localeCompare(b.startDate));
-
-      if (sorted.length === 0) {
-        container.innerHTML = `<p class="text-xs text-slate-400 italic">ไม่มีกำหนดการสำคัญ</p>`;
-        return;
-      }
-
-      sorted.forEach((ev, idx) => {
-        let tagColor = 'border-l-blue-500 bg-blue-50/50';
-        let badge = '📚 วิชาการ';
-        if (ev.type === 'holiday') {
-          tagColor = 'border-l-red-500 bg-red-50/50';
-          badge = '🚫 วันหยุด';
-        } else if (ev.type === 'activity') {
-          tagColor = 'border-l-emerald-500 bg-emerald-50/50';
-          badge = '🏆 กิจกรรม';
-        }
-
-        const div = document.createElement('div');
-        div.className = `p-2.5 rounded-lg border border-slate-200 border-l-4 ${tagColor} space-y-1`;
-        div.innerHTML = `
-          <div class="flex items-center justify-between text-[10px]">
-            <span class="font-bold text-slate-500">📅 ${formatThaiDate(ev.startDate)} ${ev.endDate && ev.endDate !== ev.startDate ? ' - ' + formatThaiDate(ev.endDate) : ''}</span>
-            <span class="font-bold">${badge}</span>
-          </div>
-          <div class="font-bold text-slate-800 text-xs">${ev.title}</div>
-          ${ev.desc ? `<div class="text-[11px] text-slate-600">${ev.desc}</div>` : ''}
-          <div class="flex justify-end pt-1">
-            <button onclick="deleteCalendarEvent(${idx})" class="text-[10px] text-slate-400 hover:text-red-600">ลบกำหนดการ</button>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function showDateEvents(isoDate, events) {
-      if (events.length === 0) {
-        if (confirm(`วันที่ ${formatThaiDate(isoDate)} ยังไม่มีกิจกรรม คุณต้องการเพิ่มกิจกรรมในวันนี้หรือไม่?`)) {
-          openAddEventModal(isoDate);
-        }
-        return;
-      }
-      let msg = `📅 กำหนดการสำหรับวันที่ ${formatThaiDate(isoDate)}:\n\n`;
-      events.forEach((e, i) => {
-        msg += `${i + 1}. ${e.title} (${e.desc || '-'})\n`;
-      });
-      alert(msg);
-    }
-
-    function openAddEventModal(presetDate = '') {
-      document.getElementById('eventTitleInput').value = '';
-      document.getElementById('eventDescInput').value = '';
-      document.getElementById('eventStartDateInput').value = presetDate || new Date().toISOString().split('T')[0];
-      document.getElementById('eventEndDateInput').value = presetDate || '';
-      document.getElementById('addEventModal').classList.remove('hidden');
-    }
-
-    function closeAddEventModal() {
-      document.getElementById('addEventModal').classList.add('hidden');
-    }
-
-    function saveNewCalendarEvent() {
-      const title = document.getElementById('eventTitleInput').value.trim();
-      const startDate = document.getElementById('eventStartDateInput').value;
-      const endDate = document.getElementById('eventEndDateInput').value || startDate;
-      const type = document.getElementById('eventTypeInput').value;
-      const desc = document.getElementById('eventDescInput').value.trim();
-
-      if (!title || !startDate) {
-        alert('กรุณากรอกชื่อกิจกรรมและวันที่เริ่มต้น');
-        return;
-      }
-
-      const newEvent = {
-        id: 'ev_' + Date.now(),
-        title,
-        startDate,
-        endDate,
-        type,
-        desc
-      };
-
-      portalData.events.push(newEvent);
-      savePortalData();
-      renderCalendar();
-      closeAddEventModal();
-      showToast('บันทึกกิจกรรมลงในปฏิทินเรียบร้อย');
-    }
-
-    function deleteCalendarEvent(index) {
-      if (confirm('คุณต้องการลบกิจกรรมนี้ออกจากปฏิทินใช่หรือไม่?')) {
-        portalData.events.splice(index, 1);
-        savePortalData();
-        renderCalendar();
-        showToast('ลบกิจกรรมเรียบร้อยแล้ว');
-      }
-    }
-
-    /* =====================================================================
-       5. STUDENT ROSTER VIEWER & SEARCH MODULE
+       5. STUDENT ROSTER VIEWER, SEARCH & CSV UPLOAD MODULE
        ===================================================================== */
     let currentViewingStudents = [];
+    let pendingUploadedStudents = [];
 
     function loadClassRoster(classKey) {
       const label = CLASS_LABELS[classKey] || classKey;
@@ -945,10 +910,15 @@
       currentViewingStudents = getRosterForClass(classKey);
       document.getElementById('currentClassStudentCount').innerText = `${currentViewingStudents.length} คน`;
 
-      // Update aggregate metric
+      // Update total student metric across all 24 classes
+      let grandTotal = 0;
+      Object.keys(CLASS_LABELS).forEach(k => {
+        const r = getRosterForClass(k);
+        grandTotal += r ? r.length : 0;
+      });
       const totalStudentsBadge = document.getElementById('metricTotalStudents');
       if (totalStudentsBadge) {
-        totalStudentsBadge.innerText = `${currentViewingStudents.length * 12}`;
+        totalStudentsBadge.innerText = `${grandTotal} คน`;
       }
 
       renderRosterTable(currentViewingStudents);
@@ -961,7 +931,7 @@
       if (!students || students.length === 0) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="7" class="py-8 text-center text-slate-400">ไม่พบรายชื่อนักเรียนในห้องเรียนนี้</td>
+            <td colspan="7" class="py-8 text-center text-slate-400">ไม่พบรายชื่อนักเรียนในห้องเรียนนี้ (คลิก "อัปโหลดรายชื่อ (CSV)" เพื่อเพิ่มข้อมูล)</td>
           </tr>
         `;
         return;
@@ -998,6 +968,287 @@
       });
 
       renderRosterTable(filtered);
+    }
+
+    /* =====================================================================
+       5.1 STUDENT CSV UPLOAD HANDLERS (24 CLASSES)
+       ===================================================================== */
+    function openPortalUploadModal() {
+      const currentClass = document.getElementById('portalClassSelect').value;
+      document.getElementById('portalUploadTargetClass').value = currentClass || 'p1_1';
+      document.getElementById('portalCsvFileInput').value = '';
+      document.getElementById('portalCsvPreviewContainer').classList.add('hidden');
+      document.getElementById('btnConfirmPortalUpload').disabled = true;
+      pendingUploadedStudents = [];
+      document.getElementById('portalUploadModal').classList.remove('hidden');
+    }
+
+    function closePortalUploadModal() {
+      document.getElementById('portalUploadModal').classList.add('hidden');
+    }
+
+    function resolvePortalClassKey(inputStr, fallbackKey) {
+      if (!inputStr || inputStr.trim() === '') return fallbackKey;
+      const clean = inputStr.trim().toLowerCase().replace(/\s+/g, '');
+      if (CLASS_LABELS[clean]) return clean;
+
+      // Kindergarten regex
+      if (/^(?:อ\.|อนุบาล|k)?1[\/\-_.]?1$/i.test(clean)) return 'k1_1';
+      if (/^(?:อ\.|อนุบาล|k)?1[\/\-_.]?2$/i.test(clean)) return 'k1_2';
+      if (/^(?:อ\.|อนุบาล|k)?2[\/\-_.]?1$/i.test(clean)) return 'k2_1';
+      if (/^(?:อ\.|อนุบาล|k)?2[\/\-_.]?2$/i.test(clean)) return 'k2_2';
+      if (/^(?:อ\.|อนุบาล|k)?3[\/\-_.]?1$/i.test(clean)) return 'k3_1';
+      if (/^(?:อ\.|อนุบาล|k)?3[\/\-_.]?2$/i.test(clean)) return 'k3_2';
+
+      // Primary regex
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?1[\/\-_.]?1$/i.test(clean)) return 'p1_1';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?1[\/\-_.]?2$/i.test(clean)) return 'p1_2';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?2[\/\-_.]?1$/i.test(clean)) return 'p2_1';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?2[\/\-_.]?2$/i.test(clean)) return 'p2_2';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?3[\/\-_.]?1$/i.test(clean)) return 'p3_1';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?3[\/\-_.]?2$/i.test(clean)) return 'p3_2';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?4[\/\-_.]?1$/i.test(clean)) return 'p4_1';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?4[\/\-_.]?2$/i.test(clean)) return 'p4_2';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?5[\/\-_.]?1$/i.test(clean)) return 'p5_1';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?5[\/\-_.]?2$/i.test(clean)) return 'p5_2';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?6[\/\-_.]?1$/i.test(clean)) return 'p6_1';
+      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?6[\/\-_.]?2$/i.test(clean)) return 'p6_2';
+
+      // Secondary regex
+      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?1[\/\-_.]?1$/i.test(clean)) return 's1_1';
+      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?1[\/\-_.]?2$/i.test(clean)) return 's1_2';
+      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?2[\/\-_.]?1$/i.test(clean)) return 's2_1';
+      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?2[\/\-_.]?2$/i.test(clean)) return 's2_2';
+      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?3[\/\-_.]?1$/i.test(clean)) return 's3_1';
+      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?3[\/\-_.]?2$/i.test(clean)) return 's3_2';
+
+      return fallbackKey;
+    }
+
+    function parsePortalCSVText(csvText) {
+      const lines = [];
+      let row = [];
+      let insideQuote = false;
+      let entry = '';
+
+      for (let i = 0; i < csvText.length; i++) {
+        const char = csvText[i];
+        const nextChar = csvText[i + 1];
+
+        if (char === '"') {
+          if (insideQuote && nextChar === '"') {
+            entry += '"';
+            i++;
+          } else {
+            insideQuote = !insideQuote;
+          }
+        } else if (char === ',' && !insideQuote) {
+          row.push(entry.trim());
+          entry = '';
+        } else if ((char === '\r' || char === '\n') && !insideQuote) {
+          if (char === '\r' && nextChar === '\n') i++;
+          row.push(entry.trim());
+          if (row.some(val => val !== '')) lines.push(row);
+          row = [];
+          entry = '';
+        } else {
+          entry += char;
+        }
+      }
+      if (entry !== '' || row.length > 0) {
+        row.push(entry.trim());
+        if (row.some(val => val !== '')) lines.push(row);
+      }
+      return lines;
+    }
+
+    function handlePortalCSVUpload(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const content = e.target.result;
+          const rows = parsePortalCSVText(content);
+          if (rows.length < 2) {
+            alert('ไฟล์ CSV ไม่มีข้อมูลเพียงพอ (ต้องมีหัวตารางและแถวข้อมูลอย่างน้อย 1 แถว)');
+            return;
+          }
+
+          const defaultTargetClass = document.getElementById('portalUploadTargetClass').value;
+          const headers = rows[0];
+
+          let colIdx = { no: -1, id: -1, idCard: -1, prefix: -1, name: -1, surname: -1, gender: -1, status: -1, className: -1 };
+          headers.forEach((h, idx) => {
+            const clean = h.trim().toLowerCase().replace(/\s+/g, '');
+            if (/^(ที่|no|ลำดับ)$/.test(clean)) colIdx.no = idx;
+            else if (/^(เลขประจำตัวนักเรียน|เลขประจำตัว|รหัสนักเรียน|studentid|id)$/.test(clean)) colIdx.id = idx;
+            else if (/^(เลขประจำตัวประชาชน|เลขประชาชน|บัตรประชาชน|idcard)$/.test(clean)) colIdx.idCard = idx;
+            else if (/^(คำนำหน้า|prefix|title)$/.test(clean)) colIdx.prefix = idx;
+            else if (/^(ชื่อ|firstname|name)$/.test(clean)) colIdx.name = idx;
+            else if (/^(นามสกุล|lastname|surname)$/.test(clean)) colIdx.surname = idx;
+            else if (/^(เพศ|gender|sex)$/.test(clean)) colIdx.gender = idx;
+            else if (/^(สถานะการเรียน|สถานะ|status)$/.test(clean)) colIdx.status = idx;
+            else if (/^(ห้องเรียน|ชั้น|ห้อง|class)$/.test(clean)) colIdx.className = idx;
+          });
+
+          if (colIdx.id === -1 && colIdx.name === -1) {
+            colIdx = { no: 0, id: 1, idCard: 2, prefix: 3, name: 4, surname: 5, gender: 6, status: 7, className: 8 };
+          }
+
+          pendingUploadedStudents = [];
+          for (let r = 1; r < rows.length; r++) {
+            const row = rows[r];
+            if (!row || row.length === 0 || row.every(c => c.trim() === '')) continue;
+
+            const id = colIdx.id !== -1 && row[colIdx.id] ? row[colIdx.id].trim() : '';
+            const idCard = colIdx.idCard !== -1 && row[colIdx.idCard] ? row[colIdx.idCard].trim().replace(/[-\s]/g, '') : '';
+            const prefix = colIdx.prefix !== -1 && row[colIdx.prefix] ? row[colIdx.prefix].trim() : '';
+            const rawName = colIdx.name !== -1 && row[colIdx.name] ? row[colIdx.name].trim() : '';
+            const rawSurname = colIdx.surname !== -1 && row[colIdx.surname] ? row[colIdx.surname].trim() : '';
+            const gender = colIdx.gender !== -1 && row[colIdx.gender] ? row[colIdx.gender].trim() : '';
+            const status = colIdx.status !== -1 && row[colIdx.status] ? row[colIdx.status].trim() : 'ปกติ';
+            const rawClass = colIdx.className !== -1 && row[colIdx.className] ? row[colIdx.className].trim() : '';
+
+            if (!id && !rawName) continue;
+
+            const targetClass = resolvePortalClassKey(rawClass, defaultTargetClass);
+            const fullName = rawSurname ? `${rawName} ${rawSurname}`.trim() : rawName;
+
+            let normalizedGender = gender;
+            if (!normalizedGender) {
+              if (/เด็กหญิง|นางสาว|ด\.ญ\./.test(prefix)) normalizedGender = 'หญิง';
+              else normalizedGender = 'ชาย';
+            }
+
+            pendingUploadedStudents.push({
+              no: pendingUploadedStudents.length + 1,
+              id: id || String(9000 + r),
+              idCard,
+              prefix: prefix || (normalizedGender === 'หญิง' ? 'เด็กหญิง' : 'เด็กชาย'),
+              name: fullName || 'นักเรียน',
+              gender: normalizedGender,
+              status: status || 'ปกติ',
+              targetClass
+            });
+          }
+
+          if (pendingUploadedStudents.length === 0) {
+            alert('ไม่พบแถวข้อมูลนักเรียนที่ถูกต้องในไฟล์');
+            return;
+          }
+
+          renderPortalUploadPreview();
+        } catch (err) {
+          console.error('Error parsing CSV', err);
+          alert('เกิดข้อผิดพลาดในการอ่านไฟล์ CSV');
+        }
+      };
+      reader.readAsText(file, 'UTF-8');
+    }
+
+    function renderPortalUploadPreview() {
+      const container = document.getElementById('portalCsvPreviewContainer');
+      const countEl = document.getElementById('portalPreviewCount');
+      const badgeEl = document.getElementById('portalPreviewClassBadge');
+      const tbody = document.getElementById('portalPreviewTableBody');
+      const btnConfirm = document.getElementById('btnConfirmPortalUpload');
+
+      countEl.innerText = pendingUploadedStudents.length;
+      tbody.innerHTML = '';
+
+      // Classes represented in this upload
+      const classSet = new Set(pendingUploadedStudents.map(s => CLASS_LABELS[s.targetClass] || s.targetClass));
+      badgeEl.innerText = Array.from(classSet).join(', ');
+
+      pendingUploadedStudents.slice(0, 15).forEach((s, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="p-1.5 text-center font-bold text-slate-600">${idx + 1}</td>
+          <td class="p-1.5 font-mono font-semibold text-indigo-900">${s.id}</td>
+          <td class="p-1.5 font-mono text-slate-500">${s.idCard || '-'}</td>
+          <td class="p-1.5 text-slate-700">${s.prefix}</td>
+          <td class="p-1.5 font-bold text-slate-900">${s.name}</td>
+          <td class="p-1.5 text-center">${s.gender === 'หญิง' ? '♀️' : '♂️'}</td>
+          <td class="p-1.5 text-center font-semibold text-indigo-700">${CLASS_LABELS[s.targetClass] || s.targetClass}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      container.classList.remove('hidden');
+      btnConfirm.disabled = false;
+    }
+
+    function confirmPortalUpload() {
+      if (!pendingUploadedStudents || pendingUploadedStudents.length === 0) return;
+
+      const uploadMode = document.getElementById('portalUploadMode').value;
+      if (!portalData.rosters) portalData.rosters = {};
+
+      // Group students by target class
+      const grouped = {};
+      pendingUploadedStudents.forEach(s => {
+        if (!grouped[s.targetClass]) grouped[s.targetClass] = [];
+        grouped[s.targetClass].push(s);
+      });
+
+      Object.keys(grouped).forEach(cKey => {
+        let currentRoster = (uploadMode === 'append' && portalData.rosters[cKey]) 
+          ? [...portalData.rosters[cKey]] 
+          : [];
+
+        grouped[cKey].forEach(incoming => {
+          const existIdx = currentRoster.findIndex(item => String(item.id).trim() === String(incoming.id).trim());
+          if (existIdx !== -1) {
+            currentRoster[existIdx] = Object.assign(currentRoster[existIdx], incoming);
+          } else {
+            currentRoster.push(incoming);
+          }
+        });
+
+        // Sort by ID ascending & re-sequence 'no'
+        currentRoster.sort((a, b) => String(a.id).localeCompare(String(b.id), undefined, { numeric: true }));
+        currentRoster.forEach((item, index) => { item.no = index + 1; });
+
+        portalData.rosters[cKey] = currentRoster;
+      });
+
+      savePortalData();
+
+      // Update current class selector & view
+      const firstTargetClass = pendingUploadedStudents[0].targetClass;
+      document.getElementById('portalClassSelect').value = firstTargetClass;
+      loadClassRoster(firstTargetClass);
+
+      closePortalUploadModal();
+      showToast(`นำเข้ารายชื่อนักเรียนสำเร็จ ${pendingUploadedStudents.length} คน เรียบร้อยแล้ว`);
+    }
+
+    function downloadPortalTemplateCSV() {
+      const headers = ["ที่", "เลขประจำตัวนักเรียน", "เลขประจำตัวประชาชน", "คำนำหน้า", "ชื่อ", "นามสกุล", "เพศ", "สถานะการเรียน", "ห้องเรียน"];
+      const sampleRows = [
+        ["1", "10101", "1210101221661", "เด็กชาย", "กฤษกร", "ยางก้อน", "ชาย", "กำลังศึกษา", "อ.1/1"],
+        ["2", "10102", "1200901955678", "เด็กหญิง", "ชุติกาญจน์", "ปัญจวรรณา", "หญิง", "กำลังศึกษา", "อ.1/1"],
+        ["1", "20101", "1219700149605", "เด็กชาย", "ฐินันรเมศ", "พุ่มพวง", "ชาย", "กำลังศึกษา", "ป.1/1"],
+        ["2", "20102", "1200901936134", "เด็กชาย", "ธนกฤต", "ภารไสว", "ชาย", "กำลังศึกษา", "ป.1/1"],
+        ["1", "30101", "1219901793412", "เด็กหญิง", "ธนวณฑ์", "สุขประเสริฐ", "หญิง", "กำลังศึกษา", "ม.1/1"]
+      ];
+
+      const escape = (val) => '"' + String(val || '').replace(/"/g, '""') + '"';
+      const rows = [headers.map(escape).join(',')];
+      sampleRows.forEach(r => rows.push(r.map(escape).join(',')));
+
+      const csvContent = "\uFEFF" + rows.join("\r\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "แบบฟอร์มรายชื่อนักเรียน_24ห้องเรียน.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
     }
 
     function exportCurrentRosterCSV() {
