@@ -104,6 +104,7 @@
       <h2 class="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2">
         <span>บัญชีรายชื่อนักเรียน</span>
         <span class="text-xs bg-indigo-100 text-indigo-900 font-bold px-2.5 py-0.5 rounded-full" id="rosterClassBadge">ชั้น ป.1/2</span>
+        <span class="text-xs bg-slate-100 text-slate-700 font-bold px-2.5 py-0.5 rounded-full" id="rosterCountBadge">0 คน</span>
       </h2>
       <p class="text-xs text-slate-500">ข้อมูลเชื่อมโยงจากฐานข้อมูลกลาง 24 ห้องเรียน จัดเรียงตามเลขประจำตัวจากน้อยไปมาก</p>
     </div>
@@ -398,7 +399,15 @@
     <div>
       <label class="block font-bold text-slate-800 mb-1">URL ไฟล์ข้อมูลกลาง (Master JSON URL):</label>
       <input type="text" id="portalSyncUrlInput" class="w-full border border-slate-300 rounded-lg p-2 font-mono text-xs bg-slate-50 outline-none focus:border-emerald-600" value="school_master_data.json">
-      <p class="text-[11px] text-slate-500 mt-1">ค่าเริ่มต้นคือ <code class="font-bold font-mono">school_master_data.json</code> ในโฟลเดอร์เดียวกัน</p>
+      <p class="text-[11px] text-slate-500 mt-1">ไฟล์ <code class="font-bold font-mono">school_master_data.json</code> ใน GitHub Repo เดียวกัน</p>
+    </div>
+
+    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+      <div>
+        <span class="font-bold text-slate-800 block">บังคับเขียนทับรายชื่อเดิม (Force Overwrite):</span>
+        <span class="text-[11px] text-slate-500">แทนที่รายชื่อ 8 คนเดิมด้วยรายชื่อใหม่ทั้งหมดจาก Portal</span>
+      </div>
+      <input type="checkbox" id="forceOverwriteCheck" checked class="w-4 h-4 text-emerald-600 rounded cursor-pointer">
     </div>
 
     <div class="flex gap-2">
@@ -414,15 +423,15 @@
     </div>
 
     <div class="p-3 bg-indigo-50/60 border border-indigo-200 rounded-xl text-center space-y-2">
-      <p class="text-slate-700 font-semibold text-[11px]">หากเปิดใน Google Sites แล้วเบราว์เซอร์บล็อก URL ให้เลือกไฟล์ตรงนี้:</p>
+      <p class="text-slate-700 font-semibold text-[11px]">หากเปิดใน Google Sites หรือพบปัญหาเรื่องแคช เลือกไฟล์ตรงนี้ได้เลย:</p>
       <label class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg cursor-pointer shadow transition text-xs">
-        📂 <span>เลือกไฟล์ school_master_data.json</span>
+        📂 <span>เลือกไฟล์ school_master_data.json จากเครื่อง</span>
         <input type="file" accept=".json" onchange="handleDirectMasterJsonUpload(event)" class="hidden">
       </label>
     </div>
 
     <!-- Sync Console Log -->
-    <div id="syncConsoleLog" class="p-2.5 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg max-h-28 overflow-y-auto hidden"></div>
+    <div id="syncConsoleLog" class="p-2.5 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg max-h-36 overflow-y-auto hidden"></div>
   </div>
   <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end text-xs">
     <button onclick="closeSyncPortalModal()" class="px-4 py-1.5 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700">ปิด</button>
