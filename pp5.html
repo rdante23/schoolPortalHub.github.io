@@ -1,4 +1,4 @@
-  <!-- Brand & Title -->
+  <!-- School Logo & Header -->
   <div class="flex items-center space-x-2.5">
     <div class="w-9 h-9 rounded-xl bg-amber-400 text-indigo-950 flex items-center justify-center font-black text-base shadow">
       ปพ.๕
@@ -8,11 +8,11 @@
         <span id="appMainTitle">ระบบบันทึกผลการเรียน ปพ.5 ออนไลน์</span>
         <span class="text-[10px] bg-amber-400 text-indigo-950 px-2 py-0.2 rounded-full font-bold">24 ห้องเรียน</span>
       </h1>
-      <p class="text-[11px] text-indigo-200" id="headerSchoolSub">โรงเรียนวัดบ้านฉาง | ฐานข้อมูลกลางและภาระงานสอน</p>
+      <p class="text-[11px] text-indigo-200" id="headerSchoolSub">ระบบเชื่อมโยงข้อมูลสารสนเทศกลางและภาระงานสอน</p>
     </div>
   </div>
 
-  <!-- Controls -->
+  <!-- Action & Selector Controls -->
   <div class="flex items-center flex-wrap gap-2 text-xs">
     <!-- Language Switcher -->
     <div class="inline-flex rounded-lg bg-indigo-950/70 p-0.5 border border-indigo-700/50">
@@ -24,26 +24,24 @@
     <!-- Teacher Selector -->
     <div class="flex items-center space-x-1 bg-indigo-800/90 px-2 py-1 rounded-lg border border-indigo-700">
       <span class="text-xs text-indigo-200">ครูผู้สอน:</span>
-      <select id="teacherProfileSelect" onchange="switchTeacherProfile(this.value)" class="bg-indigo-950 text-white text-xs font-semibold rounded px-2 py-1 outline-none border border-indigo-600 cursor-pointer max-w-[150px] truncate">
-        <!-- Dynamically populated -->
+      <select id="teacherProfileSelect" onchange="switchTeacherProfile(this.value)" class="bg-indigo-950 text-white text-xs font-semibold rounded px-2 py-1 outline-none border border-indigo-600 cursor-pointer max-w-[140px] truncate">
       </select>
     </div>
 
-    <!-- Active Teaching Workload Set (Subject + Class) -->
+    <!-- Active Teaching Set Selector (Subject + Class) -->
     <div class="flex items-center space-x-1 bg-indigo-800/90 px-2 py-1 rounded-lg border border-indigo-700">
       <span class="text-xs text-amber-300 font-bold">ชุดวิชา-ห้อง:</span>
       <select id="workloadSetSelect" onchange="switchWorkloadSet(this.value)" class="bg-indigo-950 text-amber-200 text-xs font-bold rounded px-2 py-1 outline-none border border-indigo-600 cursor-pointer max-w-[220px] truncate">
-        <!-- Dynamically populated -->
       </select>
       <button onclick="openManageWorkloadsModal()" class="text-amber-300 hover:text-white px-1 font-bold text-xs" title="จัดการชุดวิชาที่สอน">⚙️</button>
     </div>
 
-    <!-- Portal Sync Button -->
+    <!-- Sync From GitHub Portal Button -->
     <button onclick="openSyncPortalModal()" class="px-2.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 rounded-lg text-xs font-bold flex items-center gap-1 shadow transition">
       🔄 <span>ซิงค์จาก Portal</span>
     </button>
 
-    <!-- Backup & Load -->
+    <!-- Backup & Restore -->
     <button onclick="exportDataBackup()" class="px-2 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-lg text-xs font-semibold border border-slate-600 flex items-center gap-1 shadow transition">
       💾 <span>สำรอง</span>
     </button>
@@ -56,10 +54,9 @@
 </div>
 
 
-  <!-- Meta Details Ribbon -->
   <div class="py-2.5 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2 border-b border-slate-100">
     <div class="flex flex-wrap items-center gap-x-4 gap-y-1">
-      <span class="flex items-center gap-1">🏫 <strong class="text-slate-900" id="infoSchoolName">โรงเรียนวัดบ้านฉาง</strong></span>
+      <span class="flex items-center gap-1">🏫 <strong class="text-slate-900" id="infoSchoolName">โรงเรียนอุดมวิทยานุกูล</strong></span>
       <span class="flex items-center gap-1">👨‍🏫 <span id="infoTeacherName" class="font-semibold text-indigo-950">Mr. Reydante Acedillo</span></span>
       <span class="flex items-center gap-1">📘 <span id="infoSubjectName" class="font-bold text-indigo-900">ภาษาอังกฤษเพื่อการสื่อสาร 1 (อ11101)</span></span>
       <span class="flex items-center gap-1">🏷️ <span id="infoClassName" class="font-bold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">ชั้น ป.1/2</span></span>
@@ -74,7 +71,7 @@
 
   <!-- Navigation Tabs -->
   <nav class="flex space-x-1 sm:space-x-3 overflow-x-auto py-2 text-xs font-semibold custom-scroll">
-    <button onclick="switchTab('roster')" id="tab-btn-roster" class="px-3 py-1.5 rounded-lg text-indigo-900 bg-indigo-50 border-b-2 border-indigo-700 flex items-center gap-1.5 transition">
+    <button onclick="switchTab('roster')" id="tab-btn-roster" class="px-3 py-1.5 rounded-lg text-indigo-900 bg-indigo-50 border-b-2 border-indigo-700 flex items-center gap-1.5 transition font-bold">
       👥 <span>รายชื่อนักเรียน</span>
     </button>
     <button onclick="switchTab('attendance')" id="tab-btn-attendance" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 flex items-center gap-1.5 transition">
@@ -104,7 +101,7 @@
       <h2 class="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2">
         <span>บัญชีรายชื่อนักเรียน</span>
         <span class="text-xs bg-indigo-100 text-indigo-900 font-bold px-2.5 py-0.5 rounded-full" id="rosterClassBadge">ชั้น ป.1/2</span>
-        <span class="text-xs bg-slate-100 text-slate-700 font-bold px-2.5 py-0.5 rounded-full" id="rosterCountBadge">0 คน</span>
+        <span class="text-xs bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full" id="rosterCountBadge">0 คน</span>
       </h2>
       <p class="text-xs text-slate-500">ข้อมูลเชื่อมโยงจากฐานข้อมูลกลาง 24 ห้องเรียน จัดเรียงตามเลขประจำตัวจากน้อยไปมาก</p>
     </div>
@@ -167,9 +164,6 @@
             <option value="apr">เมษายน (Term 2)</option>
           </optgroup>
         </select>
-        <button onclick="openMonthlySheetModal(document.getElementById('quickMonthSelect').value)" class="px-2.5 py-1 bg-indigo-700 hover:bg-indigo-600 text-white rounded text-xs font-semibold shadow">
-          เปิดตารางรายวัน »
-        </button>
       </div>
     </div>
   </div>
@@ -349,7 +343,7 @@
       <h2 class="text-base font-bold uppercase tracking-wide">แบบบันทึกผลการพัฒนาคุณภาพผู้เรียน (ปพ.5)</h2>
       <p class="text-xs text-slate-700 mt-1">ตามหลักสูตรแกนกลางการศึกษาขั้นพื้นฐาน พุทธศักราช 2551 (ฉบับปรับปรุง 2560)</p>
       <div class="mt-3 flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs">
-        <span><strong>โรงเรียน:</strong> <span id="printSchoolName">โรงเรียนวัดบ้านฉาง</span></span>
+        <span><strong>โรงเรียน:</strong> <span id="printSchoolName">โรงเรียนอุดมวิทยานุกูล</span></span>
         <span><strong>สังกัด:</strong> <span id="printDistrictName">สพป.ระยอง เขต 1</span></span>
         <span><strong>ปีการศึกษา:</strong> <span id="printAcademicYear">2569</span></span>
         <span><strong>ชั้น:</strong> <span id="printClassName">ประถมศึกษาปีที่ 1/2</span></span>
@@ -399,22 +393,11 @@
     <div>
       <label class="block font-bold text-slate-800 mb-1">URL ไฟล์ข้อมูลกลาง (Master JSON URL):</label>
       <input type="text" id="portalSyncUrlInput" class="w-full border border-slate-300 rounded-lg p-2 font-mono text-xs bg-slate-50 outline-none focus:border-emerald-600" value="school_master_data.json">
-      <p class="text-[11px] text-slate-500 mt-1">ไฟล์ <code class="font-bold font-mono">school_master_data.json</code> ใน GitHub Repo เดียวกัน</p>
     </div>
 
-    <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
-      <div>
-        <span class="font-bold text-slate-800 block">บังคับเขียนทับรายชื่อเดิม (Force Overwrite):</span>
-        <span class="text-[11px] text-slate-500">แทนที่รายชื่อ 8 คนเดิมด้วยรายชื่อใหม่ทั้งหมดจาก Portal</span>
-      </div>
-      <input type="checkbox" id="forceOverwriteCheck" checked class="w-4 h-4 text-emerald-600 rounded cursor-pointer">
-    </div>
-
-    <div class="flex gap-2">
-      <button onclick="executePortalSync()" id="btnExecuteSync" class="flex-1 py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-1.5 text-xs">
-        🌐 <span>ดึงข้อมูลจาก URL ทันที</span>
-      </button>
-    </div>
+    <button onclick="executePortalSync()" id="btnExecuteSync" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-xl shadow transition flex items-center justify-center gap-1.5 text-xs">
+      🌐 <span>ดึงข้อมูลจาก URL ทันที</span>
+    </button>
 
     <div class="relative flex py-1 items-center">
       <div class="flex-grow border-t border-slate-200"></div>
@@ -422,15 +405,15 @@
       <div class="flex-grow border-t border-slate-200"></div>
     </div>
 
-    <div class="p-3 bg-indigo-50/60 border border-indigo-200 rounded-xl text-center space-y-2">
-      <p class="text-slate-700 font-semibold text-[11px]">หากเปิดใน Google Sites หรือพบปัญหาเรื่องแคช เลือกไฟล์ตรงนี้ได้เลย:</p>
+    <div class="p-3 bg-indigo-50/70 border border-indigo-200 rounded-xl text-center space-y-2">
+      <p class="text-slate-700 font-semibold text-[11px]">หากเปิดใน Google Sites แล้วระบบไม่โหลด ให้เลือกไฟล์จากเครื่องโดยตรง:</p>
       <label class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg cursor-pointer shadow transition text-xs">
-        📂 <span>เลือกไฟล์ school_master_data.json จากเครื่อง</span>
+        📂 <span>เลือกไฟล์ school_master_data.json</span>
         <input type="file" accept=".json" onchange="handleDirectMasterJsonUpload(event)" class="hidden">
       </label>
     </div>
 
-    <!-- Sync Console Log -->
+    <!-- Diagnostic Log Output -->
     <div id="syncConsoleLog" class="p-2.5 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg max-h-36 overflow-y-auto hidden"></div>
   </div>
   <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end text-xs">
@@ -446,8 +429,7 @@
         <input type="text" id="addWorkloadSubjName" placeholder="ชื่อวิชา (เช่น ภาษาอังกฤษ)" class="border border-slate-300 rounded p-1.5 bg-white">
       </div>
       <div class="grid grid-cols-2 gap-2 items-center">
-        <select id="addWorkloadClassKey" class="border border-slate-300 rounded p-1.5 bg-white">
-          <!-- Populated with all 24 classes -->
+        <select id="addWorkloadClassKey" class="border border-slate-300 rounded p-1.5 bg-white font-semibold">
         </select>
         <button onclick="addCustomWorkload()" class="py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded font-bold shadow">
           เพิ่มชุดวิชานี้
@@ -480,10 +462,8 @@
     <div class="border border-slate-200 rounded-xl overflow-x-auto custom-scroll max-h-[60vh]">
       <table class="w-full text-center text-xs border-collapse">
         <thead class="bg-slate-100 sticky top-0 z-10 text-slate-700 font-semibold" id="modalGradingHeader">
-          <!-- Dynamically populated -->
         </thead>
         <tbody id="modalGradingBody" class="divide-y divide-slate-100">
-          <!-- Dynamically populated -->
         </tbody>
       </table>
     </div>
