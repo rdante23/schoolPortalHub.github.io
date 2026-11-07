@@ -1,38 +1,17 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>โรงเรียนอุดมวิทยานุกูล - School Portal & Master Hub</title>
+  <title>Wat Banchang School - Central Portal & Master Hub</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Sarabun', 'Noto Sans SC', sans-serif;
-      background-color: #f8fafc;
-      color: #1e293b;
-    }
-    .font-mono-code {
-      font-family: 'JetBrains Mono', monospace;
-    }
-    .custom-scroll::-webkit-scrollbar {
-      height: 6px;
-      width: 6px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fadeIn {
-      animation: fadeIn 0.25s ease-out forwards;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
+    .custom-scroll::-webkit-scrollbar { height: 6px; width: 6px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
@@ -40,72 +19,64 @@
   <!-- TOP APP BAR -->
   <header class="bg-indigo-900 text-white shadow-lg sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-3">
-      <!-- School Logo & Title -->
       <div class="flex items-center space-x-3">
         <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-500 text-indigo-950 flex items-center justify-center font-extrabold text-xl shadow-md border-2 border-white/20">
           🏫
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="text-base sm:text-lg font-bold tracking-tight" id="schoolNameNav">โรงเรียนวัดบ้านฉาง</h1>
+            <h1 class="text-base sm:text-lg font-bold tracking-tight" id="schoolNameNav">Wat Banchang School</h1>
             <span class="bg-amber-400/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-300/30">Master School Hub</span>
           </div>
-          <p class="text-xs text-indigo-200" id="schoolSubNav">สพป.ระยอง เขต 1 | ศูนย์กลางข้อมูลสารสนเทศ ครู-นักเรียน และตารางสอน</p>
+          <p class="text-xs text-indigo-200">Central Student Records, Faculty Workloads & Schedules</p>
         </div>
       </div>
 
-      <!-- Navigation & Action Links -->
       <div class="flex items-center flex-wrap gap-2 text-xs">
-        <!-- Language Switcher -->
-        <div class="inline-flex rounded-lg bg-indigo-950/70 p-1 border border-indigo-700/50">
-          <button onclick="setPortalLanguage('th')" id="portalLangBtn-th" class="px-2.5 py-1 rounded font-bold bg-amber-400 text-indigo-950 transition">ไทย</button>
-          <button onclick="setPortalLanguage('en')" id="portalLangBtn-en" class="px-2.5 py-1 rounded text-indigo-200 hover:text-white transition">EN</button>
-          <button onclick="setPortalLanguage('zh')" id="portalLangBtn-zh" class="px-2.5 py-1 rounded text-indigo-200 hover:text-white transition">中文</button>
-        </div>
-
-        <button onclick="scrollToSection('section-blog')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
-          📢 <span>ข่าวสาร</span>
-        </button>
+        <a href="pp5.html" class="px-3 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg shadow transition flex items-center gap-1.5">
+          📊 <span>Open PP.5 Online</span>
+        </a>
         <button onclick="scrollToSection('section-teachers')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
-          👨‍🏫 <span>ทำเนียบครู & ตารางสอน</span>
+          👨‍🏫 Teachers & Timetables
         </button>
         <button onclick="scrollToSection('section-roster')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
-          👥 <span>รายชื่อ 24 ห้อง</span>
+          👥 24 Class Rosters
         </button>
-        <button onclick="scrollToSection('section-calendar')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
-          📅 <span>ปฏิทิน</span>
+        <button onclick="scrollToSection('section-blog')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
+          📢 News
         </button>
-        
-        <!-- GitHub Sync Button -->
         <button onclick="openGitHubSyncModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow transition flex items-center gap-1.5">
-          🐙 <span>ส่งออกข้อมูลสู่ GitHub</span>
+          🐙 <span>Sync & Export</span>
         </button>
       </div>
     </div>
   </header>
 
   <!-- HERO SECTION -->
-  <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-blue-900 text-white py-8 px-4 sm:px-6 relative overflow-hidden shadow-inner">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-center relative z-10">
+  <section class="bg-gradient-to-r from-indigo-900 via-indigo-800 to-blue-900 text-white py-8 px-4 sm:px-6 shadow-inner">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
       <div class="md:col-span-2 space-y-3">
         <span class="inline-block bg-amber-400/20 text-amber-300 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-amber-300/30">
-          ระบบฐานข้อมูลกลางโรงเรียนวัดบ้านฉาง
+          Wat Banchang School Central Database
         </span>
         <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight">
-          ศูนย์กลางการจัดการรายชื่อนักเรียน 24 ห้องเรียน และภาระงานสอนครู
+          Central Management for 24 Classrooms and Teacher Workloads
         </h2>
         <p class="text-xs sm:text-sm text-indigo-100 max-w-2xl leading-relaxed">
-          จัดการข้อมูลนักเรียนครบทุกระดับชั้น (อนุบาล 1 - มัธยมศึกษาปีที่ 3), บันทึกภาระงานสอน รายวิชา และตารางสอนประจำสัปดาห์ของคุณครู เพื่อให้ระบบ ปพ.5 ออนไลน์ ดึงข้อมูลไปใช้งานได้อัตโนมัติ
+          Manage rosters across Kindergarten 1 through Secondary 3. Assign courses, maintain teacher timetables, and synchronize directly with the online PP.5 evaluation system.
         </p>
         <div class="pt-2 flex flex-wrap gap-2.5">
           <button onclick="openAddTeacherModal()" class="px-3.5 py-2 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5">
-            ➕ เพิ่มครูผู้สอนและวิชาที่สอน
+            ➕ Add Teacher & Subjects
           </button>
           <button onclick="openPortalUploadModal()" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5">
-            📂 นำเข้ารายชื่อนักเรียน (CSV)
+            📂 Import Roster (CSV)
+          </button>
+          <button onclick="fetchMasterFromRepo()" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5">
+            🔄 Reload school_master_data.json
           </button>
           <button onclick="exportMasterJSON()" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-xl text-xs border border-white/20 transition flex items-center gap-1.5">
-            💾 ดาวน์โหลด master_data.json
+            💾 Download JSON
           </button>
         </div>
       </div>
@@ -114,19 +85,19 @@
       <div class="grid grid-cols-2 gap-3">
         <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center shadow-lg">
           <div class="text-2xl font-black text-amber-300">24</div>
-          <div class="text-[11px] text-indigo-100 font-medium">ห้องเรียน (อ.1 - ม.3)</div>
+          <div class="text-[11px] text-indigo-100 font-medium">Classes (K.1 - S.3)</div>
         </div>
         <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center shadow-lg">
-          <div class="text-2xl font-black text-emerald-300" id="metricTotalStudents">240+</div>
-          <div class="text-[11px] text-indigo-100 font-medium">นักเรียนทั้งหมด</div>
+          <div class="text-2xl font-black text-emerald-300" id="metricTotalStudents">0</div>
+          <div class="text-[11px] text-indigo-100 font-medium">Total Students</div>
         </div>
         <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center shadow-lg">
-          <div class="text-2xl font-black text-blue-300" id="metricTeachersCount">8</div>
-          <div class="text-[11px] text-indigo-100 font-medium">ครูผู้สอนในระบบ</div>
+          <div class="text-2xl font-black text-blue-300" id="metricTeachersCount">0</div>
+          <div class="text-[11px] text-indigo-100 font-medium">Active Teachers</div>
         </div>
         <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center shadow-lg">
-          <div class="text-2xl font-black text-purple-300">2569</div>
-          <div class="text-[11px] text-indigo-100 font-medium">ปีการศึกษา</div>
+          <div class="text-2xl font-black text-purple-300" id="metricAcademicYear">2026</div>
+          <div class="text-[11px] text-indigo-100 font-medium">Academic Year</div>
         </div>
       </div>
     </div>
@@ -135,87 +106,75 @@
   <!-- MAIN BODY -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-8 flex-1 w-full space-y-12">
 
-    <!-- ===================================================================
-         SECTION 1: TEACHER ROSTER, WORKLOADS & TIMETABLES
-         =================================================================== -->
+    <!-- SECTION 1: TEACHERS -->
     <section id="section-teachers" class="space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div>
           <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-            👨‍🏫 <span>ทำเนียบครูผู้สอน ภาระงานวิชา และตารางสอน (Teacher Directory & Schedules)</span>
+            👨‍🏫 <span>Teacher Directory & Timetables</span>
           </h3>
-          <p class="text-xs text-slate-500">กำหนดว่าครูแต่ละท่านสอนวิชาใด ในห้องเรียนใดบ้าง พร้อมตารางสอนในแต่ละสัปดาห์</p>
+          <p class="text-xs text-slate-500">Subject assignments and weekly periods for each instructor</p>
         </div>
-        <div class="flex items-center gap-2">
-          <button onclick="openAddTeacherModal()" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
-            ➕ <span>เพิ่มครูผู้สอน</span>
-          </button>
-        </div>
+        <button onclick="openAddTeacherModal()" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
+          ➕ <span>Add Teacher</span>
+        </button>
       </div>
-
-      <!-- Teacher Cards Grid -->
-      <div id="teacherCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Dynamically injected -->
-      </div>
+      <div id="teacherCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"></div>
     </section>
 
-    <!-- ===================================================================
-         SECTION 2: STUDENT ROSTER DIRECTORY (24 CLASSES)
-         =================================================================== -->
+    <!-- SECTION 2: ROSTER DIRECTORY -->
     <section id="section-roster" class="space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div>
           <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-            👥 <span>ทำเนียบรายชื่อนักเรียน 24 ห้องเรียน (Student Roster Hub)</span>
+            👥 <span>Student Rosters (24 Classes)</span>
           </h3>
-          <p class="text-xs text-slate-500">ข้อมูลรายชื่อนักเรียนจะถูกส่งต่อไปยังระบบ ปพ.5 ออนไลน์ตามห้องเรียนที่เลือก</p>
+          <p class="text-xs text-slate-500">Student rosters automatically populate the corresponding PP.5 record sheets</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-          <!-- Class Selector -->
           <select id="portalClassSelect" onchange="loadClassRoster(this.value)" class="bg-white border border-slate-300 text-xs font-semibold rounded-lg px-3 py-1.5 outline-none shadow-sm focus:border-indigo-500">
-            <optgroup label="ระดับชั้นอนุบาล (Kindergarten)">
-              <option value="k1_1">ชั้น อ.1/1</option>
-              <option value="k1_2">ชั้น อ.1/2</option>
-              <option value="k2_1">ชั้น อ.2/1</option>
-              <option value="k2_2">ชั้น อ.2/2</option>
-              <option value="k3_1">ชั้น อ.3/1</option>
-              <option value="k3_2">ชั้น อ.3/2</option>
+            <optgroup label="Kindergarten">
+              <option value="k1_1">Class K.1/1</option>
+              <option value="k1_2">Class K.1/2</option>
+              <option value="k2_1">Class K.2/1</option>
+              <option value="k2_2">Class K.2/2</option>
+              <option value="k3_1">Class K.3/1</option>
+              <option value="k3_2">Class K.3/2</option>
             </optgroup>
-            <optgroup label="ระดับชั้นประถมศึกษา (Primary)">
-              <option value="p1_1" selected>ชั้น ป.1/1</option>
-              <option value="p1_2">ชั้น ป.1/2</option>
-              <option value="p2_1">ชั้น ป.2/1</option>
-              <option value="p2_2">ชั้น ป.2/2</option>
-              <option value="p3_1">ชั้น ป.3/1</option>
-              <option value="p3_2">ชั้น ป.3/2</option>
-              <option value="p4_1">ชั้น ป.4/1</option>
-              <option value="p4_2">ชั้น ป.4/2</option>
-              <option value="p5_1">ชั้น ป.5/1</option>
-              <option value="p5_2">ชั้น ป.5/2</option>
-              <option value="p6_1">ชั้น ป.6/1</option>
-              <option value="p6_2">ชั้น ป.6/2</option>
+            <optgroup label="Primary">
+              <option value="p1_1" selected>Class P.1/1</option>
+              <option value="p1_2">Class P.1/2</option>
+              <option value="p2_1">Class P.2/1</option>
+              <option value="p2_2">Class P.2/2</option>
+              <option value="p3_1">Class P.3/1</option>
+              <option value="p3_2">Class P.3/2</option>
+              <option value="p4_1">Class P.4/1</option>
+              <option value="p4_2">Class P.4/2</option>
+              <option value="p5_1">Class P.5/1</option>
+              <option value="p5_2">Class P.5/2</option>
+              <option value="p6_1">Class P.6/1</option>
+              <option value="p6_2">Class P.6/2</option>
             </optgroup>
-            <optgroup label="ระดับชั้นมัธยมศึกษาตอนต้น (Secondary)">
-              <option value="s1_1">ชั้น ม.1/1</option>
-              <option value="s1_2">ชั้น ม.1/2</option>
-              <option value="s2_1">ชั้น ม.2/1</option>
-              <option value="s2_2">ชั้น ม.2/2</option>
-              <option value="s3_1">ชั้น ม.3/1</option>
-              <option value="s3_2">ชั้น ม.3/2</option>
+            <optgroup label="Lower Secondary">
+              <option value="s1_1">Class S.1/1</option>
+              <option value="s1_2">Class S.1/2</option>
+              <option value="s2_1">Class S.2/1</option>
+              <option value="s2_2">Class S.2/2</option>
+              <option value="s3_1">Class S.3/1</option>
+              <option value="s3_2">Class S.3/2</option>
             </optgroup>
           </select>
 
-          <!-- Search Input -->
           <div class="relative">
-            <input type="text" id="rosterSearchInput" oninput="filterRosterTable()" placeholder="ค้นหาชื่อ หรือ เลขประจำตัว..." class="bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs outline-none focus:border-indigo-500 w-44 sm:w-56 shadow-sm">
+            <input type="text" id="rosterSearchInput" oninput="filterRosterTable()" placeholder="Search Name or ID..." class="bg-white border border-slate-300 rounded-lg pl-8 pr-3 py-1.5 text-xs outline-none focus:border-indigo-500 w-44 sm:w-56 shadow-sm">
             <span class="absolute left-2.5 top-2 text-slate-400 text-xs">🔍</span>
           </div>
 
           <button onclick="openPortalUploadModal()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
-            📂 <span>อัปโหลด CSV</span>
+            📂 Import CSV
           </button>
           <button onclick="exportCurrentRosterCSV()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
-            📥 <span>ส่งออก CSV</span>
+            📥 Export CSV
           </button>
         </div>
       </div>
@@ -224,117 +183,79 @@
       <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="px-5 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2">
           <div>
-            ห้องเรียนปัจจุบัน: <strong class="text-indigo-900" id="currentViewingClassLabel">ชั้น ป.1/1</strong> 
-            | จำนวนนักเรียน: <strong class="text-slate-900" id="currentClassStudentCount">0 คน</strong>
+            Current Classroom: <strong class="text-indigo-900" id="currentViewingClassLabel">Class P.1/1</strong> 
+            | Total: <strong class="text-slate-900" id="currentClassStudentCount">0 Students</strong>
           </div>
-          <div class="text-[11px] text-slate-500 italic">
-            * เรียงลำดับตามเลขประจำตัวนักเรียนจากน้อยไปมากเสมอ
-          </div>
+          <div class="text-[11px] text-slate-500 italic">* Sorted by Student ID in ascending order</div>
         </div>
         <div class="overflow-x-auto custom-scroll">
           <table class="w-full text-left text-xs border-collapse">
             <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-700 font-semibold uppercase tracking-wider">
               <tr>
-                <th class="py-3 px-3 text-center w-12">ที่</th>
-                <th class="py-3 px-3 w-28">เลขประจำตัว</th>
-                <th class="py-3 px-3 w-36">เลขประชาชน</th>
-                <th class="py-3 px-3 w-24">คำนำหน้า</th>
-                <th class="py-3 px-4">ชื่อ - นามสกุล</th>
-                <th class="py-3 px-3 text-center w-20">เพศ</th>
-                <th class="py-3 px-3 text-center w-24">สถานะ</th>
+                <th class="py-3 px-3 text-center w-12">No.</th>
+                <th class="py-3 px-3 w-28">Student ID</th>
+                <th class="py-3 px-3 w-36">Citizen / National ID</th>
+                <th class="py-3 px-3 w-24">Title</th>
+                <th class="py-3 px-4">Full Name</th>
+                <th class="py-3 px-3 text-center w-20">Gender</th>
+                <th class="py-3 px-3 text-center w-24">Status</th>
               </tr>
             </thead>
-            <tbody id="portalRosterTableBody" class="divide-y divide-slate-100">
-              <!-- Dynamically populated -->
-            </tbody>
+            <tbody id="portalRosterTableBody" class="divide-y divide-slate-100"></tbody>
           </table>
         </div>
       </div>
     </section>
 
-    <!-- ===================================================================
-         SECTION 3: SCHOOL NEWS BLOG
-         =================================================================== -->
+    <!-- SECTION 3: NEWS BLOG -->
     <section id="section-blog" class="space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div>
           <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-            📰 <span>ข่าวสารและกิจกรรมโรงเรียน (School News & Events)</span>
+            📰 <span>School Announcements & Events</span>
           </h3>
-          <p class="text-xs text-slate-500">อัปเดตความเคลื่อนไหว ประกาศโรงเรียน และกิจกรรมสำคัญ</p>
+          <p class="text-xs text-slate-500">Official news, notices, and activity updates</p>
         </div>
-        <div class="flex items-center gap-2">
-          <select id="postCategoryFilter" onchange="renderPosts()" class="bg-white border border-slate-300 text-xs rounded-lg px-3 py-1.5 font-medium outline-none shadow-sm focus:border-indigo-500">
-            <option value="all">📁 ทุกหมวดหมู่ (All)</option>
-            <option value="announcement">📢 ประกาศโรงเรียน</option>
-            <option value="activity">🏆 กิจกรรม & การแข่งขัน</option>
-            <option value="academic">📚 วิชาการ & การสอบ</option>
-            <option value="general">🌟 ทั่วไป</option>
-          </select>
-          <button onclick="openAddPostModal()" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
-            ➕ <span>เพิ่มบทความ</span>
-          </button>
-        </div>
+        <button onclick="openAddPostModal()" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
+          ➕ Add Post
+        </button>
       </div>
-
-      <div id="blogPostsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Rendered dynamically -->
-      </div>
+      <div id="blogPostsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
 
-    <!-- ===================================================================
-         SECTION 4: ACADEMIC CALENDAR
-         =================================================================== -->
+    <!-- SECTION 4: CALENDAR -->
     <section id="section-calendar" class="space-y-4">
       <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
         <div>
           <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-            📅 <span>ปฏิทินการศึกษาและกิจกรรม (School Academic Calendar)</span>
+            📅 <span>Academic Calendar</span>
           </h3>
-          <p class="text-xs text-slate-500">กำหนดการเปิด-ปิดภาคเรียน กำหนดการสอบ และวันสำคัญประจำปีการศึกษา 2569</p>
+          <p class="text-xs text-slate-500">Key term dates, assessments, and school holidays</p>
         </div>
       </div>
-
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-4">
           <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-              <span class="text-base font-bold text-slate-800" id="calMonthYearDisplay">พฤษภาคม 2569</span>
-              <span class="text-xs bg-indigo-100 text-indigo-800 font-semibold px-2 py-0.5 rounded-full" id="calTermBadge">ภาคเรียนที่ 1</span>
-            </div>
+            <span class="text-base font-bold text-slate-800" id="calMonthYearDisplay">May 2026</span>
             <div class="inline-flex rounded-lg border border-slate-300 p-0.5 bg-slate-50">
-              <button onclick="changeCalendarMonth(-1)" class="px-2.5 py-1 text-slate-600 hover:bg-white rounded transition font-bold text-xs">‹ ก่อนหน้า</button>
-              <button onclick="changeCalendarMonth(1)" class="px-2.5 py-1 text-slate-600 hover:bg-white rounded transition font-bold text-xs">ถัดไป ›</button>
+              <button onclick="changeCalendarMonth(-1)" class="px-2.5 py-1 text-slate-600 hover:bg-white rounded transition font-bold text-xs">‹ Prev</button>
+              <button onclick="changeCalendarMonth(1)" class="px-2.5 py-1 text-slate-600 hover:bg-white rounded transition font-bold text-xs">Next ›</button>
             </div>
           </div>
-
           <div class="grid grid-cols-7 text-center font-bold text-xs text-slate-500 border-b border-slate-100 pb-2">
-            <span class="text-red-500">อา</span>
-            <span>จ</span>
-            <span>อ</span>
-            <span>พ</span>
-            <span>พฤ</span>
-            <span>ศ</span>
-            <span class="text-indigo-600">ส</span>
+            <span class="text-red-500">Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span class="text-indigo-600">Sat</span>
           </div>
-
-          <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1.5 text-xs">
-            <!-- Rendered dynamically -->
-          </div>
+          <div id="calendarDaysGrid" class="grid grid-cols-7 gap-1.5 text-xs"></div>
         </div>
-
-        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between">
-          <div>
-            <h4 class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-1.5">
-              📌 <span>กำหนดการสำคัญประจำภาคเรียน</span>
-            </h4>
-            <div id="upcomingEventsList" class="space-y-3 custom-scroll overflow-y-auto max-h-[350px]">
-              <!-- Dynamically populated -->
-            </div>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-100 text-[11px] text-slate-500 italic">
-            * ข้อมูลปฏิทินจะส่งต่อไปยังระบบ ปพ.5 ออนไลน์
-          </div>
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5">
+          <h4 class="font-bold text-slate-900 text-sm mb-3">📌 Important Academic Events</h4>
+          <div id="upcomingEventsList" class="space-y-3 custom-scroll overflow-y-auto max-h-[320px]"></div>
         </div>
       </div>
     </section>
@@ -344,1278 +265,413 @@
   <!-- FOOTER -->
   <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
-      <div class="space-y-1">
-        <p class="text-slate-200 font-bold text-sm">โรงเรียนวัดบ้านฉาง (Wat Banchang School)</p>
-        <p class="text-[11px]">สำนักงานเขตพื้นที่การศึกษาประถมศึกษาระยอง เขต 1 (สพป.ระยอง เขต 1)</p>
+      <div>
+        <p class="text-slate-200 font-bold text-sm">Wat Banchang School</p>
+        <p class="text-[11px]">Primary Educational Service Area Office 1, Rayong</p>
       </div>
-      <div class="text-right text-[11px] space-y-1">
-        <p>© 2569 โรงเรียนวัดบ้านฉาง. All rights reserved.</p>
-        <p class="text-slate-500">Master School Hub & Online PP.5 Central Database</p>
+      <div class="text-right text-[11px]">
+        <p>© 2026 Wat Banchang School. All rights reserved.</p>
+        <p class="text-slate-500">Central Master Portal & Academic Assessment System</p>
       </div>
     </div>
   </footer>
 
-  <!-- MODAL: ADD / EDIT TEACHER & WORKLOAD -->
+  <!-- MODAL: ADD / EDIT TEACHER -->
   <div id="teacherModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[92vh]">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 flex flex-col max-h-[92vh]">
       <div class="bg-indigo-900 px-5 py-3.5 text-white flex justify-between items-center">
-        <h3 class="font-bold text-sm flex items-center gap-2">
-          👨‍🏫 <span id="teacherModalTitle">จัดการข้อมูลครูผู้สอนและภาระงานวิชา</span>
-        </h3>
-        <button onclick="closeTeacherModal()" class="text-indigo-300 hover:text-white text-lg leading-none font-bold">✕</button>
+        <h3 class="font-bold text-sm">👨‍🏫 <span id="teacherModalTitle">Manage Teacher & Workload</span></h3>
+        <button onclick="closeTeacherModal()" class="text-indigo-300 hover:text-white text-lg font-bold">✕</button>
       </div>
       <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
         <input type="hidden" id="teacherIndexInput" value="-1">
-        
-        <!-- Teacher Basic Info -->
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">รหัสครู / ID:</label>
+            <label class="block font-semibold text-slate-700 mb-1">Teacher ID:</label>
             <input type="text" id="teacherIdInput" placeholder="T101" class="w-full border border-slate-300 rounded-lg p-2 font-mono outline-none focus:border-indigo-500">
           </div>
           <div class="sm:col-span-2">
-            <label class="block font-semibold text-slate-700 mb-1">ชื่อ - นามสกุล ครูผู้สอน: *</label>
-            <input type="text" id="teacherNameInput" placeholder="เช่น ครูสมคิด พิทักษ์ธรรม" class="w-full border border-slate-300 rounded-lg p-2 font-bold outline-none focus:border-indigo-500">
+            <label class="block font-semibold text-slate-700 mb-1">Full Name: *</label>
+            <input type="text" id="teacherNameInput" placeholder="e.g. Mr. Reydante Acedillo" class="w-full border border-slate-300 rounded-lg p-2 font-bold outline-none focus:border-indigo-500">
           </div>
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">กลุ่มสาระการเรียนรู้ / แผนก:</label>
-            <select id="teacherDeptInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
-              <option value="คณิตศาสตร์">คณิตศาสตร์</option>
-              <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
-              <option value="ภาษาไทย">ภาษาไทย</option>
-              <option value="ภาษาต่างประเทศ (อังกฤษ)">ภาษาต่างประเทศ (อังกฤษ)</option>
-              <option value="สังคมศึกษา ศาสนาฯ">สังคมศึกษา ศาสนาฯ</option>
-              <option value="สุขศึกษาและพลศึกษา">สุขศึกษาและพลศึกษา</option>
-              <option value="ศิลปะ">ศิลปะ</option>
-              <option value="การงานอาชีพ">การงานอาชีพ</option>
-              <option value="ปฐมวัย">ปฐมวัย (อนุบาล)</option>
-            </select>
+            <label class="block font-semibold text-slate-700 mb-1">Department:</label>
+            <input type="text" id="teacherDeptInput" placeholder="Foreign Languages" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
           </div>
           <div>
-            <label class="block font-semibold text-slate-700 mb-1">เบอร์โทรศัพท์ / อีเมล:</label>
-            <input type="text" id="teacherContactInput" placeholder="ครูประจำชั้น หรือ 081-xxx-xxxx" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
+            <label class="block font-semibold text-slate-700 mb-1">Email / Contact:</label>
+            <input type="text" id="teacherContactInput" placeholder="teacher@watbanchang.ac.th" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
           </div>
         </div>
-
-        <!-- Assigned Subjects & Classes (Workload) -->
         <hr class="border-slate-200">
         <div>
           <div class="flex items-center justify-between mb-2">
-            <div>
-              <span class="font-bold text-indigo-900 text-xs">📚 รายวิชาและห้องเรียนที่รับผิดชอบสอน (Assigned Subjects & Classes):</span>
-              <p class="text-[11px] text-slate-500">วิชาที่กำหนดที่นี่จะปรากฏในระบบ ปพ.5 ออนไลน์ให้ครูท่านนี้เลือกบันทึกคะแนน</p>
-            </div>
-            <button onclick="addTeacherSubjectRow()" class="px-2.5 py-1 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded font-bold text-[11px] border border-indigo-200">
-              ➕ เพิ่มวิชาสอน
-            </button>
+            <span class="font-bold text-indigo-900">📚 Assigned Subjects & Classes:</span>
+            <button onclick="addTeacherSubjectRow()" class="px-2.5 py-1 bg-indigo-50 text-indigo-700 hover:bg-indigo-100 rounded font-bold border border-indigo-200">➕ Add Subject</button>
           </div>
-
-          <div id="teacherSubjectsContainer" class="space-y-2.5">
-            <!-- Dynamic rows for subjects and multi-class checkboxes -->
-          </div>
+          <div id="teacherSubjectsContainer" class="space-y-2.5"></div>
         </div>
-
-        <!-- Weekly Timetable / Class Schedule -->
         <hr class="border-slate-200">
         <div>
           <div class="flex items-center justify-between mb-2">
-            <div>
-              <span class="font-bold text-indigo-900 text-xs">🗓️ ตารางสอนประจำสัปดาห์ (Weekly Timetable):</span>
-              <p class="text-[11px] text-slate-500">ระบุคาบสอน วันในสัปดาห์ และห้องเรียน</p>
-            </div>
-            <button onclick="addTimetableSlotRow()" class="px-2.5 py-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded font-bold text-[11px] border border-emerald-200">
-              ➕ เพิ่มคาบสอน
-            </button>
+            <span class="font-bold text-indigo-900">🗓️ Weekly Timetable:</span>
+            <button onclick="addTimetableSlotRow()" class="px-2.5 py-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded font-bold border border-emerald-200">➕ Add Period</button>
           </div>
-
-          <div id="teacherTimetableContainer" class="space-y-1.5 max-h-40 overflow-y-auto custom-scroll border border-slate-200 rounded-lg p-2 bg-slate-50">
-            <!-- Dynamic timetable slots -->
-          </div>
+          <div id="teacherTimetableContainer" class="space-y-1.5 max-h-40 overflow-y-auto custom-scroll border border-slate-200 rounded-lg p-2 bg-slate-50"></div>
         </div>
-
       </div>
       <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
-        <button onclick="closeTeacherModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
-        <button onclick="saveTeacherRecord()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">บันทึกข้อมูลครู</button>
+        <button onclick="closeTeacherModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">Cancel</button>
+        <button onclick="saveTeacherRecord()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">Save Teacher</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL: GITHUB SYNC & MASTER EXPORT -->
+  <!-- MODAL: GITHUB SYNC & EXPORT -->
   <div id="githubSyncModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full overflow-hidden border border-slate-200 animate-fadeIn">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full overflow-hidden border border-slate-200">
       <div class="bg-emerald-800 px-5 py-4 text-white flex justify-between items-center">
-        <h3 class="font-bold text-sm flex items-center gap-2">
-          🐙 <span>การเชื่อมโยงข้อมูลสู่ GitHub Repository</span>
-        </h3>
-        <button onclick="closeGitHubSyncModal()" class="text-emerald-200 hover:text-white text-lg leading-none font-bold">✕</button>
+        <h3 class="font-bold text-sm">🐙 Direct GitHub Sync & Export</h3>
+        <button onclick="closeGitHubSyncModal()" class="text-emerald-200 hover:text-white text-lg font-bold">✕</button>
       </div>
-      <div class="p-5 space-y-4 text-xs text-slate-700 max-h-[80vh] overflow-y-auto custom-scroll">
+      <div class="p-5 space-y-4 text-xs text-slate-700">
         <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100 text-emerald-950 space-y-1">
-          <p class="font-bold">🚀 วิธีการทำให้ระบบ ปพ.5 ออนไลน์ ดึงข้อมูลอัตโนมัติ:</p>
+          <p class="font-bold">Syncing With GitHub Pages</p>
           <p class="text-[11px] leading-relaxed">
-            ไฟล์ <code class="font-mono bg-white px-1 py-0.5 rounded border border-emerald-200 text-emerald-900">school_master_data.json</code> จะรวบรวมรายชื่อนักเรียน 24 ห้องเรียน ทำเนียบครู วิชาที่สอน และตารางสอนไว้ในไฟล์เดียว เมื่อนำไฟล์นี้ไปวางใน GitHub Repository ของโรงเรียน ระบบ ปพ.5 จะดึงข้อมูลไปแสดงให้ครูทุกคนโดยตรง
+            Since GitHub Pages hosts static files, saving requires either downloading the JSON file to commit it, or using a GitHub Personal Access Token (PAT) to commit directly via the GitHub REST API.
           </p>
         </div>
-
         <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-          <label class="block font-bold text-slate-800">1. ดาวน์โหลดไฟล์ Master Data ไปวางในโฟลเดอร์ GitHub ของคุณ:</label>
-          <button onclick="exportMasterJSON()" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-lg shadow transition flex items-center justify-center gap-2 text-xs">
-            💾 <span>ดาวน์โหลด school_master_data.json ทันที</span>
+          <label class="block font-bold text-slate-800">Option A: Direct GitHub API Commit (Saves directly to your repo)</label>
+          <input type="text" id="ghRepoOwner" placeholder="GitHub Username / Organization (e.g. reyatbanchang)" class="w-full border border-slate-300 rounded p-2 text-xs">
+          <input type="text" id="ghRepoName" placeholder="Repository Name (e.g. school-portal)" class="w-full border border-slate-300 rounded p-2 text-xs">
+          <input type="password" id="ghToken" placeholder="GitHub Personal Access Token (Fine-grained or classic with 'contents:write')" class="w-full border border-slate-300 rounded p-2 text-xs">
+          <button onclick="commitDirectToGitHub()" class="w-full py-2 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg shadow transition">
+            🚀 Commit school_master_data.json to GitHub
           </button>
-          <p class="text-[10px] text-slate-500 italic">* นำไฟล์นี้ไป Commit / Upload ไว้ที่ Root หรือโฟลเดอร์เดียวกับ <code class="font-mono">school_portal.html</code> และ <code class="font-mono">index.html</code></p>
         </div>
-
         <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
-          <label class="block font-bold text-slate-800">2. ที่อยู่ URL สำหรับให้ ปพ.5 ดึงข้อมูล (GitHub Pages / Raw):</label>
-          <input type="text" id="syncRepoUrlInput" placeholder="school_master_data.json (หรือ https://raw.githubusercontent.com/...)" class="w-full border border-slate-300 rounded p-2 text-xs font-mono bg-white" value="school_master_data.json">
-          <p class="text-[10px] text-slate-500">* หากไฟล์วางในโฟลเดอร์เดียวกัน ใช้ค่า <code class="font-mono">school_master_data.json</code> ได้เลย</p>
+          <label class="block font-bold text-slate-800">Option B: Manual File Export</label>
+          <button onclick="exportMasterJSON()" class="w-full py-2 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-lg shadow transition">
+            💾 Download school_master_data.json
+          </button>
         </div>
       </div>
       <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end text-xs">
-        <button onclick="closeGitHubSyncModal()" class="px-4 py-1.5 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700">ปิดหน้าต่าง</button>
+        <button onclick="closeGitHubSyncModal()" class="px-4 py-1.5 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700">Close</button>
       </div>
     </div>
   </div>
 
   <!-- MODAL: ADD BLOG POST -->
   <div id="addPostModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200 animate-fadeIn">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200">
       <div class="bg-indigo-900 px-5 py-4 text-white flex justify-between items-center">
-        <h3 class="font-bold text-sm flex items-center gap-2">
-          📢 <span>เพิ่มข่าวสารหรือกิจกรรมใหม่</span>
-        </h3>
-        <button onclick="closeAddPostModal()" class="text-indigo-300 hover:text-white text-lg leading-none font-bold">✕</button>
+        <h3 class="font-bold text-sm">📢 Add School News</h3>
+        <button onclick="closeAddPostModal()" class="text-indigo-300 hover:text-white text-lg font-bold">✕</button>
       </div>
-      <div class="p-5 space-y-3.5 text-xs max-h-[80vh] overflow-y-auto custom-scroll">
+      <div class="p-5 space-y-3.5 text-xs">
         <div>
-          <label class="block font-semibold text-slate-700 mb-1">หัวข้อข่าว / กิจกรรม: *</label>
-          <input type="text" id="postTitleInput" placeholder="เช่น การประชุมผู้ปกครองภาคเรียนที่ 1 ประจำปี 2569" class="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:border-indigo-500">
-        </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">หมวดหมู่:</label>
-            <select id="postCategoryInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
-              <option value="announcement">📢 ประกาศโรงเรียน</option>
-              <option value="activity">🏆 กิจกรรม & การแข่งขัน</option>
-              <option value="academic">📚 วิชาการ & การสอบ</option>
-              <option value="general">🌟 ทั่วไป</option>
-            </select>
-          </div>
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">วันที่ประกาศ:</label>
-            <input type="date" id="postDateInput" class="w-full border border-slate-300 rounded-lg p-2 bg-white outline-none focus:border-indigo-500">
-          </div>
+          <label class="block font-semibold text-slate-700 mb-1">Headline: *</label>
+          <input type="text" id="postTitleInput" placeholder="e.g. Semester 1 Orientation Meeting" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
         </div>
         <div>
-          <label class="block font-semibold text-slate-700 mb-1">ลิงก์รูปภาพประกอบ (URL หรือเว้นว่าง):</label>
-          <input type="url" id="postImageUrlInput" placeholder="https://images.unsplash.com/..." class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
-        </div>
-        <div>
-          <label class="block font-semibold text-slate-700 mb-1">เนื้อหาข่าว / รายละเอียด: *</label>
-          <textarea id="postContentInput" rows="4" placeholder="พิมพ์รายละเอียดข่าว..." class="w-full border border-slate-300 rounded-lg p-2.5 outline-none focus:border-indigo-500 custom-scroll"></textarea>
+          <label class="block font-semibold text-slate-700 mb-1">Content: *</label>
+          <textarea id="postContentInput" rows="4" placeholder="Article details..." class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500"></textarea>
         </div>
       </div>
       <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
-        <button onclick="closeAddPostModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
-        <button onclick="saveNewBlogPost()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">เผยแพร่ข่าว</button>
+        <button onclick="closeAddPostModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">Cancel</button>
+        <button onclick="saveNewBlogPost()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">Publish</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL: UPLOAD STUDENTS CSV FOR ROSTER -->
+  <!-- MODAL: CSV UPLOAD -->
   <div id="portalUploadModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[90vh]">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full overflow-hidden border border-slate-200">
       <div class="bg-emerald-800 px-5 py-4 text-white flex justify-between items-center">
-        <h3 class="font-bold text-sm flex items-center gap-2">
-          📂 <span>อัปโหลดรายชื่อนักเรียนด้วยไฟล์ CSV (24 ห้องเรียน)</span>
-        </h3>
-        <button onclick="closePortalUploadModal()" class="text-emerald-200 hover:text-white text-lg leading-none font-bold">✕</button>
+        <h3 class="font-bold text-sm">📂 Import Student Roster CSV</h3>
+        <button onclick="closePortalUploadModal()" class="text-emerald-200 hover:text-white text-lg font-bold">✕</button>
       </div>
-      <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
-        <div class="bg-emerald-50/60 border-2 border-dashed border-emerald-300 rounded-2xl p-5 text-center hover:bg-emerald-50 transition cursor-pointer" onclick="document.getElementById('portalCsvFileInput').click()">
-          <input type="file" id="portalCsvFileInput" accept=".csv,text/csv" onchange="handlePortalCSVUpload(event)" class="hidden">
-          <div class="text-3xl mb-1">📄</div>
-          <p class="font-bold text-sm text-slate-800">คลิกเลือกไฟล์ CSV หรือลากไฟล์มาวางที่นี่</p>
-          <p class="text-slate-500 text-[11px] mt-0.5">รองรับไฟล์ CSV ภาษาไทย (UTF-8) ตามรูปแบบมาตรฐาน ปพ.5</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">ห้องเรียนเป้าหมาย (หากในไฟล์ไม่มีคอลัมน์ห้องเรียน):</label>
-            <select id="portalUploadTargetClass" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs font-semibold outline-none focus:border-indigo-500">
-              <optgroup label="ระดับชั้นอนุบาล">
-                <option value="k1_1">ชั้น อ.1/1</option>
-                <option value="k1_2">ชั้น อ.1/2</option>
-                <option value="k2_1">ชั้น อ.2/1</option>
-                <option value="k2_2">ชั้น อ.2/2</option>
-                <option value="k3_1">ชั้น อ.3/1</option>
-                <option value="k3_2">ชั้น อ.3/2</option>
-              </optgroup>
-              <optgroup label="ระดับชั้นประถมศึกษา">
-                <option value="p1_1" selected>ชั้น ป.1/1</option>
-                <option value="p1_2">ชั้น ป.1/2</option>
-                <option value="p2_1">ชั้น ป.2/1</option>
-                <option value="p2_2">ชั้น ป.2/2</option>
-                <option value="p3_1">ชั้น ป.3/1</option>
-                <option value="p3_2">ชั้น ป.3/2</option>
-                <option value="p4_1">ชั้น ป.4/1</option>
-                <option value="p4_2">ชั้น ป.4/2</option>
-                <option value="p5_1">ชั้น ป.5/1</option>
-                <option value="p5_2">ชั้น ป.5/2</option>
-                <option value="p6_1">ชั้น ป.6/1</option>
-                <option value="p6_2">ชั้น ป.6/2</option>
-              </optgroup>
-              <optgroup label="ระดับชั้นมัธยมศึกษาตอนต้น">
-                <option value="s1_1">ชั้น ม.1/1</option>
-                <option value="s1_2">ชั้น ม.1/2</option>
-                <option value="s2_1">ชั้น ม.2/1</option>
-                <option value="s2_2">ชั้น ม.2/2</option>
-                <option value="s3_1">ชั้น ม.3/1</option>
-                <option value="s3_2">ชั้น ม.3/2</option>
-              </optgroup>
-            </select>
-          </div>
-          <div>
-            <label class="block font-semibold text-slate-700 mb-1">การจัดการข้อมูล:</label>
-            <select id="portalUploadMode" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs outline-none focus:border-indigo-500">
-              <option value="replace">แทนที่รายชื่อเดิมในห้องนั้นทั้งหมด</option>
-              <option value="append">เพิ่มต่อท้ายรายชื่อเดิม (อัปเดตเมื่อรหัสซ้ำ)</option>
-            </select>
-          </div>
-        </div>
-
-        <div id="portalCsvPreviewContainer" class="hidden space-y-2">
-          <div class="flex items-center justify-between font-bold text-slate-800">
-            <span>ตัวอย่างข้อมูลที่ตรวจพบ (<span id="portalPreviewCount">0</span> คน):</span>
-            <span id="portalPreviewClassBadge" class="text-indigo-700 bg-indigo-50 px-2.5 py-0.5 rounded text-[11px]"></span>
-          </div>
-          <div class="border border-slate-200 rounded-xl overflow-x-auto max-h-48 custom-scroll">
-            <table class="w-full text-left text-[11px]">
-              <thead class="bg-slate-100 text-slate-700 sticky top-0 font-semibold">
-                <tr>
-                  <th class="p-1.5 text-center w-10">ที่</th>
-                  <th class="p-1.5 w-20">รหัส</th>
-                  <th class="p-1.5 w-28">เลขประชาชน</th>
-                  <th class="p-1.5 w-16">คำนำหน้า</th>
-                  <th class="p-1.5">ชื่อ - นามสกุล</th>
-                  <th class="p-1.5 text-center w-12">เพศ</th>
-                  <th class="p-1.5 text-center w-16">ห้อง</th>
-                </tr>
-              </thead>
-              <tbody id="portalPreviewTableBody" class="divide-y divide-slate-100"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="flex items-center justify-between pt-1 text-[11px]">
-          <span class="text-slate-500">* คอลัมน์ที่รองรับ: ที่, เลขประจำตัวนักเรียน, เลขประชาชน, คำนำหน้า, ชื่อ, นามสกุล, เพศ, สถานะ, ห้องเรียน</span>
-          <button onclick="downloadPortalTemplateCSV()" class="text-indigo-700 font-bold hover:underline">
-            📥 ดาวน์โหลดไฟล์ตัวอย่าง (Template CSV)
-          </button>
+      <div class="p-5 space-y-4 text-xs">
+        <input type="file" id="portalCsvFileInput" accept=".csv,text/csv" onchange="handlePortalCSVUpload(event)" class="border border-slate-300 p-2 rounded w-full">
+        <div>
+          <label class="block font-semibold text-slate-700 mb-1">Assign to Class:</label>
+          <select id="portalUploadTargetClass" class="w-full border border-slate-300 rounded p-2">
+            <option value="p1_1">Class P.1/1</option>
+            <option value="p1_2">Class P.1/2</option>
+            <option value="p2_1">Class P.2/1</option>
+            <option value="p2_2">Class P.2/2</option>
+            <option value="p3_1">Class P.3/1</option>
+            <option value="p3_2">Class P.3/2</option>
+          </select>
         </div>
       </div>
       <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
-        <button onclick="closePortalUploadModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
-        <button id="btnConfirmPortalUpload" onclick="confirmPortalUpload()" class="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg font-bold shadow disabled:opacity-40 disabled:pointer-events-none" disabled>
-          ยืนยันการนำเข้าข้อมูล
-        </button>
+        <button onclick="closePortalUploadModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">Cancel</button>
       </div>
     </div>
   </div>
 
-  <!-- TOAST NOTIFICATION -->
+  <!-- TOAST -->
   <div id="portalToast" class="fixed bottom-5 right-5 bg-slate-900 text-white px-4 py-2.5 rounded-xl shadow-2xl flex items-center space-x-2 text-xs font-semibold z-50 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none">
-    <span id="portalToastIcon" class="text-emerald-400">✓</span>
-    <span id="portalToastMessage">ดำเนินการสำเร็จ</span>
+    <span class="text-emerald-400">✓</span>
+    <span id="portalToastMessage">Operation successful</span>
   </div>
 
-  <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
-    /* =====================================================================
-       1. INITIAL DATA & CONSTANTS
-       ===================================================================== */
-    const PORTAL_STORAGE_KEY = 'school_portal_hub_data_v2';
-    const PP5_SHARED_KEY = 'pp5_online_state_v3';
-    let currentPortalLang = 'th';
-
-    let calCurrentYear = 2026;
-    let calCurrentMonth = 4; // 0-indexed: 4 = May
-
-    const THAI_MONTH_NAMES = [
-      'มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน',
-      'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
-    ];
-
+    const STORAGE_KEY = 'school_master_data_v1';
     const CLASS_LABELS = {
-      k1_1: 'ชั้น อ.1/1', k1_2: 'ชั้น อ.1/2',
-      k2_1: 'ชั้น อ.2/1', k2_2: 'ชั้น อ.2/2',
-      k3_1: 'ชั้น อ.3/1', k3_2: 'ชั้น อ.3/2',
-      p1_1: 'ชั้น ป.1/1', p1_2: 'ชั้น ป.1/2',
-      p2_1: 'ชั้น ป.2/1', p2_2: 'ชั้น ป.2/2',
-      p3_1: 'ชั้น ป.3/1', p3_2: 'ชั้น ป.3/2',
-      p4_1: 'ชั้น ป.4/1', p4_2: 'ชั้น ป.4/2',
-      p5_1: 'ชั้น ป.5/1', p5_2: 'ชั้น ป.5/2',
-      p6_1: 'ชั้น ป.6/1', p6_2: 'ชั้น ป.6/2',
-      s1_1: 'ชั้น ม.1/1', s1_2: 'ชั้น ม.1/2',
-      s2_1: 'ชั้น ม.2/1', s2_2: 'ชั้น ม.2/2',
-      s3_1: 'ชั้น ม.3/1', s3_2: 'ชั้น ม.3/2'
+      k1_1: 'Class K.1/1', k1_2: 'Class K.1/2',
+      k2_1: 'Class K.2/1', k2_2: 'Class K.2/2',
+      k3_1: 'Class K.3/1', k3_2: 'Class K.3/2',
+      p1_1: 'Class P.1/1', p1_2: 'Class P.1/2',
+      p2_1: 'Class P.2/1', p2_2: 'Class P.2/2',
+      p3_1: 'Class P.3/1', p3_2: 'Class P.3/2',
+      p4_1: 'Class P.4/1', p4_2: 'Class P.4/2',
+      p5_1: 'Class P.5/1', p5_2: 'Class P.5/2',
+      p6_1: 'Class P.6/1', p6_2: 'Class P.6/2',
+      s1_1: 'Class S.1/1', s1_2: 'Class S.1/2',
+      s2_1: 'Class S.2/1', s2_2: 'Class S.2/2',
+      s3_1: 'Class S.3/1', s3_2: 'Class S.3/2'
     };
-
-    // Default Seed Teachers with Subjects & Schedules
-    const DEFAULT_TEACHERS = [
-      {
-        id: "T101",
-        name: "ครูวิชัย ใจดี",
-        dept: "คณิตศาสตร์",
-        contact: "wichai@watbanchang.ac.th",
-        subjects: [
-          { code: "ค11101", name: "คณิตศาสตร์ 1", classes: ["p1_1", "p1_2"] },
-          { code: "ค12101", name: "คณิตศาสตร์ 2", classes: ["p2_1", "p2_2"] }
-        ],
-        timetable: [
-          { day: "mon", time: "08:30 - 09:30", subjectCode: "ค11101", classKey: "p1_1", room: "111" },
-          { day: "mon", time: "09:30 - 10:30", subjectCode: "ค11101", classKey: "p1_2", room: "112" },
-          { day: "wed", time: "10:30 - 11:30", subjectCode: "ค12101", classKey: "p2_1", room: "121" },
-          { day: "fri", time: "13:00 - 14:00", subjectCode: "ค12101", classKey: "p2_2", room: "122" }
-        ]
-      },
-      {
-        id: "T102",
-        name: "ครูวรรณา ศรีสุข",
-        dept: "ภาษาต่างประเทศ (อังกฤษ)",
-        contact: "wanna@watbanchang.ac.th",
-        subjects: [
-          { code: "อ11101", name: "ภาษาอังกฤษ 1", classes: ["p1_1", "p1_2"] },
-          { code: "อ12101", name: "ภาษาอังกฤษ 2", classes: ["p2_1", "p2_2"] }
-        ],
-        timetable: [
-          { day: "tue", time: "08:30 - 09:30", subjectCode: "อ11101", classKey: "p1_1", room: "111" },
-          { day: "thu", time: "09:30 - 10:30", subjectCode: "อ11101", classKey: "p1_2", room: "112" },
-          { day: "fri", time: "10:30 - 11:30", subjectCode: "อ12101", classKey: "p2_1", room: "121" }
-        ]
-      },
-      {
-        id: "T103",
-        name: "ครูประสิทธิ์ วิทยากร",
-        dept: "วิทยาศาสตร์และเทคโนโลยี",
-        contact: "prasit@watbanchang.ac.th",
-        subjects: [
-          { code: "ว11101", name: "วิทยาศาสตร์ 1", classes: ["p1_1", "p1_2"] },
-          { code: "ว13101", name: "วิทยาศาสตร์ 3", classes: ["p3_1", "p3_2"] }
-        ],
-        timetable: [
-          { day: "wed", time: "08:30 - 09:30", subjectCode: "ว11101", classKey: "p1_1", room: "Lab 1" },
-          { day: "thu", time: "13:00 - 14:00", subjectCode: "ว11101", classKey: "p1_2", room: "Lab 1" }
-        ]
-      }
-    ];
-
-    const DEFAULT_BLOG_POSTS = [
-      {
-        id: 'post_1',
-        title: 'พิธีไหว้ครูและเปิดภาคเรียนที่ 1 ประจำปีการศึกษา 2569',
-        category: 'activity',
-        date: '2026-05-18',
-        author: 'งานประชาสัมพันธ์โรงเรียน',
-        imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80',
-        content: 'โรงเรียนวัดบ้านฉางจัดพิธีไหว้ครูประจำปีการศึกษา 2569 เพื่อให้นักเรียนได้แสดงความกตัญญูกตเวทิตาต่อครูบาอาจารย์'
-      },
-      {
-        id: 'post_2',
-        title: 'ประกาศตารางสอนและภาระงานครูผู้สอน ประจำปีการศึกษา 2569',
-        category: 'academic',
-        date: '2026-05-12',
-        author: 'ฝ่ายวิชาการ',
-        imageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80',
-        content: 'ฝ่ายวิชาการได้เผยแพร่ตารางสอนและมอบหมายรายวิชาของครูผู้สอนทุกระดับชั้น พร้อมเชื่อมโยงระบบ ปพ.5 ออนไลน์'
-      }
-    ];
-
-    const DEFAULT_CALENDAR_EVENTS = [
-      { id: 'ev_1', title: 'วันเปิดภาคเรียนที่ 1/2569', startDate: '2026-05-14', endDate: '2026-05-14', type: 'academic', desc: 'เปิดเรียนวันแรก ทุกระดับชั้น' },
-      { id: 'ev_2', title: 'สอบกลางภาคเรียนที่ 1', startDate: '2026-07-28', endDate: '2026-07-30', type: 'academic', desc: 'ทุกระดับชั้น' },
-      { id: 'ev_3', title: 'สอบปลายภาคเรียนที่ 1', startDate: '2026-10-05', endDate: '2026-10-09', type: 'academic', desc: 'ประเมินผลปลายภาคเรียนที่ 1' },
-      { id: 'ev_4', title: 'วันเปิดภาคเรียนที่ 2/2569', startDate: '2026-11-02', endDate: '2026-11-02', type: 'academic', desc: 'เปิดเรียนภาคเรียนที่ 2' },
-      { id: 'ev_5', title: 'สอบปลายภาคเรียนที่ 2/2569', startDate: '2027-03-22', endDate: '2027-03-26', type: 'academic', desc: 'สิ้นสุดการประเมินผลประจำปี' }
-    ];
 
     let portalData = {
-      teachers: DEFAULT_TEACHERS,
-      posts: DEFAULT_BLOG_POSTS,
-      events: DEFAULT_CALENDAR_EVENTS,
-      rosters: {} // 24 classes
+      schoolName: "Wat Banchang School",
+      academicYear: "2026",
+      teachers: [],
+      rosters: {},
+      calendarEvents: [],
+      posts: []
     };
 
-    /* =====================================================================
-       2. DATA PERSISTENCE & MASTER DATA SYNC
-       ===================================================================== */
-    function loadPortalData() {
+    let calCurrentYear = 2026;
+    let calCurrentMonth = 4; // May
+    const MONTH_NAMES = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    async function init() {
+      const cached = localStorage.getItem(STORAGE_KEY);
+      if (cached) {
+        try {
+          portalData = JSON.parse(cached);
+          renderAll();
+        } catch(e) {}
+      }
+      await fetchMasterFromRepo();
+    }
+
+    async function fetchMasterFromRepo() {
       try {
-        const saved = localStorage.getItem(PORTAL_STORAGE_KEY);
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          if (parsed) {
-            portalData = Object.assign(portalData, parsed);
-            if (!portalData.teachers || portalData.teachers.length === 0) {
-              portalData.teachers = DEFAULT_TEACHERS;
-            }
-          }
-        }
-      } catch (e) {
-        console.warn("Using default portal seed data", e);
+        const res = await fetch(`school_master_data.json?t=${Date.now()}`);
+        if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+        const data = await res.json();
+        portalData = data;
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(portalData));
+        showToast("Fetched latest school_master_data.json successfully");
+        renderAll();
+      } catch (err) {
+        console.warn("Could not fetch school_master_data.json directly, using cached data.", err);
+        showToast("Loaded cached data from LocalStorage");
       }
     }
 
-    function savePortalData() {
-      try {
-        localStorage.setItem(PORTAL_STORAGE_KEY, JSON.stringify(portalData));
-        showToast("บันทึกข้อมูลเรียบร้อยแล้ว");
-      } catch (e) {
-        console.error("Failed to save portal data", e);
+    function saveLocal() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(portalData));
+      showToast("Data saved locally");
+    }
+
+    function renderAll() {
+      renderTeachersDirectory();
+      loadClassRoster(document.getElementById('portalClassSelect').value || 'p1_1');
+      renderPosts();
+      renderCalendar();
+      updateMetrics();
+    }
+
+    function updateMetrics() {
+      let count = 0;
+      if (portalData.rosters) {
+        Object.keys(portalData.rosters).forEach(k => {
+          count += (portalData.rosters[k] || []).length;
+        });
       }
+      document.getElementById('metricTotalStudents').innerText = count;
+      document.getElementById('metricTeachersCount').innerText = (portalData.teachers || []).length;
+      document.getElementById('metricAcademicYear').innerText = portalData.academicYear || '2026';
     }
 
-    function getRosterForClass(classKey) {
-      if (portalData.rosters && portalData.rosters[classKey] && portalData.rosters[classKey].length > 0) {
-        return portalData.rosters[classKey];
-      }
+    function renderTeachersDirectory() {
+      const grid = document.getElementById('teacherCardsGrid');
+      grid.innerHTML = '';
+      (portalData.teachers || []).forEach((t, idx) => {
+        const card = document.createElement('div');
+        card.className = 'bg-white rounded-2xl shadow-sm border border-slate-200 p-5 space-y-3';
+        const subjectsHtml = (t.subjects || []).map(s => `
+          <div class="bg-indigo-50 border border-indigo-100 rounded p-2 text-xs">
+            <div class="font-bold text-indigo-950">${s.name} (${s.code})</div>
+            <div class="text-[11px] text-indigo-700">Classes: ${(s.classes || []).map(c => CLASS_LABELS[c] || c).join(', ')}</div>
+          </div>
+        `).join('');
 
-      // Check shared storage
-      try {
-        const pp5Raw = localStorage.getItem(PP5_SHARED_KEY);
-        if (pp5Raw) {
-          const pp5State = JSON.parse(pp5Raw);
-          if (pp5State && pp5State.classes && pp5State.classes[classKey] && Array.isArray(pp5State.classes[classKey].students)) {
-            return pp5State.classes[classKey].students;
-          }
-        }
-      } catch (err) {}
-
-      return generateFallbackClassStudents(classKey);
-    }
-
-    function generateFallbackClassStudents(classKey) {
-      let baseOffset = 1000;
-      if (classKey.startsWith('k')) baseOffset = 100 * parseInt(classKey.charAt(1));
-      else if (classKey.startsWith('p')) baseOffset = 1000 * parseInt(classKey.charAt(1));
-      else if (classKey.startsWith('s')) baseOffset = 5000 + (1000 * parseInt(classKey.charAt(1)));
-
-      const sampleNames = [
-        { id: 9614, pre: 'เด็กชาย', n: 'กัณฑ์พัฒน์ ดีเจริญ', g: 'ชาย' },
-        { id: 9616, pre: 'เด็กหญิง', n: 'ปานไพลิน แสงนิกร', g: 'หญิง' },
-        { id: 9617, pre: 'เด็กหญิง', n: 'รุจิษยา เย็นรักษา', g: 'หญิง' },
-        { id: 9619, pre: 'เด็กชาย', n: 'จิรวัฒน์ บุญรักษา', g: 'ชาย' },
-        { id: 9620, pre: 'เด็กชาย', n: 'กรตชกร เนตรแสงสี', g: 'ชาย' },
-        { id: 9621, pre: 'เด็กชาย', n: 'ชัยภัทร จันทร์ยิ้ม', g: 'ชาย' },
-        { id: 9622, pre: 'เด็กหญิง', n: 'ธิดารัตน์ บัวใบ', g: 'หญิง' },
-        { id: 9623, pre: 'เด็กชาย', n: 'กิตตินันต์ เชาว์เรืองทวีกุล', g: 'ชาย' }
-      ];
-
-      return sampleNames.map((item, idx) => ({
-        no: idx + 1,
-        id: String(item.id + baseOffset),
-        idCard: `120090196${idx}${baseOffset}`,
-        prefix: item.pre,
-        name: item.n,
-        gender: item.g,
-        status: 'ปกติ'
-      }));
-    }
-
-    /* Master JSON Export: Combines Roster for 24 classes + Teachers + Timetables */
-    function exportMasterJSON() {
-      // Ensure all 24 classes have rosters populated in master payload
-      const fullRosters = {};
-      Object.keys(CLASS_LABELS).forEach(key => {
-        fullRosters[key] = getRosterForClass(key);
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <div>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900">${t.dept || 'Instructor'}</span>
+              <h4 class="font-bold text-slate-900 text-sm mt-1">${t.name} <span class="text-slate-400 font-mono text-xs">(${t.id})</span></h4>
+              <p class="text-[11px] text-slate-500">${t.contact || 'No contact provided'}</p>
+            </div>
+            <div class="w-8 h-8 rounded bg-slate-100 flex items-center justify-center font-bold">👨‍🏫</div>
+          </div>
+          <div class="space-y-1.5">
+            <span class="text-[11px] font-bold text-slate-700">Subjects (${(t.subjects || []).length}):</span>
+            ${subjectsHtml || '<div class="text-slate-400 text-[11px]">No subjects assigned</div>'}
+          </div>
+          <div class="pt-2 border-t border-slate-100 flex justify-between items-center text-xs">
+            <span class="text-slate-500">${(t.timetable || []).length} periods/week</span>
+            <button onclick="editTeacher(${idx})" class="text-indigo-600 font-bold hover:underline">Edit</button>
+          </div>
+        `;
+        grid.appendChild(card);
       });
+    }
 
-      const masterPayload = {
-        schoolName: "โรงเรียนวัดบ้านฉาง",
-        district: "สพป.ระยอง เขต 1",
-        academicYear: "2569",
-        lastUpdated: new Date().toISOString(),
-        teachers: portalData.teachers,
-        rosters: fullRosters,
-        calendarEvents: portalData.events
-      };
+    function loadClassRoster(classKey) {
+      document.getElementById('currentViewingClassLabel').innerText = CLASS_LABELS[classKey] || classKey;
+      const list = (portalData.rosters && portalData.rosters[classKey]) || [];
+      document.getElementById('currentClassStudentCount').innerText = `${list.length} Students`;
 
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(masterPayload, null, 2));
+      const tbody = document.getElementById('portalRosterTableBody');
+      tbody.innerHTML = '';
+      if (list.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-slate-400">No students found in this class.</td></tr>`;
+        return;
+      }
+
+      list.forEach((s, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 text-center font-bold text-slate-700">${s.no || idx + 1}</td>
+          <td class="py-2.5 px-3 font-semibold text-indigo-900 font-mono">${s.id}</td>
+          <td class="py-2.5 px-3 text-slate-600 font-mono">${s.idCard || '-'}</td>
+          <td class="py-2.5 px-3 text-slate-700">${s.prefix || ''}</td>
+          <td class="py-2.5 px-4 font-bold text-slate-900">${s.name || ''}</td>
+          <td class="py-2.5 px-3 text-center">${s.gender || '-'}</td>
+          <td class="py-2.5 px-3 text-center"><span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">${s.status || 'Active'}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function exportMasterJSON() {
+      portalData.lastUpdated = new Date().toISOString();
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(portalData, null, 2));
       const a = document.createElement('a');
       a.href = dataStr;
       a.download = "school_master_data.json";
       document.body.appendChild(a);
       a.click();
       a.remove();
-      showToast("ดาวน์โหลด school_master_data.json สำเร็จ");
+      showToast("Downloaded school_master_data.json");
     }
 
-    function openGitHubSyncModal() {
-      document.getElementById('githubSyncModal').classList.remove('hidden');
-    }
-
-    function closeGitHubSyncModal() {
-      document.getElementById('githubSyncModal').classList.add('hidden');
-    }
-
-    /* =====================================================================
-       3. TEACHER ROSTER & WORKLOAD DIRECTORY
-       ===================================================================== */
-    function renderTeachersDirectory() {
-      const grid = document.getElementById('teacherCardsGrid');
-      const countEl = document.getElementById('metricTeachersCount');
-      if (!grid) return;
-      grid.innerHTML = '';
-
-      const list = portalData.teachers || [];
-      if (countEl) countEl.innerText = list.length;
-
-      if (list.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full py-10 text-center text-slate-400 bg-white rounded-2xl border border-slate-200">
-            <p class="text-sm font-semibold">ยังไม่มีข้อมูลครูผู้สอน</p>
-            <p class="text-xs mt-1">คลิกปุ่ม "เพิ่มครูผู้สอน" เพื่อกำหนดภาระงานสอน</p>
-          </div>
-        `;
+    async function commitDirectToGitHub() {
+      const owner = document.getElementById('ghRepoOwner').value.trim();
+      const repo = document.getElementById('ghRepoName').value.trim();
+      const token = document.getElementById('ghToken').value.trim();
+      if (!owner || !repo || !token) {
+        alert("Please provide GitHub Owner, Repo, and Personal Access Token.");
         return;
       }
 
-      list.forEach((t, idx) => {
-        const card = document.createElement('div');
-        card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-200 p-5 flex flex-col justify-between space-y-3';
+      const filePath = "school_master_data.json";
+      const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+      portalData.lastUpdated = new Date().toISOString();
+      const contentBase64 = btoa(unescape(encodeURIComponent(JSON.stringify(portalData, null, 2))));
 
-        // Subject tags
-        const subjectsHtml = (t.subjects || []).map(s => {
-          const classTags = (s.classes || []).map(c => CLASS_LABELS[c] || c).join(', ');
-          return `
-            <div class="bg-indigo-50 border border-indigo-100 rounded-lg p-2 text-xs">
-              <div class="font-bold text-indigo-950 flex items-center justify-between">
-                <span>📘 ${s.name} (${s.code})</span>
-                <span class="text-[10px] bg-indigo-200 text-indigo-900 px-1.5 py-0.2 rounded font-semibold">${(s.classes || []).length} ห้อง</span>
-              </div>
-              <div class="text-[11px] text-indigo-700 mt-0.5 truncate">ห้อง: ${classTags || 'ยังไม่กำหนด'}</div>
-            </div>
-          `;
-        }).join('');
+      try {
+        let sha = null;
+        const getRes = await fetch(apiUrl, {
+          headers: { "Authorization": `Bearer ${token}`, "Accept": "application/vnd.github.v3+json" }
+        });
+        if (getRes.ok) {
+          const fileInfo = await getRes.json();
+          sha = fileInfo.sha;
+        }
 
-        // Timetable count
-        const timetableCount = (t.timetable || []).length;
-
-        card.innerHTML = `
-          <div class="space-y-3">
-            <div class="flex items-start justify-between">
-              <div>
-                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-200">${t.dept || 'ครูผู้สอน'}</span>
-                <h4 class="font-bold text-slate-900 text-sm mt-1 flex items-center gap-1.5">
-                  <span>${t.name}</span>
-                  <span class="text-[11px] font-mono text-slate-400 font-normal">(${t.id})</span>
-                </h4>
-                <p class="text-[11px] text-slate-500">${t.contact || 'ติดต่อ: ฝ่ายวิชาการ'}</p>
-              </div>
-              <div class="w-9 h-9 rounded-xl bg-slate-100 flex items-center justify-center font-bold text-slate-600">
-                👨‍🏫
-              </div>
-            </div>
-
-            <div class="space-y-1.5">
-              <span class="text-[11px] font-bold text-slate-700 block">วิชาและห้องที่สอน (${(t.subjects || []).length} วิชา):</span>
-              <div class="space-y-1.5 max-h-36 overflow-y-auto custom-scroll">
-                ${subjectsHtml || '<span class="text-slate-400 text-[11px] italic">ยังไม่ได้กำหนดวิชา</span>'}
-              </div>
-            </div>
-          </div>
-
-          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 text-[11px]">🗓️ ตารางสอน ${timetableCount} คาบ/สัปดาห์</span>
-            <div class="space-x-1.5">
-              <button onclick="editTeacher(${idx})" class="text-indigo-600 hover:text-indigo-800 font-bold px-2 py-1 hover:bg-indigo-50 rounded">แก้ไข</button>
-              <button onclick="deleteTeacher(${idx})" class="text-red-500 hover:text-red-700 font-bold px-2 py-1 hover:bg-red-50 rounded">ลบ</button>
-            </div>
-          </div>
-        `;
-        grid.appendChild(card);
-      });
-    }
-
-    let activeModalSubjects = [];
-    let activeModalTimetable = [];
-
-    function openAddTeacherModal() {
-      document.getElementById('teacherIndexInput').value = "-1";
-      document.getElementById('teacherModalTitle').innerText = "เพิ่มครูผู้สอนและกำหนดวิชาที่สอน";
-      document.getElementById('teacherIdInput').value = "T" + (portalData.teachers.length + 101);
-      document.getElementById('teacherNameInput').value = "";
-      document.getElementById('teacherDeptInput').value = "คณิตศาสตร์";
-      document.getElementById('teacherContactInput').value = "";
-
-      activeModalSubjects = [
-        { code: "ค11101", name: "คณิตศาสตร์", classes: ["p1_1", "p1_2"] }
-      ];
-      activeModalTimetable = [];
-
-      renderModalSubjectsList();
-      renderModalTimetableList();
-      document.getElementById('teacherModal').classList.remove('hidden');
-    }
-
-    function editTeacher(idx) {
-      const t = portalData.teachers[idx];
-      document.getElementById('teacherIndexInput').value = idx;
-      document.getElementById('teacherModalTitle').innerText = `แก้ไขข้อมูลครู: ${t.name}`;
-      document.getElementById('teacherIdInput').value = t.id;
-      document.getElementById('teacherNameInput').value = t.name;
-      document.getElementById('teacherDeptInput').value = t.dept || "คณิตศาสตร์";
-      document.getElementById('teacherContactInput').value = t.contact || "";
-
-      activeModalSubjects = JSON.parse(JSON.stringify(t.subjects || []));
-      activeModalTimetable = JSON.parse(JSON.stringify(t.timetable || []));
-
-      renderModalSubjectsList();
-      renderModalTimetableList();
-      document.getElementById('teacherModal').classList.remove('hidden');
-    }
-
-    function closeTeacherModal() {
-      document.getElementById('teacherModal').classList.add('hidden');
-    }
-
-    function renderModalSubjectsList() {
-      const container = document.getElementById('teacherSubjectsContainer');
-      container.innerHTML = '';
-
-      if (activeModalSubjects.length === 0) {
-        container.innerHTML = `<p class="text-slate-400 italic text-[11px]">ยังไม่มีวิชาสอน กรุณากด "เพิ่มวิชาสอน"</p>`;
-        return;
-      }
-
-      activeModalSubjects.forEach((s, sIdx) => {
-        const div = document.createElement('div');
-        div.className = 'p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2';
-
-        // Checkboxes for all 24 classes grouped
-        let classCheckboxes = '';
-        Object.keys(CLASS_LABELS).forEach(cKey => {
-          const isChecked = (s.classes || []).includes(cKey) ? 'checked' : '';
-          classCheckboxes += `
-            <label class="inline-flex items-center space-x-1 text-[11px] bg-white border border-slate-200 px-2 py-0.5 rounded cursor-pointer hover:border-indigo-400">
-              <input type="checkbox" ${isChecked} onchange="toggleSubjectClass(${sIdx}, '${cKey}', this.checked)" class="rounded text-indigo-600">
-              <span>${CLASS_LABELS[cKey]}</span>
-            </label>
-          `;
+        const putRes = await fetch(apiUrl, {
+          method: "PUT",
+          headers: {
+            "Authorization": `Bearer ${token}`,
+            "Accept": "application/vnd.github.v3+json",
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            message: `Update school_master_data.json via Portal [${new Date().toISOString()}]`,
+            content: contentBase64,
+            sha: sha || undefined
+          })
         });
 
-        div.innerHTML = `
-          <div class="flex items-center justify-between gap-2">
-            <div class="grid grid-cols-2 gap-2 flex-1">
-              <input type="text" value="${s.code}" placeholder="รหัสวิชา (เช่น ค11101)" onchange="activeModalSubjects[${sIdx}].code = this.value.trim()" class="border border-slate-300 rounded p-1.5 font-semibold text-xs bg-white">
-              <input type="text" value="${s.name}" placeholder="ชื่อวิชา (เช่น คณิตศาสตร์)" onchange="activeModalSubjects[${sIdx}].name = this.value.trim()" class="border border-slate-300 rounded p-1.5 font-semibold text-xs bg-white">
-            </div>
-            <button onclick="removeSubjectRow(${sIdx})" class="text-red-500 hover:text-red-700 font-bold px-2">✕ ลบ</button>
-          </div>
-          <div>
-            <label class="block text-[11px] font-semibold text-slate-600 mb-1">เลือกห้องเรียนที่สอนวิชานี้ (เลือกได้หลายห้อง):</label>
-            <div class="flex flex-wrap gap-1 max-h-24 overflow-y-auto custom-scroll p-1 bg-white border border-slate-200 rounded">
-              ${classCheckboxes}
-            </div>
-          </div>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function addTeacherSubjectRow() {
-      activeModalSubjects.push({
-        code: "ว" + (activeModalSubjects.length + 1) + "1101",
-        name: "วิชาใหม่ " + (activeModalSubjects.length + 1),
-        classes: ["p1_1"]
-      });
-      renderModalSubjectsList();
-    }
-
-    function removeSubjectRow(idx) {
-      activeModalSubjects.splice(idx, 1);
-      renderModalSubjectsList();
-    }
-
-    function toggleSubjectClass(sIdx, classKey, isChecked) {
-      if (!activeModalSubjects[sIdx].classes) activeModalSubjects[sIdx].classes = [];
-      if (isChecked) {
-        if (!activeModalSubjects[sIdx].classes.includes(classKey)) {
-          activeModalSubjects[sIdx].classes.push(classKey);
+        if (!putRes.ok) {
+          const errData = await putRes.json();
+          throw new Error(errData.message || "Failed to commit to GitHub");
         }
-      } else {
-        activeModalSubjects[sIdx].classes = activeModalSubjects[sIdx].classes.filter(c => c !== classKey);
+
+        saveLocal();
+        showToast("Committed school_master_data.json directly to GitHub!");
+        closeGitHubSyncModal();
+      } catch (err) {
+        alert("GitHub Commit Failed: " + err.message);
       }
     }
 
-    function renderModalTimetableList() {
-      const container = document.getElementById('teacherTimetableContainer');
-      container.innerHTML = '';
-
-      if (activeModalTimetable.length === 0) {
-        container.innerHTML = `<p class="text-slate-400 italic text-[11px]">ยังไม่มีคาบสอน</p>`;
-        return;
-      }
-
-      const dayOptions = [
-        { key: "mon", th: "จันทร์" }, { key: "tue", th: "อังคาร" },
-        { key: "wed", th: "พุธ" }, { key: "thu", th: "พฤหัสบดี" },
-        { key: "fri", th: "ศุกร์" }
-      ];
-
-      activeModalTimetable.forEach((slot, idx) => {
-        const div = document.createElement('div');
-        div.className = 'flex items-center gap-1.5 p-1.5 bg-white border border-slate-200 rounded text-[11px]';
-
-        let dayOpts = dayOptions.map(d => `<option value="${d.key}" ${slot.day === d.key ? 'selected' : ''}>${d.th}</option>`).join('');
-        let classOpts = Object.keys(CLASS_LABELS).map(k => `<option value="${k}" ${slot.classKey === k ? 'selected' : ''}>${CLASS_LABELS[k]}</option>`).join('');
-
-        div.innerHTML = `
-          <select onchange="activeModalTimetable[${idx}].day = this.value" class="border border-slate-200 rounded p-1 bg-white text-xs">${dayOpts}</select>
-          <input type="text" value="${slot.time || '08:30 - 09:30'}" onchange="activeModalTimetable[${idx}].time = this.value" class="w-24 border border-slate-200 rounded p-1 text-center font-mono">
-          <input type="text" value="${slot.subjectCode || ''}" placeholder="รหัสวิชา" onchange="activeModalTimetable[${idx}].subjectCode = this.value" class="w-20 border border-slate-200 rounded p-1 text-center font-mono">
-          <select onchange="activeModalTimetable[${idx}].classKey = this.value" class="border border-slate-200 rounded p-1 bg-white text-xs flex-1">${classOpts}</select>
-          <input type="text" value="${slot.room || ''}" placeholder="ห้อง" onchange="activeModalTimetable[${idx}].room = this.value" class="w-14 border border-slate-200 rounded p-1 text-center">
-          <button onclick="removeTimetableSlotRow(${idx})" class="text-red-500 font-bold px-1.5">✕</button>
-        `;
-        container.appendChild(div);
-      });
-    }
-
-    function addTimetableSlotRow() {
-      activeModalTimetable.push({
-        day: "mon",
-        time: "08:30 - 09:30",
-        subjectCode: activeModalSubjects[0] ? activeModalSubjects[0].code : "ค11101",
-        classKey: "p1_1",
-        room: "111"
-      });
-      renderModalTimetableList();
-    }
-
-    function removeTimetableSlotRow(idx) {
-      activeModalTimetable.splice(idx, 1);
-      renderModalTimetableList();
-    }
-
-    function saveTeacherRecord() {
-      const idx = parseInt(document.getElementById('teacherIndexInput').value);
-      const name = document.getElementById('teacherNameInput').value.trim();
-      const id = document.getElementById('teacherIdInput').value.trim() || ("T" + Date.now());
-      const dept = document.getElementById('teacherDeptInput').value;
-      const contact = document.getElementById('teacherContactInput').value.trim();
-
-      if (!name) {
-        alert("กรุณากรอกชื่อ-นามสกุล ครูผู้สอน");
-        return;
-      }
-
-      const teacherObj = {
-        id,
-        name,
-        dept,
-        contact,
-        subjects: activeModalSubjects,
-        timetable: activeModalTimetable
-      };
-
-      if (idx === -1) {
-        portalData.teachers.push(teacherObj);
-      } else {
-        portalData.teachers[idx] = teacherObj;
-      }
-
-      savePortalData();
-      renderTeachersDirectory();
-      closeTeacherModal();
-      showToast("บันทึกข้อมูลครูและภาระงานสอนเรียบร้อยแล้ว");
-    }
-
-    function deleteTeacher(idx) {
-      if (confirm(`ยืนยันการลบข้อมูลครู ${portalData.teachers[idx].name}?`)) {
-        portalData.teachers.splice(idx, 1);
-        savePortalData();
-        renderTeachersDirectory();
-        showToast("ลบข้อมูลครูเรียบร้อยแล้ว");
-      }
-    }
-
-    /* =====================================================================
-       4. STUDENT ROSTER HUB & CSV IMPORTER
-       ===================================================================== */
-    let currentViewingStudents = [];
-    let pendingUploadedStudents = [];
-
-    function loadClassRoster(classKey) {
-      const label = CLASS_LABELS[classKey] || classKey;
-      document.getElementById('currentViewingClassLabel').innerText = label;
-      currentViewingStudents = getRosterForClass(classKey);
-      document.getElementById('currentClassStudentCount').innerText = `${currentViewingStudents.length} คน`;
-
-      // Update grand total
-      let totalStudents = 0;
-      Object.keys(CLASS_LABELS).forEach(k => {
-        totalStudents += getRosterForClass(k).length;
-      });
-      document.getElementById('metricTotalStudents').innerText = `${totalStudents} คน`;
-
-      renderRosterTable(currentViewingStudents);
-    }
-
-    function renderRosterTable(students) {
-      const tbody = document.getElementById('portalRosterTableBody');
-      tbody.innerHTML = '';
-
-      if (!students || students.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="py-8 text-center text-slate-400">ยังไม่มีรายชื่อนักเรียนในห้องเรียนนี้</td></tr>`;
-        return;
-      }
-
-      students.forEach(s => {
-        const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-50 transition border-b border-slate-100';
-        tr.innerHTML = `
-          <td class="py-2.5 px-3 text-center font-bold text-slate-700">${s.no}</td>
-          <td class="py-2.5 px-3 font-semibold text-indigo-900 font-mono">${s.id}</td>
-          <td class="py-2.5 px-3 text-slate-600 font-mono">${s.idCard || '-'}</td>
-          <td class="py-2.5 px-3 text-slate-700">${s.prefix || ''}</td>
-          <td class="py-2.5 px-4 font-bold text-slate-900">${s.name || ''}</td>
-          <td class="py-2.5 px-3 text-center">${s.gender === 'หญิง' ? '♀️ หญิง' : '♂️ ชาย'}</td>
-          <td class="py-2.5 px-3 text-center">
-            <span class="px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800">${s.status || 'ปกติ'}</span>
-          </td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    function filterRosterTable() {
-      const query = document.getElementById('rosterSearchInput').value.trim().toLowerCase();
-      if (!query) {
-        renderRosterTable(currentViewingStudents);
-        return;
-      }
-      const filtered = currentViewingStudents.filter(s => {
-        const full = `${s.id} ${s.prefix}${s.name} ${s.idCard || ''}`.toLowerCase();
-        return full.includes(query);
-      });
-      renderRosterTable(filtered);
-    }
-
-    function openPortalUploadModal() {
-      document.getElementById('portalUploadTargetClass').value = document.getElementById('portalClassSelect').value || 'p1_1';
-      document.getElementById('portalCsvFileInput').value = '';
-      document.getElementById('portalCsvPreviewContainer').classList.add('hidden');
-      document.getElementById('btnConfirmPortalUpload').disabled = true;
-      pendingUploadedStudents = [];
-      document.getElementById('portalUploadModal').classList.remove('hidden');
-    }
-
-    function closePortalUploadModal() {
-      document.getElementById('portalUploadModal').classList.add('hidden');
-    }
-
-    function handlePortalCSVUpload(event) {
-      const file = event.target.files[0];
-      if (!file) return;
-
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        try {
-          const content = e.target.result;
-          const rows = parsePortalCSVText(content);
-          if (rows.length < 2) {
-            alert('ไฟล์ CSV ไม่มีข้อมูลเพียงพอ');
-            return;
-          }
-
-          const defaultTargetClass = document.getElementById('portalUploadTargetClass').value;
-          const headers = rows[0];
-
-          let colIdx = { no: -1, id: -1, idCard: -1, prefix: -1, name: -1, surname: -1, gender: -1, status: -1, className: -1 };
-          headers.forEach((h, idx) => {
-            const clean = h.trim().toLowerCase().replace(/\s+/g, '');
-            if (/^(ที่|no|ลำดับ)$/.test(clean)) colIdx.no = idx;
-            else if (/^(เลขประจำตัวนักเรียน|เลขประจำตัว|รหัสนักเรียน|studentid|id)$/.test(clean)) colIdx.id = idx;
-            else if (/^(เลขประจำตัวประชาชน|เลขประชาชน|บัตรประชาชน|idcard)$/.test(clean)) colIdx.idCard = idx;
-            else if (/^(คำนำหน้า|prefix|title)$/.test(clean)) colIdx.prefix = idx;
-            else if (/^(ชื่อ|firstname|name)$/.test(clean)) colIdx.name = idx;
-            else if (/^(นามสกุล|lastname|surname)$/.test(clean)) colIdx.surname = idx;
-            else if (/^(เพศ|gender|sex)$/.test(clean)) colIdx.gender = idx;
-            else if (/^(สถานะการเรียน|สถานะ|status)$/.test(clean)) colIdx.status = idx;
-            else if (/^(ห้องเรียน|ชั้น|ห้อง|class)$/.test(clean)) colIdx.className = idx;
-          });
-
-          if (colIdx.id === -1 && colIdx.name === -1) {
-            colIdx = { no: 0, id: 1, idCard: 2, prefix: 3, name: 4, surname: 5, gender: 6, status: 7, className: 8 };
-          }
-
-          pendingUploadedStudents = [];
-          for (let r = 1; r < rows.length; r++) {
-            const row = rows[r];
-            if (!row || row.length === 0 || row.every(c => c.trim() === '')) continue;
-
-            const id = colIdx.id !== -1 && row[colIdx.id] ? row[colIdx.id].trim() : '';
-            const idCard = colIdx.idCard !== -1 && row[colIdx.idCard] ? row[colIdx.idCard].trim().replace(/[-\s]/g, '') : '';
-            const prefix = colIdx.prefix !== -1 && row[colIdx.prefix] ? row[colIdx.prefix].trim() : '';
-            const rawName = colIdx.name !== -1 && row[colIdx.name] ? row[colIdx.name].trim() : '';
-            const rawSurname = colIdx.surname !== -1 && row[colIdx.surname] ? row[colIdx.surname].trim() : '';
-            const gender = colIdx.gender !== -1 && row[colIdx.gender] ? row[colIdx.gender].trim() : '';
-            const status = colIdx.status !== -1 && row[colIdx.status] ? row[colIdx.status].trim() : 'ปกติ';
-            const rawClass = colIdx.className !== -1 && row[colIdx.className] ? row[colIdx.className].trim() : '';
-
-            if (!id && !rawName) continue;
-
-            const targetClass = resolvePortalClassKey(rawClass, defaultTargetClass);
-            const fullName = rawSurname ? `${rawName} ${rawSurname}`.trim() : rawName;
-
-            let normalizedGender = gender;
-            if (!normalizedGender) {
-              if (/เด็กหญิง|นางสาว|ด\.ญ\./.test(prefix)) normalizedGender = 'หญิง';
-              else normalizedGender = 'ชาย';
-            }
-
-            pendingUploadedStudents.push({
-              no: pendingUploadedStudents.length + 1,
-              id: id || String(9000 + r),
-              idCard,
-              prefix: prefix || (normalizedGender === 'หญิง' ? 'เด็กหญิง' : 'เด็กชาย'),
-              name: fullName || 'นักเรียน',
-              gender: normalizedGender,
-              status: status || 'ปกติ',
-              targetClass
-            });
-          }
-
-          renderPortalUploadPreview();
-        } catch (err) {
-          alert('เกิดข้อผิดพลาดในการอ่านไฟล์ CSV');
-        }
-      };
-      reader.readAsText(file, 'UTF-8');
-    }
-
-    function renderPortalUploadPreview() {
-      const container = document.getElementById('portalCsvPreviewContainer');
-      const countEl = document.getElementById('portalPreviewCount');
-      const badgeEl = document.getElementById('portalPreviewClassBadge');
-      const tbody = document.getElementById('portalPreviewTableBody');
-      const btnConfirm = document.getElementById('btnConfirmPortalUpload');
-
-      countEl.innerText = pendingUploadedStudents.length;
-      tbody.innerHTML = '';
-
-      const classSet = new Set(pendingUploadedStudents.map(s => CLASS_LABELS[s.targetClass] || s.targetClass));
-      badgeEl.innerText = Array.from(classSet).join(', ');
-
-      pendingUploadedStudents.slice(0, 10).forEach((s, idx) => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td class="p-1.5 text-center font-bold text-slate-600">${idx + 1}</td>
-          <td class="p-1.5 font-mono font-semibold text-indigo-900">${s.id}</td>
-          <td class="p-1.5 font-mono text-slate-500">${s.idCard || '-'}</td>
-          <td class="p-1.5 text-slate-700">${s.prefix}</td>
-          <td class="p-1.5 font-bold text-slate-900">${s.name}</td>
-          <td class="p-1.5 text-center">${s.gender === 'หญิง' ? '♀️' : '♂️'}</td>
-          <td class="p-1.5 text-center font-semibold text-indigo-700">${CLASS_LABELS[s.targetClass] || s.targetClass}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-
-      container.classList.remove('hidden');
-      btnConfirm.disabled = false;
-    }
-
-    function confirmPortalUpload() {
-      if (!pendingUploadedStudents || pendingUploadedStudents.length === 0) return;
-
-      const uploadMode = document.getElementById('portalUploadMode').value;
-      if (!portalData.rosters) portalData.rosters = {};
-
-      const grouped = {};
-      pendingUploadedStudents.forEach(s => {
-        if (!grouped[s.targetClass]) grouped[s.targetClass] = [];
-        grouped[s.targetClass].push(s);
-      });
-
-      Object.keys(grouped).forEach(cKey => {
-        let currentRoster = (uploadMode === 'append' && portalData.rosters[cKey]) 
-          ? [...portalData.rosters[cKey]] 
-          : [];
-
-        grouped[cKey].forEach(incoming => {
-          const existIdx = currentRoster.findIndex(item => String(item.id).trim() === String(incoming.id).trim());
-          if (existIdx !== -1) {
-            currentRoster[existIdx] = Object.assign(currentRoster[existIdx], incoming);
-          } else {
-            currentRoster.push(incoming);
-          }
-        });
-
-        currentRoster.sort((a, b) => String(a.id).localeCompare(String(b.id), undefined, { numeric: true }));
-        currentRoster.forEach((item, index) => { item.no = index + 1; });
-        portalData.rosters[cKey] = currentRoster;
-      });
-
-      savePortalData();
-      const firstTargetClass = pendingUploadedStudents[0].targetClass;
-      document.getElementById('portalClassSelect').value = firstTargetClass;
-      loadClassRoster(firstTargetClass);
-
-      closePortalUploadModal();
-      showToast(`นำเข้ารายชื่อนักเรียนสำเร็จ ${pendingUploadedStudents.length} คน เรียบร้อยแล้ว`);
-    }
-
-    function resolvePortalClassKey(inputStr, fallbackKey) {
-      if (!inputStr || inputStr.trim() === '') return fallbackKey;
-      const clean = inputStr.trim().toLowerCase().replace(/\s+/g, '');
-      if (CLASS_LABELS[clean]) return clean;
-
-      if (/^(?:อ\.|อนุบาล|k)?1[\/\-_.]?1$/i.test(clean)) return 'k1_1';
-      if (/^(?:อ\.|อนุบาล|k)?1[\/\-_.]?2$/i.test(clean)) return 'k1_2';
-      if (/^(?:อ\.|อนุบาล|k)?2[\/\-_.]?1$/i.test(clean)) return 'k2_1';
-      if (/^(?:อ\.|อนุบาล|k)?2[\/\-_.]?2$/i.test(clean)) return 'k2_2';
-      if (/^(?:อ\.|อนุบาล|k)?3[\/\-_.]?1$/i.test(clean)) return 'k3_1';
-      if (/^(?:อ\.|อนุบาล|k)?3[\/\-_.]?2$/i.test(clean)) return 'k3_2';
-
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?1[\/\-_.]?1$/i.test(clean)) return 'p1_1';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?1[\/\-_.]?2$/i.test(clean)) return 'p1_2';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?2[\/\-_.]?1$/i.test(clean)) return 'p2_1';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?2[\/\-_.]?2$/i.test(clean)) return 'p2_2';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?3[\/\-_.]?1$/i.test(clean)) return 'p3_1';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?3[\/\-_.]?2$/i.test(clean)) return 'p3_2';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?4[\/\-_.]?1$/i.test(clean)) return 'p4_1';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?4[\/\-_.]?2$/i.test(clean)) return 'p4_2';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?5[\/\-_.]?1$/i.test(clean)) return 'p5_1';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?5[\/\-_.]?2$/i.test(clean)) return 'p5_2';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?6[\/\-_.]?1$/i.test(clean)) return 'p6_1';
-      if (/^(?:ป\.|ประถมศึกษาปีที่|p)?6[\/\-_.]?2$/i.test(clean)) return 'p6_2';
-
-      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?1[\/\-_.]?1$/i.test(clean)) return 's1_1';
-      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?1[\/\-_.]?2$/i.test(clean)) return 's1_2';
-      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?2[\/\-_.]?1$/i.test(clean)) return 's2_1';
-      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?2[\/\-_.]?2$/i.test(clean)) return 's2_2';
-      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?3[\/\-_.]?1$/i.test(clean)) return 's3_1';
-      if (/^(?:ม\.|มัธยมศึกษาปีที่|s|m)?3[\/\-_.]?2$/i.test(clean)) return 's3_2';
-
-      return fallbackKey;
-    }
-
-    function parsePortalCSVText(csvText) {
-      const lines = [];
-      let row = [];
-      let insideQuote = false;
-      let entry = '';
-
-      for (let i = 0; i < csvText.length; i++) {
-        const char = csvText[i];
-        const nextChar = csvText[i + 1];
-
-        if (char === '"') {
-          if (insideQuote && nextChar === '"') {
-            entry += '"';
-            i++;
-          } else {
-            insideQuote = !insideQuote;
-          }
-        } else if (char === ',' && !insideQuote) {
-          row.push(entry.trim());
-          entry = '';
-        } else if ((char === '\r' || char === '\n') && !insideQuote) {
-          if (char === '\r' && nextChar === '\n') i++;
-          row.push(entry.trim());
-          if (row.some(val => val !== '')) lines.push(row);
-          row = [];
-          entry = '';
-        } else {
-          entry += char;
-        }
-      }
-      if (entry !== '' || row.length > 0) {
-        row.push(entry.trim());
-        if (row.some(val => val !== '')) lines.push(row);
-      }
-      return lines;
-    }
-
-    function downloadPortalTemplateCSV() {
-      const headers = ["ที่", "เลขประจำตัวนักเรียน", "เลขประจำตัวประชาชน", "คำนำหน้า", "ชื่อ", "นามสกุล", "เพศ", "สถานะการเรียน", "ห้องเรียน"];
-      const sampleRows = [
-        ["1", "10101", "1210101221661", "เด็กชาย", "กฤษกร", "ยางก้อน", "ชาย", "กำลังศึกษา", "อ.1/1"],
-        ["1", "20101", "1219700149605", "เด็กชาย", "ฐินันรเมศ", "พุ่มพวง", "ชาย", "กำลังศึกษา", "ป.1/1"],
-        ["2", "20102", "1200901936134", "เด็กชาย", "ธนกฤต", "ภารไสว", "ชาย", "กำลังศึกษา", "ป.1/1"],
-        ["1", "30101", "1219901793412", "เด็กหญิง", "ธนวณฑ์", "สุขประเสริฐ", "หญิง", "กำลังศึกษา", "ม.1/1"]
-      ];
-
-      const escape = (val) => '"' + String(val || '').replace(/"/g, '""') + '"';
-      const rows = [headers.map(escape).join(',')];
-      sampleRows.forEach(r => rows.push(r.map(escape).join(',')));
-
-      const csvContent = "\uFEFF" + rows.join("\r\n");
-      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "แบบฟอร์มรายชื่อนักเรียน_24ห้องเรียน.csv";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    function exportCurrentRosterCSV() {
-      const classKey = document.getElementById('portalClassSelect').value;
-      const classLabel = CLASS_LABELS[classKey] || classKey;
-      if (!currentViewingStudents || currentViewingStudents.length === 0) {
-        alert('ไม่มีข้อมูลนักเรียนสำหรับส่งออก');
-        return;
-      }
-
-      const headers = ['ที่', 'เลขประจำตัว', 'เลขประจำตัวประชาชน', 'คำนำหน้า', 'ชื่อ-สกุล', 'เพศ', 'สถานะ'];
-      const escape = (val) => '"' + String(val || '').replace(/"/g, '""') + '"';
-      const rows = [headers.map(escape).join(',')];
-
-      currentViewingStudents.forEach(s => {
-        rows.push([s.no, s.id, s.idCard || '', s.prefix || '', s.name || '', s.gender || '', s.status || 'ปกติ'].map(escape).join(','));
-      });
-
-      const csvString = '\uFEFF' + rows.join('\r\n');
-      const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `รายชื่อนักเรียน_${classLabel.replace(/[\s\/]/g, '_')}.csv`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-    }
-
-    /* =====================================================================
-       5. BLOG & CALENDAR MODULES
-       ===================================================================== */
     function renderPosts() {
-      const filter = document.getElementById('postCategoryFilter').value;
       const grid = document.getElementById('blogPostsGrid');
       grid.innerHTML = '';
-      let list = portalData.posts || [];
-      if (filter !== 'all') list = list.filter(p => p.category === filter);
-
-      if (list.length === 0) {
-        grid.innerHTML = `<div class="col-span-full py-10 text-center text-slate-400 bg-white rounded-2xl border border-slate-200">ยังไม่มีบทความในหมวดหมู่นี้</div>`;
-        return;
-      }
-
-      list.forEach((post, index) => {
-        const card = document.createElement('div');
-        card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-200 overflow-hidden flex flex-col justify-between';
-        const imageSrc = post.imageUrl || 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=700&q=80';
-
-        card.innerHTML = `
-          <div>
-            <div class="h-44 overflow-hidden relative bg-slate-100">
-              <img src="${imageSrc}" alt="${post.title}" class="w-full h-full object-cover">
-            </div>
+      (portalData.posts || []).forEach(p => {
+        grid.innerHTML += `
+          <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col justify-between">
             <div class="p-4 space-y-2">
-              <div class="flex items-center justify-between text-[11px] text-slate-400">
-                <span>📅 ${formatThaiDate(post.date)}</span>
-                <span>✍️ ${post.author || 'โรงเรียนวัดบ้านฉาง'}</span>
-              </div>
-              <h4 class="font-bold text-slate-900 text-sm leading-snug">${post.title}</h4>
-              <p class="text-slate-600 text-xs line-clamp-3 leading-relaxed">${post.content}</p>
+              <span class="text-xs text-indigo-600 font-bold uppercase tracking-wider">${p.category || 'News'}</span>
+              <h4 class="font-bold text-slate-900 text-sm">${p.title}</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">${p.content}</p>
             </div>
-          </div>
-          <div class="p-4 pt-0 border-t border-slate-50 flex items-center justify-between text-xs">
-            <span class="text-indigo-700 font-bold">${post.category}</span>
-            <button onclick="portalData.posts.splice(${index}, 1); savePortalData(); renderPosts();" class="text-slate-400 hover:text-red-600 text-[11px]">ลบ</button>
+            <div class="p-4 pt-0 text-[11px] text-slate-400">📅 ${p.date || 'Recent'}</div>
           </div>
         `;
-        grid.appendChild(card);
       });
-    }
-
-    function openAddPostModal() {
-      document.getElementById('postTitleInput').value = '';
-      document.getElementById('postContentInput').value = '';
-      document.getElementById('postDateInput').value = new Date().toISOString().split('T')[0];
-      document.getElementById('addPostModal').classList.remove('hidden');
-    }
-
-    function closeAddPostModal() {
-      document.getElementById('addPostModal').classList.add('hidden');
-    }
-
-    function saveNewBlogPost() {
-      const title = document.getElementById('postTitleInput').value.trim();
-      const content = document.getElementById('postContentInput').value.trim();
-      const category = document.getElementById('postCategoryInput').value;
-      const date = document.getElementById('postDateInput').value;
-      const imageUrl = document.getElementById('postImageUrlInput').value.trim();
-
-      if (!title || !content) {
-        alert('กรุณากรอกหัวข้อและรายละเอียด');
-        return;
-      }
-
-      portalData.posts.unshift({
-        id: 'post_' + Date.now(),
-        title,
-        content,
-        category,
-        date,
-        imageUrl,
-        author: 'งานประชาสัมพันธ์'
-      });
-
-      savePortalData();
-      renderPosts();
-      closeAddPostModal();
-      showToast('เผยแพร่ข่าวสารสำเร็จ');
     }
 
     function renderCalendar() {
-      const monthDisplay = document.getElementById('calMonthYearDisplay');
-      const termBadge = document.getElementById('calTermBadge');
+      document.getElementById('calMonthYearDisplay').innerText = `${MONTH_NAMES[calCurrentMonth]} ${calCurrentYear}`;
       const grid = document.getElementById('calendarDaysGrid');
-      const bYear = calCurrentYear + 543;
-
-      monthDisplay.innerText = `${THAI_MONTH_NAMES[calCurrentMonth]} ${bYear}`;
-      const isTerm1 = (calCurrentMonth >= 4 && calCurrentMonth <= 9); // May - Oct
-      termBadge.innerText = isTerm1 ? 'ภาคเรียนที่ 1' : 'ภาคเรียนที่ 2';
-      termBadge.className = isTerm1 ? 'text-xs bg-blue-100 text-blue-800 font-semibold px-2 py-0.5 rounded-full' : 'text-xs bg-amber-100 text-amber-800 font-semibold px-2 py-0.5 rounded-full';
-
       grid.innerHTML = '';
       const firstDay = new Date(calCurrentYear, calCurrentMonth, 1).getDay();
       const daysInMonth = new Date(calCurrentYear, calCurrentMonth + 1, 0).getDate();
 
-      for (let i = 0; i < firstDay; i++) {
-        grid.innerHTML += `<div></div>`;
-      }
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const iso = `${calCurrentYear}-${String(calCurrentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        const hasEvent = (portalData.events || []).find(e => e.startDate <= iso && e.endDate >= iso);
-
+      for (let i = 0; i < firstDay; i++) grid.innerHTML += `<div></div>`;
+      for (let d = 1; d <= daysInMonth; d++) {
+        const iso = `${calCurrentYear}-${String(calCurrentMonth + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const hasEvent = (portalData.calendarEvents || []).find(e => e.startDate <= iso && e.endDate >= iso);
         grid.innerHTML += `
-          <div class="h-10 sm:h-12 border border-slate-100 rounded-lg p-1 flex flex-col justify-between ${hasEvent ? 'bg-indigo-50 border-indigo-200' : 'bg-slate-50/50'}">
-            <span class="font-bold text-[11px] ${hasEvent ? 'text-indigo-900' : 'text-slate-700'}">${day}</span>
-            ${hasEvent ? `<span class="w-1.5 h-1.5 rounded-full bg-indigo-600 self-end" title="${hasEvent.title}"></span>` : ''}
+          <div class="h-10 border border-slate-100 rounded-lg p-1 flex flex-col justify-between ${hasEvent ? 'bg-indigo-50 border-indigo-200 font-bold' : 'bg-slate-50/50'}">
+            <span class="text-[11px]">${d}</span>
+            ${hasEvent ? `<span class="w-1.5 h-1.5 rounded-full bg-indigo-600 self-end"></span>` : ''}
           </div>
         `;
       }
 
-      // Upcoming highlights list
-      const upcomingList = document.getElementById('upcomingEventsList');
-      upcomingList.innerHTML = '';
-      (portalData.events || []).forEach(e => {
-        upcomingList.innerHTML += `
-          <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 space-y-0.5 text-xs">
+      const listEl = document.getElementById('upcomingEventsList');
+      listEl.innerHTML = '';
+      (portalData.calendarEvents || []).forEach(e => {
+        listEl.innerHTML += `
+          <div class="p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-xs space-y-1">
             <div class="font-bold text-slate-900">${e.title}</div>
-            <div class="text-[11px] text-slate-500">📅 ${formatThaiDate(e.startDate)} ${e.endDate !== e.startDate ? ' - ' + formatThaiDate(e.endDate) : ''}</div>
+            <div class="text-[11px] text-slate-500">📅 ${e.startDate} - ${e.endDate}</div>
             <div class="text-[10px] text-indigo-700">${e.desc || ''}</div>
           </div>
         `;
@@ -1624,55 +680,29 @@
 
     function changeCalendarMonth(delta) {
       calCurrentMonth += delta;
-      if (calCurrentMonth < 0) {
-        calCurrentMonth = 11;
-        calCurrentYear--;
-      } else if (calCurrentMonth > 11) {
-        calCurrentMonth = 0;
-        calCurrentYear++;
-      }
+      if (calCurrentMonth < 0) { calCurrentMonth = 11; calCurrentYear--; }
+      else if (calCurrentMonth > 11) { calCurrentMonth = 0; calCurrentYear++; }
       renderCalendar();
-    }
-
-    function formatThaiDate(dateStr) {
-      if (!dateStr) return '-';
-      const p = dateStr.split('-');
-      if (p.length !== 3) return dateStr;
-      return `${parseInt(p[2])} ${THAI_MONTH_NAMES[parseInt(p[1]) - 1]} ${parseInt(p[0]) + 543}`;
-    }
-
-    function scrollToSection(id) {
-      const el = document.getElementById(id);
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
 
     function showToast(msg) {
       const toast = document.getElementById('portalToast');
-      const text = document.getElementById('portalToastMessage');
-      if (!toast || !text) return;
-      text.innerText = msg;
+      document.getElementById('portalToastMessage').innerText = msg;
       toast.classList.remove('translate-y-20', 'opacity-0');
       setTimeout(() => toast.classList.add('translate-y-20', 'opacity-0'), 3000);
     }
 
-    function setPortalLanguage(lang) {
-      currentPortalLang = lang;
-      ['th', 'en', 'zh'].forEach(l => {
-        const btn = document.getElementById(`portalLangBtn-${l}`);
-        if (btn) btn.className = (l === lang) ? 'px-2.5 py-1 rounded font-bold bg-amber-400 text-indigo-950 transition' : 'px-2.5 py-1 rounded text-indigo-200 hover:text-white transition';
-      });
-    }
+    function openAddTeacherModal() { document.getElementById('teacherModal').classList.remove('hidden'); }
+    function closeTeacherModal() { document.getElementById('teacherModal').classList.add('hidden'); }
+    function openGitHubSyncModal() { document.getElementById('githubSyncModal').classList.remove('hidden'); }
+    function closeGitHubSyncModal() { document.getElementById('githubSyncModal').classList.add('hidden'); }
+    function openAddPostModal() { document.getElementById('addPostModal').classList.remove('hidden'); }
+    function closeAddPostModal() { document.getElementById('addPostModal').classList.add('hidden'); }
+    function openPortalUploadModal() { document.getElementById('portalUploadModal').classList.remove('hidden'); }
+    function closePortalUploadModal() { document.getElementById('portalUploadModal').classList.add('hidden'); }
+    function scrollToSection(id) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
 
-    /* =====================================================================
-       6. INITIALIZATION
-       ===================================================================== */
-    window.onload = function() {
-      loadPortalData();
-      renderTeachersDirectory();
-      loadClassRoster('p1_1');
-      renderPosts();
-      renderCalendar();
-    };
+    window.onload = init;
   </script>
 </body>
 </html>
