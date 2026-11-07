@@ -1,132 +1,81 @@
-  <!-- Navigation & Action Links -->
+  <!-- School Logo & Header -->
+  <div class="flex items-center space-x-3">
+    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-amber-500 text-indigo-950 flex items-center justify-center font-black text-xl shadow border border-amber-300">
+      🏫
+    </div>
+    <div>
+      <div class="flex items-center gap-2">
+        <h1 class="text-base sm:text-lg font-bold tracking-tight">โรงเรียนอุดมวิทยานุกูล</h1>
+        <span class="bg-amber-400/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-300/30">Master Hub</span>
+      </div>
+      <p class="text-xs text-indigo-200">สพป.ระยอง เขต 1 | ฐานข้อมูลกลาง 24 ห้องเรียน และภาระงานสอน</p>
+    </div>
+  </div>
+
+  <!-- Header Action Buttons -->
   <div class="flex items-center flex-wrap gap-2 text-xs">
-    <button onclick="scrollToSection('section-teachers')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
-      👨‍🏫 <span>ทำเนียบครู & ตารางสอน</span>
+    <button onclick="scrollToId('section-teachers')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold border border-indigo-700 transition">
+      👨‍🏫 ครูและภาระงานสอน
     </button>
-    <button onclick="scrollToSection('section-roster')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
-      👥 <span>รายชื่อ 24 ห้อง</span>
+    <button onclick="scrollToId('section-roster')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold border border-indigo-700 transition">
+      👥 บัญชีรายชื่อ 24 ห้อง
     </button>
-    <button onclick="exportMasterJSON()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow transition flex items-center gap-1.5">
+    <button onclick="exportMasterJSON()" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow transition flex items-center gap-1.5">
       💾 <span>ดาวน์โหลด master_data.json</span>
     </button>
   </div>
+
 </div>
 
 
-  <!-- Quick Metrics Cards -->
+  <!-- Quick Metrics -->
   <div class="grid grid-cols-2 gap-3">
-    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center shadow-lg">
-      <div class="text-2xl font-black text-amber-300">24</div>
-      <div class="text-[11px] text-indigo-100 font-medium">ห้องเรียน (อ.1 - ม.3)</div>
+    <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 text-center shadow">
+      <div class="text-3xl font-black text-amber-300">24</div>
+      <div class="text-xs text-indigo-100 mt-1">ห้องเรียน (อ.1 - ม.3)</div>
     </div>
-    <div class="bg-white/10 backdrop-blur-md p-3.5 rounded-2xl border border-white/10 text-center shadow-lg">
-      <div class="text-2xl font-black text-emerald-300" id="metricTotalStudents">0 คน</div>
-      <div class="text-[11px] text-indigo-100 font-medium">นักเรียนทั้งหมด</div>
+    <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/15 text-center shadow">
+      <div class="text-3xl font-black text-emerald-300" id="metricTotalStudents">0</div>
+      <div class="text-xs text-indigo-100 mt-1">นักเรียนทั้งหมดในระบบ</div>
     </div>
   </div>
 </div>
 
 
-<!-- SECTION 1: TEACHER ROSTER & SCHEDULES -->
+<!-- SECTION 1: TEACHER ROSTER & WORKLOAD -->
 <section id="section-teachers" class="space-y-4">
   <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
     <div>
-      <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-        👨‍🏫 <span>ทำเนียบครูผู้สอน ภาระงานวิชา และตารางสอน</span>
+      <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+        👨‍🏫 <span>ทำเนียบบุคลากรและภาระงานสอน (Teacher Directory)</span>
       </h3>
-      <p class="text-xs text-slate-500">กำหนดว่าครูแต่ละท่านสอนวิชาใด ในห้องเรียนใดบ้าง</p>
+      <p class="text-xs text-slate-500">กำหนดครูผู้สอน รายวิชา และห้องเรียนที่รับผิดชอบ เพื่อให้ ปพ.5 ดึงไปสร้างชุดคะแนน</p>
     </div>
     <button onclick="openAddTeacherModal()" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
       ➕ <span>เพิ่มครูผู้สอน</span>
     </button>
   </div>
 
-  <div id="teacherCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+  <div id="teacherCardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <!-- Rendered by JS -->
   </div>
 </section>
 
-<!-- SECTION 2: STUDENT ROSTER (24 CLASSES) -->
+<!-- SECTION 2: 24 CLASSES ROSTER HUB -->
 <section id="section-roster" class="space-y-4">
   <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-3">
     <div>
-      <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
-        👥 <span>ทำเนียบรายชื่อนักเรียน 24 ห้องเรียน (Student Roster Hub)</span>
+      <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
+        👥 <span>ทำเนียบรายชื่อนักเรียน 24 ห้องเรียน (Student Roster)</span>
       </h3>
-      <p class="text-xs text-slate-500">เลือกดูรายชื่อและอัปโหลดไฟล์ CSV สำหรับแต่ละห้อง</p>
+      <p class="text-xs text-slate-500">เลือกดูรายชื่อของแต่ละห้อง หรืออัปโหลดไฟล์รายชื่อนักเรียนด้วยไฟล์ CSV</p>
     </div>
+    
     <div class="flex flex-wrap items-center gap-2">
       <!-- Class Selector -->
-      <select id="portalClassSelect" onchange="loadClassRoster(this.value)" class="bg-white border border-slate-300 text-xs font-semibold rounded-lg px-3 py-1.5 outline-none shadow-sm focus:border-indigo-500">
-        <optgroup label="ระดับชั้นอนุบาล">
-          <option value="k1_1">ชั้น อ.1/1</option>
-          <option value="k1_2">ชั้น อ.1/2</option>
-          <option value="k2_1">ชั้น อ.2/1</option>
-          <option value="k2_2">ชั้น อ.2/2</option>
-          <option value="k3_1">ชั้น อ.3/1</option>
-          <option value="k3_2">ชั้น อ.3/2</option>
-        </optgroup>
-        <optgroup label="ระดับชั้นประถมศึกษา">
-          <option value="p1_1" selected>ชั้น ป.1/1</option>
-          <option value="p1_2">ชั้น ป.1/2</option>
-          <option value="p2_1">ชั้น ป.2/1</option>
-          <option value="p2_2">ชั้น ป.2/2</option>
-          <option value="p3_1">ชั้น ป.3/1</option>
-          <option value="p3_2">ชั้น ป.3/2</option>
-          <option value="p4_1">ชั้น ป.4/1</option>
-          <option value="p4_2">ชั้น ป.4/2</option>
-          <option value="p5_1">ชั้น ป.5/1</option>
-          <option value="p5_2">ชั้น ป.5/2</option>
-          <option value="p6_1">ชั้น ป.6/1</option>
-          <option value="p6_2">ชั้น ป.6/2</option>
-        </optgroup>
-        <optgroup label="ระดับชั้นมัธยมศึกษาตอนต้น">
-          <option value="s1_1">ชั้น ม.1/1</option>
-          <option value="s1_2">ชั้น ม.1/2</option>
-          <option value="s2_1">ชั้น ม.2/1</option>
-          <option value="s2_2">ชั้น ม.2/2</option>
-          <option value="s3_1">ชั้น ม.3/1</option>
-          <option value="s3_2">ชั้น ม.3/2</option>
-        </optgroup>
-      </select>
-
-      <button onclick="openPortalUploadModal()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
-        📂 <span>อัปโหลด CSV</span>
-      </button>
-    </div>
-  </div>
-
-  <!-- Students Table -->
-  <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-    <div class="px-5 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-600 gap-2">
-      <div>
-        ห้องเรียนปัจจุบัน: <strong class="text-indigo-900" id="currentViewingClassLabel">ชั้น ป.1/1</strong> 
-        | จำนวนนักเรียน: <strong class="text-slate-900 font-bold" id="currentClassStudentCount">0 คน</strong>
-      </div>
-    </div>
-    <div class="overflow-x-auto custom-scroll">
-      <table class="w-full text-left text-xs border-collapse">
-        <thead class="bg-slate-100/70 border-b border-slate-200 text-slate-700 font-semibold uppercase tracking-wider">
-          <tr>
-            <th class="py-3 px-3 text-center w-12">ที่</th>
-            <th class="py-3 px-3 w-28">เลขประจำตัว</th>
-            <th class="py-3 px-3 w-36">เลขประชาชน</th>
-            <th class="py-3 px-3 w-24">คำนำหน้า</th>
-            <th class="py-3 px-4">ชื่อ - นามสกุล</th>
-            <th class="py-3 px-3 text-center w-20">เพศ</th>
-            <th class="py-3 px-3 text-center w-24">สถานะ</th>
-          </tr>
-        </thead>
-        <tbody id="portalRosterTableBody" class="divide-y divide-slate-100"></tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 bg-slate-50 p-3.5 rounded-xl border border-slate-200">
-      <div>
-        <label class="block font-semibold text-slate-700 mb-1">ห้องเรียนเป้าหมาย:</label>
-        <select id="portalUploadTargetClass" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs font-semibold outline-none focus:border-indigo-500">
+      <div class="flex items-center gap-1.5 bg-white border border-slate-300 rounded-lg px-2.5 py-1 shadow-sm">
+        <span class="text-xs text-slate-500">เลือกห้อง:</span>
+        <select id="portalClassSelect" onchange="loadClassRoster(this.value)" class="text-xs font-bold text-indigo-900 bg-transparent outline-none cursor-pointer">
           <optgroup label="ระดับชั้นอนุบาล">
             <option value="k1_1">ชั้น อ.1/1</option>
             <option value="k1_2">ชั้น อ.1/2</option>
@@ -159,27 +108,115 @@
           </optgroup>
         </select>
       </div>
+
+      <button onclick="openPortalUploadModal()" class="px-3 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
+        📂 <span>อัปโหลด CSV ห้องนี้</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Students Table -->
+  <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+    <div class="px-5 py-3 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between text-xs text-slate-600">
+      <div class="flex items-center gap-2">
+        <span>ห้องที่เลือก:</span>
+        <strong class="text-indigo-950 font-bold text-sm" id="currentViewingClassLabel">ชั้น ป.1/1</strong>
+        <span class="bg-emerald-100 text-emerald-800 font-bold px-2.5 py-0.5 rounded-full text-xs" id="currentClassStudentCount">0 คน</span>
+      </div>
+      <div class="text-[11px] text-slate-400">
+        * เรียงลำดับตามเลขประจำตัวนักเรียนจากน้อยไปมากโดยอัตโนมัติ
+      </div>
+    </div>
+
+    <div class="overflow-x-auto custom-scroll">
+      <table class="w-full text-left text-xs border-collapse">
+        <thead class="bg-slate-100/80 border-b border-slate-200 text-slate-700 font-semibold uppercase tracking-wider">
+          <tr>
+            <th class="py-3 px-3 text-center w-12">ที่</th>
+            <th class="py-3 px-3 w-28">เลขประจำตัว</th>
+            <th class="py-3 px-3 w-36">เลขประชาชน</th>
+            <th class="py-3 px-3 w-24">คำนำหน้า</th>
+            <th class="py-3 px-4">ชื่อ - นามสกุล</th>
+            <th class="py-3 px-3 text-center w-20">เพศ</th>
+            <th class="py-3 px-3 text-center w-24">สถานะ</th>
+          </tr>
+        </thead>
+        <tbody id="portalRosterTableBody" class="divide-y divide-slate-100">
+          <!-- Rendered by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+  <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
+    
+    <div class="bg-emerald-50/70 border-2 border-dashed border-emerald-300 rounded-xl p-6 text-center hover:bg-emerald-50 transition cursor-pointer" onclick="document.getElementById('portalCsvFileInput').click()">
+      <input type="file" id="portalCsvFileInput" accept=".csv,text/csv" onchange="handlePortalCSVUpload(event)" class="hidden">
+      <div class="text-3xl mb-1">📄</div>
+      <p class="font-bold text-sm text-slate-800">คลิกเพื่อเลือกไฟล์ CSV รายชื่อนักเรียน</p>
+      <p class="text-slate-500 text-[11px] mt-1">รองรับไฟล์ CSV ที่มีคอลัมน์: เลขประจำตัว, เลขประชาชน, คำนำหน้า, ชื่อ-นามสกุล, เพศ</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-3 bg-slate-50 p-3 rounded-xl border border-slate-200">
       <div>
-        <label class="block font-semibold text-slate-700 mb-1">การจัดการข้อมูล:</label>
+        <label class="block font-semibold text-slate-700 mb-1">นำเข้าสู่ห้องเรียน:</label>
+        <select id="portalUploadTargetClass" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs font-bold outline-none focus:border-indigo-500">
+          <optgroup label="อนุบาล">
+            <option value="k1_1">ชั้น อ.1/1</option>
+            <option value="k1_2">ชั้น อ.1/2</option>
+            <option value="k2_1">ชั้น อ.2/1</option>
+            <option value="k2_2">ชั้น อ.2/2</option>
+            <option value="k3_1">ชั้น อ.3/1</option>
+            <option value="k3_2">ชั้น อ.3/2</option>
+          </optgroup>
+          <optgroup label="ประถมศึกษา">
+            <option value="p1_1" selected>ชั้น ป.1/1</option>
+            <option value="p1_2">ชั้น ป.1/2</option>
+            <option value="p2_1">ชั้น ป.2/1</option>
+            <option value="p2_2">ชั้น ป.2/2</option>
+            <option value="p3_1">ชั้น ป.3/1</option>
+            <option value="p3_2">ชั้น ป.3/2</option>
+            <option value="p4_1">ชั้น ป.4/1</option>
+            <option value="p4_2">ชั้น ป.4/2</option>
+            <option value="p5_1">ชั้น ป.5/1</option>
+            <option value="p5_2">ชั้น ป.5/2</option>
+            <option value="p6_1">ชั้น ป.6/1</option>
+            <option value="p6_2">ชั้น ป.6/2</option>
+          </optgroup>
+          <optgroup label="มัธยมศึกษาตอนต้น">
+            <option value="s1_1">ชั้น ม.1/1</option>
+            <option value="s1_2">ชั้น ม.1/2</option>
+            <option value="s2_1">ชั้น ม.2/1</option>
+            <option value="s2_2">ชั้น ม.2/2</option>
+            <option value="s3_1">ชั้น ม.3/1</option>
+            <option value="s3_2">ชั้น ม.3/2</option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <label class="block font-semibold text-slate-700 mb-1">รูปแบบการนำเข้า:</label>
         <select id="portalUploadMode" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs outline-none">
-          <option value="replace">แทนที่รายชื่อเดิมในห้องนั้นทั้งหมด</option>
+          <option value="replace">แทนที่รายชื่อเดิมในห้องนี้ทั้งหมด</option>
           <option value="append">เพิ่มต่อท้ายรายชื่อเดิม</option>
         </select>
       </div>
     </div>
 
+    <!-- Preview -->
     <div id="portalCsvPreviewContainer" class="hidden space-y-2">
       <div class="flex items-center justify-between font-bold text-slate-800">
-        <span>ตัวอย่างข้อมูลที่ตรวจพบ (<span id="portalPreviewCount">0</span> คน):</span>
+        <span>พบข้อมูลนักเรียน (<span id="portalPreviewCount">0</span> คน):</span>
       </div>
-      <div class="border border-slate-200 rounded-xl overflow-x-auto max-h-48 custom-scroll">
+      <div class="border border-slate-200 rounded-xl overflow-x-auto max-h-44 custom-scroll">
         <table class="w-full text-left text-[11px]">
           <thead class="bg-slate-100 text-slate-700 sticky top-0 font-semibold">
             <tr>
-              <th class="p-1.5 text-center w-10">ที่</th>
-              <th class="p-1.5 w-20">รหัส</th>
+              <th class="p-1.5 text-center w-8">ที่</th>
+              <th class="p-1.5 w-20">เลขประจำตัว</th>
               <th class="p-1.5">ชื่อ - นามสกุล</th>
-              <th class="p-1.5 text-center w-16">ห้อง</th>
+              <th class="p-1.5 text-center w-14">เพศ</th>
             </tr>
           </thead>
           <tbody id="portalPreviewTableBody" class="divide-y divide-slate-100"></tbody>
@@ -188,10 +225,39 @@
     </div>
 
   </div>
+
   <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
     <button onclick="closePortalUploadModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
     <button id="btnConfirmPortalUpload" onclick="confirmPortalUpload()" class="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg font-bold shadow disabled:opacity-40 disabled:pointer-events-none" disabled>
-      ยืนยันการนำเข้าข้อมูล
+      บันทึกเข้าห้องเรียน
     </button>
+  </div>
+</div>
+
+
+  <div class="p-5 space-y-3.5 text-xs text-slate-700">
+    <div>
+      <label class="block font-semibold mb-1">ชื่อ - นามสกุล: *</label>
+      <input type="text" id="newTeacherName" placeholder="เช่น Mr. Reydante Acedillo หรือ ครูสมใจ ใจดี" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
+    </div>
+    <div>
+      <label class="block font-semibold mb-1">กลุ่มสาระการเรียนรู้ / ตำแหน่ง:</label>
+      <input type="text" id="newTeacherDept" placeholder="เช่น ภาษาต่างประเทศ, คณิตศาสตร์, วิทยาศาสตร์" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
+    </div>
+    <div class="grid grid-cols-2 gap-2">
+      <div>
+        <label class="block font-semibold mb-1">รหัสวิชาหลัก:</label>
+        <input type="text" id="newTeacherSubjCode" placeholder="เช่น อ11101" class="w-full border border-slate-300 rounded-lg p-2 font-mono outline-none focus:border-indigo-500">
+      </div>
+      <div>
+        <label class="block font-semibold mb-1">ชื่อวิชา:</label>
+        <input type="text" id="newTeacherSubjName" placeholder="เช่น ภาษาอังกฤษ" class="w-full border border-slate-300 rounded-lg p-2 outline-none focus:border-indigo-500">
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
+    <button onclick="closeAddTeacherModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
+    <button onclick="saveNewTeacher()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">บันทึกครูผู้สอน</button>
   </div>
 </div>
