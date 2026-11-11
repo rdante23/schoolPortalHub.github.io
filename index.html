@@ -75,12 +75,12 @@
         <button onclick="scrollToSection('section-calendar')" class="px-3 py-1.5 bg-indigo-800/80 hover:bg-indigo-700 rounded-lg font-semibold transition border border-indigo-700">
           📅 <span>ปฏิทิน</span>
         </button>
-        
-                <!-- Direct Link to PP.5 Online -->
+
+        <!-- Direct Link to PP.5 Online -->
         <a href="pp5.html" class="px-3 py-1.5 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-bold rounded-lg shadow transition flex items-center gap-1.5">
           📊 <span>ระบบ ปพ.5 ออนไลน์</span>
         </a>
-
+        
         <!-- GitHub Sync Button -->
         <button onclick="openGitHubSyncModal()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow transition flex items-center gap-1.5">
           🐙 <span>ส่งออกข้อมูลสู่ GitHub</span>
@@ -106,8 +106,11 @@
           <a href="pp5.html" class="px-3.5 py-2 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 text-indigo-950 font-black rounded-xl text-xs shadow-md transition flex items-center gap-1.5 border border-amber-200">
             📊 เข้าสู่ระบบ ปพ.5 ออนไลน์
           </a>
-          <button onclick="openAddTeacherModal()" class="px-3.5 py-2 bg-amber-400 hover:bg-amber-300 text-indigo-950 font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5">
+          <button onclick="openAddTeacherModal()" class="px-3.5 py-2 bg-white/15 hover:bg-white/25 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5 border border-white/25">
             ➕ เพิ่มครูผู้สอนและวิชาที่สอน
+          </button>
+          <button onclick="openAvailabilityCheckerModal()" class="px-3.5 py-2 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5">
+            🔍 เช็กครูว่าง / หาครูสอนแทน
           </button>
           <button onclick="openPortalUploadModal()" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-1.5">
             📂 นำเข้ารายชื่อนักเรียน (CSV)
@@ -152,12 +155,48 @@
           <h3 class="text-lg sm:text-xl font-bold text-slate-900 flex items-center gap-2">
             👨‍🏫 <span>ทำเนียบครูผู้สอน ภาระงานวิชา และตารางสอน (Teacher Directory & Schedules)</span>
           </h3>
-          <p class="text-xs text-slate-500">กำหนดว่าครูแต่ละท่านสอนวิชาใด ในห้องเรียนใดบ้าง พร้อมตารางสอนในแต่ละสัปดาห์</p>
+          <p class="text-xs text-slate-500">กำหนดรายวิชา ห้องเรียนที่สอน และจัดตารางสอนตามคาบเรียนมาตรฐาน (อนุบาล/ประถม 7 คาบ | มัธยม 8 คาบ)</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="openAvailabilityCheckerModal()" class="px-3.5 py-1.5 bg-sky-600 hover:bg-sky-500 text-white rounded-lg text-xs font-bold shadow transition flex items-center gap-1.5">
+            🔍 <span>เช็กครูว่าง / หาครูสอนแทน</span>
+          </button>
           <button onclick="openAddTeacherModal()" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-xs font-semibold shadow transition flex items-center gap-1">
             ➕ <span>เพิ่มครูผู้สอน</span>
           </button>
+        </div>
+      </div>
+
+      <!-- Period Schedule Reference Strip -->
+      <div class="bg-white rounded-xl border border-slate-200 p-3 text-[11px] text-slate-600 grid grid-cols-1 lg:grid-cols-2 gap-3 shadow-sm">
+        <div class="bg-indigo-50/70 border border-indigo-100 rounded-lg p-2.5">
+          <div class="font-bold text-indigo-950 mb-1">🏫 โครงสร้างคาบเรียน อนุบาล และ ประถมศึกษา (7 คาบ/วัน):</div>
+          <div class="flex flex-wrap gap-1.5 notranslate" translate="no">
+            <span class="bg-white px-2 py-0.5 rounded border border-indigo-200 font-mono">คาบ 1: 08:30-09:30</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-indigo-200 font-mono">คาบ 2: 09:30-10:30</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-indigo-200 font-mono">คาบ 3: 10:30-11:30</span>
+            <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-semibold">พักกลางวัน (11:30-12:20)</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-indigo-200 font-mono">คาบ 4: 12:20-13:20</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-indigo-200 font-mono">คาบ 5: 13:20-14:20</span>
+            <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-semibold">พัก 10 นาที (14:20-14:30)</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-indigo-200 font-mono">คาบ 6: 14:30-15:30</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-indigo-200 font-mono">คาบ 7: 15:30-16:20</span>
+          </div>
+        </div>
+        <div class="bg-emerald-50/70 border border-emerald-100 rounded-lg p-2.5">
+          <div class="font-bold text-emerald-950 mb-1">🎓 โครงสร้างคาบเรียน มัธยมศึกษาตอนต้น (8 คาบ/วัน):</div>
+          <div class="flex flex-wrap gap-1.5 notranslate" translate="no">
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 1: 08:30-09:20</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 2: 09:20-10:10</span>
+            <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-semibold">พัก 20 นาที (10:10-10:30)</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 3: 10:30-11:20</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 4: 11:20-12:10</span>
+            <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded font-semibold">พักกลางวัน (12:10-13:00)</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 5: 13:00-13:50</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 6: 13:50-14:40</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 7: 14:40-15:30</span>
+            <span class="bg-white px-2 py-0.5 rounded border border-emerald-200 font-mono">คาบ 8: 15:30-16:20</span>
+          </div>
         </div>
       </div>
 
@@ -363,16 +402,18 @@
     </div>
   </footer>
 
-  <!-- MODAL: ADD / EDIT TEACHER & WORKLOAD -->
+  <!-- =====================================================================
+       MODAL 1: ADD / EDIT TEACHER & FULL WORKLOAD
+       ===================================================================== -->
   <div id="teacherModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-2xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[92vh]">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-3xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[92vh]">
       <div class="bg-indigo-900 px-5 py-3.5 text-white flex justify-between items-center">
         <h3 class="font-bold text-sm flex items-center gap-2">
           👨‍🏫 <span id="teacherModalTitle">จัดการข้อมูลครูผู้สอนและภาระงานวิชา</span>
         </h3>
         <button onclick="closeTeacherModal()" class="text-indigo-300 hover:text-white text-lg leading-none font-bold">✕</button>
       </div>
-      <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
+      <div id="teacherModalScrollBody" class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
         <input type="hidden" id="teacherIndexInput" value="-1">
         
         <!-- Teacher Basic Info -->
@@ -428,18 +469,18 @@
 
         <!-- Weekly Timetable / Class Schedule -->
         <hr class="border-slate-200">
-        <div>
+        <div id="teacherModalTimetableSection">
           <div class="flex items-center justify-between mb-2">
             <div>
               <span class="font-bold text-indigo-900 text-xs">🗓️ ตารางสอนประจำสัปดาห์ (Weekly Timetable):</span>
-              <p class="text-[11px] text-slate-500">ระบุคาบสอน วันในสัปดาห์ และห้องเรียน</p>
+              <p class="text-[11px] text-slate-500">เลือกวันในสัปดาห์ คาบเรียนมาตรฐาน (อนุบาล/ประถม หรือ มัธยม) และห้องเรียน</p>
             </div>
-            <button onclick="addTimetableSlotRow()" class="px-2.5 py-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded font-bold text-[11px] border border-emerald-200">
+            <button onclick="addTimetableSlotRow()" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-bold text-[11px] shadow-sm">
               ➕ เพิ่มคาบสอน
             </button>
           </div>
 
-          <div id="teacherTimetableContainer" class="space-y-1.5 max-h-40 overflow-y-auto custom-scroll border border-slate-200 rounded-lg p-2 bg-slate-50">
+          <div id="teacherTimetableContainer" class="space-y-2 max-h-56 overflow-y-auto custom-scroll border border-slate-200 rounded-lg p-2.5 bg-slate-50">
             <!-- Dynamic timetable slots -->
           </div>
         </div>
@@ -448,6 +489,145 @@
       <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
         <button onclick="closeTeacherModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
         <button onclick="saveTeacherRecord()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">บันทึกข้อมูลครู</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 2: DEDICATED TIMETABLE EDITOR FOR REGISTERED TEACHERS
+       ===================================================================== -->
+  <div id="quickTimetableModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[92vh]">
+      <div class="bg-indigo-900 px-5 py-3.5 text-white flex justify-between items-center">
+        <div>
+          <h3 class="font-bold text-sm flex items-center gap-2">
+            🗓️ <span>จัดการตารางสอนรายบุคคล:</span>
+            <span id="qtTeacherNameBadge" class="text-amber-300 notranslate" translate="no"></span>
+          </h3>
+          <p class="text-[11px] text-indigo-200" id="qtTeacherDeptBadge"></p>
+        </div>
+        <button onclick="closeQuickTimetableModal()" class="text-indigo-300 hover:text-white text-lg leading-none font-bold">✕</button>
+      </div>
+
+      <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
+        <input type="hidden" id="qtTeacherIndexInput" value="-1">
+
+        <!-- Visual Weekly Overview Grid -->
+        <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-slate-800">📋 ภาพรวมตารางสอนปัจจุบัน (เรียงตามวันและเวลา):</span>
+            <span class="text-[11px] text-slate-500" id="qtTotalSlotsLabel">รวม 0 คาบ/สัปดาห์</span>
+          </div>
+          <div id="qtVisualSummaryGrid" class="grid grid-cols-1 sm:grid-cols-5 gap-2">
+            <!-- Mon - Fri columns -->
+          </div>
+        </div>
+
+        <!-- Editable Slots List -->
+        <div class="space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="font-bold text-indigo-950 text-xs">✏️ แก้ไข / เพิ่มคาบสอน (เลือกคาบเรียนจากตัวเลือกสำเร็จรูป):</span>
+              <p class="text-[11px] text-slate-500">เลือกวัน คาบเรียน (อนุบาล/ประถม 7 คาบ หรือ มัธยม 8 คาบ) รหัสวิชา และห้องเรียน</p>
+            </div>
+            <button onclick="addQuickTimetableSlot()" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg font-bold text-xs shadow flex items-center gap-1">
+              ➕ <span>เพิ่มคาบสอนใหม่</span>
+            </button>
+          </div>
+
+          <div id="qtSlotsEditorContainer" class="space-y-2 max-h-64 overflow-y-auto custom-scroll border border-slate-200 rounded-xl p-3 bg-slate-50">
+            <!-- Dynamic editable rows -->
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
+        <button onclick="closeQuickTimetableModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
+        <button onclick="saveQuickTimetable()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg font-bold shadow">💾 บันทึกตารางสอน</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL 3: TEACHER AVAILABILITY / SUBSTITUTE FINDER
+       ===================================================================== -->
+  <div id="availabilityModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[92vh]">
+      <div class="bg-sky-900 px-5 py-3.5 text-white flex justify-between items-center">
+        <div>
+          <h3 class="font-bold text-sm flex items-center gap-2">
+            🔍 <span>ระบบตรวจสอบครูว่างและจัดหาครูสอนแทน (Teacher Availability & Substitute Finder)</span>
+          </h3>
+          <p class="text-[11px] text-sky-200">เลือกวันและคาบเรียนที่ต้องการหาครูสอนแทน ระบบจะตรวจสอบตารางสอนของครูทุกท่านอัตโนมัติ</p>
+        </div>
+        <button onclick="closeAvailabilityCheckerModal()" class="text-sky-200 hover:text-white text-lg leading-none font-bold">✕</button>
+      </div>
+
+      <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
+        <!-- Filter Controls -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-sky-50/70 p-4 rounded-xl border border-sky-200">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">1. เลือกวันในสัปดาห์:</label>
+            <select id="availDaySelect" onchange="runAvailabilityCheck()" class="w-full border border-slate-300 rounded-lg p-2 bg-white font-semibold outline-none focus:border-sky-600">
+              <option value="mon">วันจันทร์ (Monday)</option>
+              <option value="tue">วันอังคาร (Tuesday)</option>
+              <option value="wed">วันพุธ (Wednesday)</option>
+              <option value="thu">วันพฤหัสบดี (Thursday)</option>
+              <option value="fri">วันศุกร์ (Friday)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">2. ระดับชั้นของคาบที่ต้องการแทน:</label>
+            <select id="availLevelSelect" onchange="populateAvailabilityPeriodOptions(); runAvailabilityCheck();" class="w-full border border-slate-300 rounded-lg p-2 bg-white font-semibold outline-none focus:border-sky-600">
+              <option value="primary">อนุบาล / ประถมศึกษา (7 คาบ)</option>
+              <option value="secondary">มัธยมศึกษาตอนต้น (8 คาบ)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">3. เลือกคาบเรียน / ช่วงเวลา:</label>
+            <select id="availPeriodSelect" onchange="runAvailabilityCheck()" class="w-full border border-slate-300 rounded-lg p-2 bg-white font-bold text-indigo-950 outline-none focus:border-sky-600 notranslate" translate="no">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+        </div>
+
+        <!-- Results Summary Banner -->
+        <div id="availSummaryBanner" class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-slate-100 rounded-xl border border-slate-200">
+          <div class="font-bold text-slate-800" id="availSelectedLabel">ผลการตรวจสอบ: วันจันทร์ | คาบที่ 1 (08:30 - 09:30)</div>
+          <div class="flex items-center gap-3 text-xs font-bold">
+            <span class="text-emerald-700 bg-emerald-100 px-2.5 py-0.5 rounded-full">✅ ว่าง: <span id="availFreeCount" class="notranslate" translate="no">0</span> ท่าน</span>
+            <span class="text-rose-700 bg-rose-100 px-2.5 py-0.5 rounded-full">❌ ติดสอน: <span id="availBusyCount" class="notranslate" translate="no">0</span> ท่าน</span>
+          </div>
+        </div>
+
+        <!-- Two-Column Results: Available vs Busy -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Available Teachers -->
+          <div class="border border-emerald-200 rounded-xl overflow-hidden bg-white shadow-sm">
+            <div class="bg-emerald-700 text-white px-4 py-2.5 font-bold flex items-center justify-between">
+              <span>✅ ครูที่ว่างในคาบนี้ (สามารถสอนแทนได้)</span>
+            </div>
+            <div id="availFreeList" class="p-3 space-y-2 max-h-80 overflow-y-auto custom-scroll">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+
+          <!-- Busy Teachers -->
+          <div class="border border-rose-200 rounded-xl overflow-hidden bg-white shadow-sm">
+            <div class="bg-rose-700 text-white px-4 py-2.5 font-bold flex items-center justify-between">
+              <span>❌ ครูที่ติดสอนในคาบนี้ (ไม่ว่าง)</span>
+            </div>
+            <div id="availBusyList" class="p-3 space-y-2 max-h-80 overflow-y-auto custom-scroll">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end text-xs">
+        <button onclick="closeAvailabilityCheckerModal()" class="px-4 py-1.5 bg-slate-800 text-white rounded-lg font-semibold hover:bg-slate-700">ปิดหน้าต่าง</button>
       </div>
     </div>
   </div>
@@ -474,7 +654,7 @@
           <button onclick="exportMasterJSON()" class="w-full py-2.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-lg shadow transition flex items-center justify-center gap-2 text-xs">
             💾 <span>ดาวน์โหลด <span class="notranslate" translate="no">school_master_data.json</span> ทันที</span>
           </button>
-          <p class="text-[10px] text-slate-500 italic">* นำไฟล์นี้ไป Commit / Upload ไว้ที่ Root หรือโฟลเดอร์เดียวกับ <code class="font-mono notranslate" translate="no">school_portal.html</code> และ <code class="font-mono notranslate" translate="no">index.html</code></p>
+          <p class="text-[10px] text-slate-500 italic">* นำไฟล์นี้ไป Commit / Upload ไว้ที่ Root หรือโฟลเดอร์เดียวกับ <code class="font-mono notranslate" translate="no">pp5.html</code> และ <code class="font-mono notranslate" translate="no">index.html</code></p>
         </div>
 
         <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
@@ -658,6 +838,45 @@
       'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'
     ];
 
+    const DAY_LABELS = {
+      mon: 'จันทร์ (Mon)',
+      tue: 'อังคาร (Tue)',
+      wed: 'พุธ (Wed)',
+      thu: 'พฤหัสบดี (Thu)',
+      fri: 'ศุกร์ (Fri)'
+    };
+
+    const DAY_SHORT = {
+      mon: 'จ.',
+      tue: 'อ.',
+      wed: 'พ.',
+      thu: 'พฤ.',
+      fri: 'ศ.'
+    };
+
+    // Preset Period Definitions
+    const PERIOD_PRESETS = {
+      primary: [
+        { period: 1, label: 'อนุบาล/ประถม - คาบ 1 (08:30 - 09:30)', value: '08:30 - 09:30', start: '08:30', end: '09:30' },
+        { period: 2, label: 'อนุบาล/ประถม - คาบ 2 (09:30 - 10:30)', value: '09:30 - 10:30', start: '09:30', end: '10:30' },
+        { period: 3, label: 'อนุบาล/ประถม - คาบ 3 (10:30 - 11:30)', value: '10:30 - 11:30', start: '10:30', end: '11:30' },
+        { period: 4, label: 'อนุบาล/ประถม - คาบ 4 (12:20 - 13:20)', value: '12:20 - 13:20', start: '12:20', end: '13:20' },
+        { period: 5, label: 'อนุบาล/ประถม - คาบ 5 (13:20 - 14:20)', value: '13:20 - 14:20', start: '13:20', end: '14:20' },
+        { period: 6, label: 'อนุบาล/ประถม - คาบ 6 (14:30 - 15:30)', value: '14:30 - 15:30', start: '14:30', end: '15:30' },
+        { period: 7, label: 'อนุบาล/ประถม - คาบ 7 (15:30 - 16:20)', value: '15:30 - 16:20', start: '15:30', end: '16:20' }
+      ],
+      secondary: [
+        { period: 1, label: 'มัธยม - คาบ 1 (08:30 - 09:20)', value: '08:30 - 09:20', start: '08:30', end: '09:20' },
+        { period: 2, label: 'มัธยม - คาบ 2 (09:20 - 10:10)', value: '09:20 - 10:10', start: '09:20', end: '10:10' },
+        { period: 3, label: 'มัธยม - คาบ 3 (10:30 - 11:20)', value: '10:30 - 11:20', start: '10:30', end: '11:20' },
+        { period: 4, label: 'มัธยม - คาบ 4 (11:20 - 12:10)', value: '11:20 - 12:10', start: '11:20', end: '12:10' },
+        { period: 5, label: 'มัธยม - คาบ 5 (13:00 - 13:50)', value: '13:00 - 13:50', start: '13:00', end: '13:50' },
+        { period: 6, label: 'มัธยม - คาบ 6 (13:50 - 14:40)', value: '13:50 - 14:40', start: '13:50', end: '14:40' },
+        { period: 7, label: 'มัธยม - คาบ 7 (14:40 - 15:30)', value: '14:40 - 15:30', start: '14:40', end: '15:30' },
+        { period: 8, label: 'มัธยม - คาบ 8 (15:30 - 16:20)', value: '15:30 - 16:20', start: '15:30', end: '16:20' }
+      ]
+    };
+
     const CLASS_LABELS = {
       k1_1: 'ชั้น อ.1/1', k1_2: 'ชั้น อ.1/2',
       k2_1: 'ชั้น อ.2/1', k2_2: 'ชั้น อ.2/2',
@@ -672,6 +891,66 @@
       s2_1: 'ชั้น ม.2/1', s2_2: 'ชั้น ม.2/2',
       s3_1: 'ชั้น ม.3/1', s3_2: 'ชั้น ม.3/2'
     };
+
+    // Helper: Build Time Preset <select> HTML
+    function buildTimePresetOptionsHTML(currentTimeVal) {
+      const normalizedCurrent = (currentTimeVal || '').replace(/\s+/g, ' ').trim();
+      let foundMatch = false;
+
+      let primaryOpts = PERIOD_PRESETS.primary.map(p => {
+        const isSel = normalizedCurrent === p.value || normalizedCurrent.replace(/\s/g, '') === p.value.replace(/\s/g, '');
+        if (isSel) foundMatch = true;
+        return `<option value="${p.value}" ${isSel ? 'selected' : ''}>${p.label}</option>`;
+      }).join('');
+
+      let secondaryOpts = PERIOD_PRESETS.secondary.map(p => {
+        const isSel = normalizedCurrent === p.value || normalizedCurrent.replace(/\s/g, '') === p.value.replace(/\s/g, '');
+        if (isSel) foundMatch = true;
+        return `<option value="${p.value}" ${isSel ? 'selected' : ''}>${p.label}</option>`;
+      }).join('');
+
+      let customOpt = '';
+      if (!foundMatch && normalizedCurrent) {
+        customOpt = `<optgroup label="เวลาที่กำหนดเอง (Custom)"><option value="${normalizedCurrent}" selected>กำหนดเอง: ${normalizedCurrent}</option></optgroup>`;
+      }
+
+      return `
+        ${customOpt}
+        <optgroup label="อนุบาล / ประถมศึกษา (7 คาบ)">
+          ${primaryOpts}
+        </optgroup>
+        <optgroup label="มัธยมศึกษาตอนต้น (8 คาบ)">
+          ${secondaryOpts}
+        </optgroup>
+      `;
+    }
+
+    // Helper: Parse "HH:MM - HH:MM" into minutes from midnight for accurate overlap checks
+    function parseTimeRangeToMinutes(timeStr) {
+      if (!timeStr) return null;
+      const matches = timeStr.match(/(\d{1,2}):(\d{2})/g);
+      if (!matches || matches.length < 2) return null;
+      const toMins = (t) => {
+        const [h, m] = t.split(':').map(Number);
+        return h * 60 + m;
+      };
+      return { start: toMins(matches[0]), end: toMins(matches[1]) };
+    }
+
+    function doTimeRangesOverlap(rangeA, rangeB) {
+      if (!rangeA || !rangeB) return false;
+      return rangeA.start < rangeB.end && rangeB.start < rangeA.end;
+    }
+
+    function formatPeriodBadge(timeStr) {
+      if (!timeStr) return '';
+      const norm = timeStr.replace(/\s/g, '');
+      const pMatch = PERIOD_PRESETS.primary.find(p => p.value.replace(/\s/g, '') === norm);
+      if (pMatch) return `คาบ ${pMatch.period} (${pMatch.value})`;
+      const sMatch = PERIOD_PRESETS.secondary.find(p => p.value.replace(/\s/g, '') === norm);
+      if (sMatch) return `คาบ ${sMatch.period} มัธยม (${sMatch.value})`;
+      return timeStr;
+    }
 
     // Default Seed Teachers with Subjects & Schedules
     const DEFAULT_TEACHERS = [
@@ -688,7 +967,7 @@
           { day: "mon", time: "08:30 - 09:30", subjectCode: "ค11101", classKey: "p1_1", room: "111" },
           { day: "mon", time: "09:30 - 10:30", subjectCode: "ค11101", classKey: "p1_2", room: "112" },
           { day: "wed", time: "10:30 - 11:30", subjectCode: "ค12101", classKey: "p2_1", room: "121" },
-          { day: "fri", time: "13:00 - 14:00", subjectCode: "ค12101", classKey: "p2_2", room: "122" }
+          { day: "fri", time: "13:20 - 14:20", subjectCode: "ค12101", classKey: "p2_2", room: "122" }
         ]
       },
       {
@@ -718,12 +997,12 @@
           { code: "ค13101", name: "คณิตศาสตร์ 3", classes: ["p3_1", "p3_2"] }
         ],
         timetable: [
-          { day: "wed", time: "08:30 - 10:30", subjectCode: "อ11101", classKey: "p1_2", room: "ป 1/2" },
-          { day: "wed", time: "10:30 - 13:20", subjectCode: "อ11101", classKey: "p1_1", room: "ป 1/1" },
-          { day: "thu", time: "08:30 - 10:30", subjectCode: "อ12101", classKey: "p2_1", room: "ป 2/1" },
-          { day: "thu", time: "10:30 - 13:20", subjectCode: "อ13101", classKey: "p3_1", room: "ป 3/1" },
-          { day: "fri", time: "08:30 - 10:30", subjectCode: "อ13101", classKey: "p3_2", room: "ป 3/2" },
-          { day: "fri", time: "12:20 - 14:20", subjectCode: "อ12101", classKey: "p2_2", room: "ป 2/2" }
+          { day: "wed", time: "08:30 - 09:30", subjectCode: "อ11101", classKey: "p1_2", room: "ป 1/2" },
+          { day: "wed", time: "10:30 - 11:30", subjectCode: "อ11101", classKey: "p1_1", room: "ป 1/1" },
+          { day: "thu", time: "08:30 - 09:30", subjectCode: "อ12101", classKey: "p2_1", room: "ป 2/1" },
+          { day: "thu", time: "10:30 - 11:30", subjectCode: "อ13101", classKey: "p3_1", room: "ป 3/1" },
+          { day: "fri", time: "08:30 - 09:30", subjectCode: "อ13101", classKey: "p3_2", room: "ป 3/2" },
+          { day: "fri", time: "12:20 - 13:20", subjectCode: "อ12101", classKey: "p2_2", room: "ป 2/2" }
         ]
       }
     ];
@@ -798,7 +1077,6 @@
         return portalData.rosters[classKey];
       }
 
-      // Check shared storage
       try {
         const pp5Raw = localStorage.getItem(PP5_SHARED_KEY);
         if (pp5Raw) {
@@ -842,7 +1120,6 @@
 
     /* Master JSON Export: Combines Roster for 24 classes + Teachers + Timetables */
     function exportMasterJSON() {
-      // Ensure all 24 classes have rosters populated in master payload
       const fullRosters = {};
       Object.keys(CLASS_LABELS).forEach(key => {
         fullRosters[key] = getRosterForClass(key);
@@ -902,7 +1179,6 @@
         const card = document.createElement('div');
         card.className = 'bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-slate-200 p-5 flex flex-col justify-between space-y-3';
 
-        // Subject tags
         const subjectsHtml = (t.subjects || []).map(s => {
           const classTags = (s.classes || []).map(c => CLASS_LABELS[c] || c).join(', ');
           return `
@@ -916,8 +1192,9 @@
           `;
         }).join('');
 
-        // Timetable count
+        // Compact preview of timetable days
         const timetableCount = (t.timetable || []).length;
+        const daysPresent = Array.from(new Set((t.timetable || []).map(slot => DAY_SHORT[slot.day] || slot.day))).join(', ');
 
         card.innerHTML = `
           <div class="space-y-3">
@@ -937,17 +1214,28 @@
 
             <div class="space-y-1.5">
               <span class="text-[11px] font-bold text-slate-700 block">วิชาและห้องที่สอน (<span class="notranslate" translate="no">${(t.subjects || []).length}</span> วิชา):</span>
-              <div class="space-y-1.5 max-h-36 overflow-y-auto custom-scroll">
+              <div class="space-y-1.5 max-h-32 overflow-y-auto custom-scroll">
                 ${subjectsHtml || '<span class="text-slate-400 text-[11px] italic">ยังไม่ได้กำหนดวิชา</span>'}
               </div>
             </div>
           </div>
 
-          <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
-            <span class="text-slate-500 text-[11px]">🗓️ ตารางสอน <span class="notranslate" translate="no">${timetableCount}</span> คาบ/สัปดาห์</span>
-            <div class="space-x-1.5">
-              <button onclick="editTeacher(${idx})" class="text-indigo-600 hover:text-indigo-800 font-bold px-2 py-1 hover:bg-indigo-50 rounded">แก้ไข</button>
-              <button onclick="deleteTeacher(${idx})" class="text-red-500 hover:text-red-700 font-bold px-2 py-1 hover:bg-red-50 rounded">ลบ</button>
+          <div class="pt-3 border-t border-slate-100 space-y-2 text-xs">
+            <div class="flex items-center justify-between text-[11px] text-slate-600 bg-slate-50 px-2.5 py-1.5 rounded-lg border border-slate-200/70">
+              <span>🗓️ ตารางสอน <strong class="text-indigo-900 notranslate" translate="no">${timetableCount}</strong> คาบ/สัปดาห์</span>
+              <span class="text-slate-400 notranslate" translate="no">${daysPresent ? `(${daysPresent})` : 'ยังไม่ลงคาบ'}</span>
+            </div>
+
+            <div class="flex items-center justify-between gap-1.5 pt-0.5">
+              <button onclick="openQuickTimetableModal(${idx})" class="flex-1 py-1.5 px-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg shadow-sm transition flex items-center justify-center gap-1 text-[11px]">
+                🗓️ <span>แก้ไขตารางสอน</span>
+              </button>
+              <button onclick="editTeacher(${idx})" class="py-1.5 px-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-bold rounded-lg border border-indigo-200 transition text-[11px]">
+                ✏️ ข้อมูล/วิชา
+              </button>
+              <button onclick="deleteTeacher(${idx})" class="py-1.5 px-2 bg-rose-50 hover:bg-rose-100 text-rose-600 font-bold rounded-lg border border-rose-200 transition text-[11px]" title="ลบครู">
+                🗑️
+              </button>
             </div>
           </div>
         `;
@@ -955,6 +1243,9 @@
       });
     }
 
+    /* =====================================================================
+       3B. FULL TEACHER & WORKLOAD MODAL
+       ===================================================================== */
     let activeModalSubjects = [];
     let activeModalTimetable = [];
 
@@ -1010,7 +1301,6 @@
         const div = document.createElement('div');
         div.className = 'p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2';
 
-        // Checkboxes for all 24 classes grouped
         let classCheckboxes = '';
         Object.keys(CLASS_LABELS).forEach(cKey => {
           const isChecked = (s.classes || []).includes(cKey) ? 'checked' : '';
@@ -1071,7 +1361,7 @@
       container.innerHTML = '';
 
       if (activeModalTimetable.length === 0) {
-        container.innerHTML = `<p class="text-slate-400 italic text-[11px]">ยังไม่มีคาบสอน</p>`;
+        container.innerHTML = `<p class="text-slate-400 italic text-[11px]">ยังไม่มีคาบสอน กรุณากด "เพิ่มคาบสอน"</p>`;
         return;
       }
 
@@ -1083,30 +1373,34 @@
 
       activeModalTimetable.forEach((slot, idx) => {
         const div = document.createElement('div');
-        div.className = 'flex items-center gap-1.5 p-1.5 bg-white border border-slate-200 rounded text-[11px]';
+        div.className = 'flex flex-wrap sm:flex-nowrap items-center gap-1.5 p-2 bg-white border border-slate-200 rounded-lg text-[11px] shadow-xs';
 
         let dayOpts = dayOptions.map(d => `<option value="${d.key}" ${slot.day === d.key ? 'selected' : ''}>${d.th}</option>`).join('');
+        let timeOpts = buildTimePresetOptionsHTML(slot.time || '08:30 - 09:30');
         let classOpts = Object.keys(CLASS_LABELS).map(k => `<option value="${k}" ${slot.classKey === k ? 'selected' : ''}>${CLASS_LABELS[k]}</option>`).join('');
 
         div.innerHTML = `
-          <select onchange="activeModalTimetable[${idx}].day = this.value" class="border border-slate-200 rounded p-1 bg-white text-xs">${dayOpts}</select>
-          <input type="text" value="${slot.time || '08:30 - 09:30'}" onchange="activeModalTimetable[${idx}].time = this.value" class="w-24 border border-slate-200 rounded p-1 text-center font-mono notranslate" translate="no">
-          <input type="text" value="${slot.subjectCode || ''}" placeholder="รหัสวิชา" onchange="activeModalTimetable[${idx}].subjectCode = this.value" class="w-20 border border-slate-200 rounded p-1 text-center font-mono notranslate" translate="no">
-          <select onchange="activeModalTimetable[${idx}].classKey = this.value" class="border border-slate-200 rounded p-1 bg-white text-xs flex-1 notranslate" translate="no">${classOpts}</select>
-          <input type="text" value="${slot.room || ''}" placeholder="ห้อง" onchange="activeModalTimetable[${idx}].room = this.value" class="w-14 border border-slate-200 rounded p-1 text-center notranslate" translate="no">
-          <button onclick="removeTimetableSlotRow(${idx})" class="text-red-500 font-bold px-1.5">✕</button>
+          <select onchange="activeModalTimetable[${idx}].day = this.value" class="border border-slate-300 rounded p-1.5 bg-white text-xs font-semibold">${dayOpts}</select>
+          <select onchange="activeModalTimetable[${idx}].time = this.value" class="border border-slate-300 rounded p-1.5 bg-indigo-50/60 text-indigo-950 font-semibold text-xs flex-1 min-w-[210px] notranslate" translate="no">${timeOpts}</select>
+          <input type="text" value="${slot.subjectCode || ''}" placeholder="รหัสวิชา" onchange="activeModalTimetable[${idx}].subjectCode = this.value.trim()" class="w-20 border border-slate-300 rounded p-1.5 text-center font-mono notranslate" translate="no">
+          <select onchange="activeModalTimetable[${idx}].classKey = this.value" class="border border-slate-300 rounded p-1.5 bg-white text-xs w-28 notranslate" translate="no">${classOpts}</select>
+          <input type="text" value="${slot.room || ''}" placeholder="ห้องเรียน" onchange="activeModalTimetable[${idx}].room = this.value.trim()" class="w-16 border border-slate-300 rounded p-1.5 text-center notranslate" translate="no">
+          <button onclick="removeTimetableSlotRow(${idx})" class="text-rose-500 hover:text-rose-700 font-bold px-2 py-1 rounded hover:bg-rose-50" title="ลบคาบนี้">✕</button>
         `;
         container.appendChild(div);
       });
     }
 
     function addTimetableSlotRow() {
+      const defaultSub = activeModalSubjects[0] ? activeModalSubjects[0].code : "ค11101";
+      const defaultClass = (activeModalSubjects[0] && activeModalSubjects[0].classes && activeModalSubjects[0].classes[0]) ? activeModalSubjects[0].classes[0] : "p1_1";
+      const isSecondary = defaultClass.startsWith('s');
       activeModalTimetable.push({
         day: "mon",
-        time: "08:30 - 09:30",
-        subjectCode: activeModalSubjects[0] ? activeModalSubjects[0].code : "ค11101",
-        classKey: "p1_1",
-        room: "111"
+        time: isSecondary ? "08:30 - 09:20" : "08:30 - 09:30",
+        subjectCode: defaultSub,
+        classKey: defaultClass,
+        room: ""
       });
       renderModalTimetableList();
     }
@@ -1159,6 +1453,261 @@
     }
 
     /* =====================================================================
+       3C. DEDICATED QUICK TIMETABLE EDITOR MODAL
+       ===================================================================== */
+    let qtWorkingSlots = [];
+    let qtTeacherRef = null;
+
+    function openQuickTimetableModal(idx) {
+      const t = portalData.teachers[idx];
+      if (!t) return;
+      qtTeacherRef = t;
+      document.getElementById('qtTeacherIndexInput').value = idx;
+      document.getElementById('qtTeacherNameBadge').innerText = `${t.name} (${t.id})`;
+      document.getElementById('qtTeacherDeptBadge').innerText = `กลุ่มสาระฯ: ${t.dept || 'ไม่ระบุ'} | วิชาที่รับผิดชอบ: ${(t.subjects || []).map(s => `${s.name} (${s.code})`).join(', ') || 'ยังไม่ได้กำหนด'}`;
+
+      qtWorkingSlots = JSON.parse(JSON.stringify(t.timetable || []));
+      renderQuickTimetableEditor();
+      document.getElementById('quickTimetableModal').classList.remove('hidden');
+    }
+
+    function closeQuickTimetableModal() {
+      document.getElementById('quickTimetableModal').classList.add('hidden');
+    }
+
+    function renderQuickTimetableEditor() {
+      // 1. Visual 5-day summary
+      const summaryGrid = document.getElementById('qtVisualSummaryGrid');
+      const totalLabel = document.getElementById('qtTotalSlotsLabel');
+      totalLabel.innerText = `รวม ${qtWorkingSlots.length} คาบ/สัปดาห์`;
+
+      const days = [
+        { key: 'mon', label: 'วันจันทร์' },
+        { key: 'tue', label: 'วันอังคาร' },
+        { key: 'wed', label: 'วันพุธ' },
+        { key: 'thu', label: 'วันพฤหัสบดี' },
+        { key: 'fri', label: 'วันศุกร์' }
+      ];
+
+      summaryGrid.innerHTML = days.map(d => {
+        const daySlots = qtWorkingSlots
+          .filter(s => s.day === d.key)
+          .sort((a, b) => (a.time || '').localeCompare(b.time || ''));
+
+        const itemsHtml = daySlots.length > 0
+          ? daySlots.map(s => `
+              <div class="bg-white border border-indigo-100 rounded p-1.5 text-[10px] space-y-0.5 shadow-2xs notranslate" translate="no">
+                <div class="font-bold text-indigo-900">${formatPeriodBadge(s.time)}</div>
+                <div class="text-slate-700 font-semibold">${s.subjectCode || '-'} • ${CLASS_LABELS[s.classKey] || s.classKey}</div>
+                ${s.room ? `<div class="text-slate-400">ห้อง: ${s.room}</div>` : ''}
+              </div>
+            `).join('')
+          : `<div class="text-[10px] text-slate-400 italic py-2 text-center">ไม่มีคาบสอน</div>`;
+
+        return `
+          <div class="bg-white/80 border border-slate-200 rounded-lg p-2 flex flex-col">
+            <div class="font-bold text-center text-indigo-950 border-b border-slate-200 pb-1 mb-1.5 text-[11px]">${d.label}</div>
+            <div class="space-y-1.5 flex-1">${itemsHtml}</div>
+          </div>
+        `;
+      }).join('');
+
+      // 2. Editable Rows
+      const editorContainer = document.getElementById('qtSlotsEditorContainer');
+      if (qtWorkingSlots.length === 0) {
+        editorContainer.innerHTML = `<p class="text-slate-400 italic text-center py-4">ยังไม่มีคาบสอนในตาราง กดปุ่ม "➕ เพิ่มคาบสอนใหม่" ด้านบนเพื่อเริ่มจัดตาราง</p>`;
+        return;
+      }
+
+      const dayOptions = [
+        { key: "mon", th: "จันทร์" }, { key: "tue", th: "อังคาร" },
+        { key: "wed", th: "พุธ" }, { key: "thu", th: "พฤหัสบดี" },
+        { key: "fri", th: "ศุกร์" }
+      ];
+
+      // Suggest teacher's assigned subject codes as datalist
+      const teacherSubs = (qtTeacherRef && qtTeacherRef.subjects) || [];
+
+      editorContainer.innerHTML = '';
+      qtWorkingSlots.forEach((slot, idx) => {
+        const row = document.createElement('div');
+        row.className = 'flex flex-wrap sm:flex-nowrap items-center gap-2 p-2 bg-white border border-slate-200 rounded-lg text-xs shadow-2xs';
+
+        let dayOpts = dayOptions.map(d => `<option value="${d.key}" ${slot.day === d.key ? 'selected' : ''}>${d.th}</option>`).join('');
+        let timeOpts = buildTimePresetOptionsHTML(slot.time || '08:30 - 09:30');
+        let classOpts = Object.keys(CLASS_LABELS).map(k => `<option value="${k}" ${slot.classKey === k ? 'selected' : ''}>${CLASS_LABELS[k]}</option>`).join('');
+
+        row.innerHTML = `
+          <span class="font-mono font-bold text-slate-400 w-5 text-center notranslate" translate="no">${idx + 1}.</span>
+          <select onchange="qtWorkingSlots[${idx}].day = this.value; renderQuickTimetableEditor();" class="border border-slate-300 rounded-lg p-1.5 bg-white font-semibold">${dayOpts}</select>
+          <select onchange="qtWorkingSlots[${idx}].time = this.value; renderQuickTimetableEditor();" class="border border-slate-300 rounded-lg p-1.5 bg-indigo-50/70 text-indigo-950 font-semibold flex-1 min-w-[220px] notranslate" translate="no">${timeOpts}</select>
+          <input type="text" list="qtSubList" value="${slot.subjectCode || ''}" placeholder="รหัสวิชา" onchange="qtWorkingSlots[${idx}].subjectCode = this.value.trim(); renderQuickTimetableEditor();" class="w-24 border border-slate-300 rounded-lg p-1.5 text-center font-mono notranslate" translate="no">
+          <select onchange="qtWorkingSlots[${idx}].classKey = this.value; renderQuickTimetableEditor();" class="border border-slate-300 rounded-lg p-1.5 bg-white w-28 notranslate" translate="no">${classOpts}</select>
+          <input type="text" value="${slot.room || ''}" placeholder="ห้องเรียน" onchange="qtWorkingSlots[${idx}].room = this.value.trim(); renderQuickTimetableEditor();" class="w-20 border border-slate-300 rounded-lg p-1.5 text-center notranslate" translate="no">
+          <button onclick="removeQuickTimetableSlot(${idx})" class="text-rose-500 hover:text-rose-700 font-bold px-2 py-1 rounded hover:bg-rose-50" title="ลบคาบนี้">✕</button>
+        `;
+        editorContainer.appendChild(row);
+      });
+
+      // Add datalist for quick subject code autocomplete
+      const dl = document.createElement('datalist');
+      dl.id = 'qtSubList';
+      dl.innerHTML = teacherSubs.map(s => `<option value="${s.code}">${s.name}</option>`).join('');
+      editorContainer.appendChild(dl);
+    }
+
+    function addQuickTimetableSlot() {
+      const defaultSub = (qtTeacherRef && qtTeacherRef.subjects && qtTeacherRef.subjects[0]) ? qtTeacherRef.subjects[0].code : "อ11101";
+      const defaultClass = (qtTeacherRef && qtTeacherRef.subjects && qtTeacherRef.subjects[0] && qtTeacherRef.subjects[0].classes && qtTeacherRef.subjects[0].classes[0]) ? qtTeacherRef.subjects[0].classes[0] : "p1_1";
+      const isSecondary = defaultClass.startsWith('s');
+
+      qtWorkingSlots.push({
+        day: "mon",
+        time: isSecondary ? "08:30 - 09:20" : "08:30 - 09:30",
+        subjectCode: defaultSub,
+        classKey: defaultClass,
+        room: ""
+      });
+      renderQuickTimetableEditor();
+    }
+
+    function removeQuickTimetableSlot(idx) {
+      qtWorkingSlots.splice(idx, 1);
+      renderQuickTimetableEditor();
+    }
+
+    function saveQuickTimetable() {
+      const idx = parseInt(document.getElementById('qtTeacherIndexInput').value);
+      if (idx >= 0 && portalData.teachers[idx]) {
+        portalData.teachers[idx].timetable = qtWorkingSlots;
+        savePortalData();
+        renderTeachersDirectory();
+        closeQuickTimetableModal();
+        showToast(`บันทึกตารางสอนของ ${portalData.teachers[idx].name} เรียบร้อยแล้ว`);
+      }
+    }
+
+    /* =====================================================================
+       3D. TEACHER AVAILABILITY & SUBSTITUTE CHECKER
+       ===================================================================== */
+    function openAvailabilityCheckerModal() {
+      populateAvailabilityPeriodOptions();
+      runAvailabilityCheck();
+      document.getElementById('availabilityModal').classList.remove('hidden');
+    }
+
+    function closeAvailabilityCheckerModal() {
+      document.getElementById('availabilityModal').classList.add('hidden');
+    }
+
+    function populateAvailabilityPeriodOptions() {
+      const level = document.getElementById('availLevelSelect').value;
+      const periodSelect = document.getElementById('availPeriodSelect');
+      const presets = PERIOD_PRESETS[level] || PERIOD_PRESETS.primary;
+
+      periodSelect.innerHTML = presets.map(p =>
+        `<option value="${p.value}">คาบที่ ${p.period} (${p.value})</option>`
+      ).join('');
+    }
+
+    function runAvailabilityCheck() {
+      const day = document.getElementById('availDaySelect').value;
+      const level = document.getElementById('availLevelSelect').value;
+      const selectedTime = document.getElementById('availPeriodSelect').value;
+      const periodSelectEl = document.getElementById('availPeriodSelect');
+      const selectedPeriodText = periodSelectEl.options[periodSelectEl.selectedIndex] ? periodSelectEl.options[periodSelectEl.selectedIndex].text : selectedTime;
+
+      const targetRange = parseTimeRangeToMinutes(selectedTime);
+      const levelText = level === 'secondary' ? 'มัธยมศึกษา' : 'อนุบาล/ประถมศึกษา';
+
+      document.getElementById('availSelectedLabel').innerText =
+        `ผลการตรวจสอบ: ${DAY_LABELS[day]} | ${levelText} ${selectedPeriodText}`;
+
+      const freeTeachers = [];
+      const busyTeachers = [];
+
+      (portalData.teachers || []).forEach((teacher, idx) => {
+        const daySlots = (teacher.timetable || []).filter(s => s.day === day);
+        const conflictingSlots = daySlots.filter(slot => {
+          const slotRange = parseTimeRangeToMinutes(slot.time);
+          if (targetRange && slotRange) {
+            return doTimeRangesOverlap(targetRange, slotRange);
+          }
+          return (slot.time || '').replace(/\s/g, '') === selectedTime.replace(/\s/g, '');
+        });
+
+        if (conflictingSlots.length > 0) {
+          busyTeachers.push({ teacher, idx, conflicts: conflictingSlots, dayLoad: daySlots.length });
+        } else {
+          freeTeachers.push({ teacher, idx, dayLoad: daySlots.length });
+        }
+      });
+
+      // Sort available teachers by lightest teaching load on that day first
+      freeTeachers.sort((a, b) => a.dayLoad - b.dayLoad);
+
+      document.getElementById('availFreeCount').innerText = freeTeachers.length;
+      document.getElementById('availBusyCount').innerText = busyTeachers.length;
+
+      const freeListEl = document.getElementById('availFreeList');
+      const busyListEl = document.getElementById('availBusyList');
+
+      if (freeTeachers.length === 0) {
+        freeListEl.innerHTML = `<div class="text-center text-slate-400 py-6 italic">ไม่มีครูว่างในคาบเรียนนี้</div>`;
+      } else {
+        freeListEl.innerHTML = freeTeachers.map(item => {
+          const t = item.teacher;
+          const subNames = (t.subjects || []).map(s => s.name).join(', ') || 'ไม่ระบุวิชา';
+          return `
+            <div class="p-3 rounded-xl border border-emerald-200 bg-emerald-50/50 flex items-start justify-between gap-2">
+              <div class="space-y-0.5">
+                <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                  <span class="notranslate" translate="no">${t.name}</span>
+                  <span class="text-[10px] font-mono text-slate-500 notranslate" translate="no">(${t.id})</span>
+                </div>
+                <div class="text-[11px] text-emerald-900 font-semibold">${t.dept || 'ครูผู้สอน'}</div>
+                <div class="text-[10px] text-slate-600 truncate max-w-[230px] notranslate" translate="no">วิชา: ${subNames}</div>
+                ${t.contact ? `<div class="text-[10px] text-slate-500 notranslate" translate="no">ติดต่อ: ${t.contact}</div>` : ''}
+              </div>
+              <div class="text-right shrink-0 space-y-1">
+                <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-200 text-emerald-950">
+                  ว่าง (สอนวันนี้ <span class="notranslate" translate="no">${item.dayLoad}</span> คาบ)
+                </span>
+                <div>
+                  <button onclick="closeAvailabilityCheckerModal(); openQuickTimetableModal(${item.idx});" class="text-[10px] text-indigo-700 hover:underline font-bold">
+                    ดูตารางสอน »
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (busyTeachers.length === 0) {
+        busyListEl.innerHTML = `<div class="text-center text-slate-400 py-6 italic">ไม่มีครูติดสอนในคาบเรียนนี้</div>`;
+      } else {
+        busyListEl.innerHTML = busyTeachers.map(item => {
+          const t = item.teacher;
+          const conflictDetails = item.conflicts.map(c =>
+            `<div class="text-[11px] text-rose-900 font-semibold notranslate" translate="no">• ${c.subjectCode || 'ไม่ระบุวิชา'} | ${CLASS_LABELS[c.classKey] || c.classKey} (${c.time}) ${c.room ? `[ห้อง ${c.room}]` : ''}</div>`
+          ).join('');
+
+          return `
+            <div class="p-3 rounded-xl border border-rose-200 bg-rose-50/40 space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-900 notranslate" translate="no">${t.name} <span class="text-[10px] font-mono text-slate-400 font-normal">(${t.id})</span></span>
+                <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-200 text-rose-950">ติดสอน</span>
+              </div>
+              <div class="text-[10px] text-slate-500">${t.dept || ''}</div>
+              <div class="pt-1 border-t border-rose-100">${conflictDetails}</div>
+            </div>
+          `;
+        }).join('');
+      }
+    }
+
+    /* =====================================================================
        4. STUDENT ROSTER HUB & CSV IMPORTER
        ===================================================================== */
     let currentViewingStudents = [];
@@ -1170,7 +1719,6 @@
       currentViewingStudents = getRosterForClass(classKey);
       document.getElementById('currentClassStudentCount').innerText = `${currentViewingStudents.length} คน`;
 
-      // Update grand total
       let totalStudents = 0;
       Object.keys(CLASS_LABELS).forEach(k => {
         totalStudents += getRosterForClass(k).length;
@@ -1622,7 +2170,6 @@
         `;
       }
 
-      // Upcoming highlights list
       const upcomingList = document.getElementById('upcomingEventsList');
       upcomingList.innerHTML = '';
       (portalData.events || []).forEach(e => {
