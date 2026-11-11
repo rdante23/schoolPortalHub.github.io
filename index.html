@@ -47,7 +47,7 @@
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <h1 class="text-base sm:text-lg font-bold tracking-tight notranslate" translate="no" id="schoolNameNav">โรงเรียนวัดบ้านฉาง</h1>
+            <h1 class="text-base sm:text-lg font-bold tracking-tight notranslate" translate="no" id="schoolNameNav">โรงเรียนอุดมวิทยานุกูล</h1>
             <span class="bg-amber-400/20 text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full border border-amber-300/30">Master School Hub</span>
           </div>
           <p class="text-xs text-indigo-200" id="schoolSubNav">สพป.ระยอง เขต 1 | ศูนย์กลางข้อมูลสารสนเทศ ครู-นักเรียน และตารางสอน</p>
@@ -94,7 +94,7 @@
     <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 items-center relative z-10">
       <div class="md:col-span-2 space-y-3">
         <span class="inline-block bg-amber-400/20 text-amber-300 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-amber-300/30">
-          ระบบฐานข้อมูลกลางโรงเรียนวัดบ้านฉาง
+          ระบบฐานข้อมูลกลางโรงเรียนอุดมวิทยานุกูล
         </span>
         <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight leading-tight">
           ศูนย์กลางการจัดการรายชื่อนักเรียน 24 ห้องเรียน และภาระงานสอนครู
@@ -392,11 +392,11 @@
   <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
       <div class="space-y-1">
-        <p class="text-slate-200 font-bold text-sm notranslate" translate="no">โรงเรียนวัดบ้านฉาง (Wat Banchang School)</p>
+        <p class="text-slate-200 font-bold text-sm notranslate" translate="no">โรงเรียนอุดมวิทยานุกูล (Wat Banchang School)</p>
         <p class="text-[11px] notranslate" translate="no">สำนักงานเขตพื้นที่การศึกษาประถมศึกษาระยอง เขต 1 (สพป.ระยอง เขต 1)</p>
       </div>
       <div class="text-right text-[11px] space-y-1">
-        <p>© 2569 โรงเรียนวัดบ้านฉาง. All rights reserved.</p>
+        <p>© 2569 โรงเรียนอุดมวิทยานุกูล. All rights reserved.</p>
         <p class="text-slate-500">Master School Hub & Online PP.5 Central Database</p>
       </div>
     </div>
@@ -857,23 +857,23 @@
     // Preset Period Definitions
     const PERIOD_PRESETS = {
       primary: [
-        { period: 1, label: 'อนุบาล/ประถม - คาบ 1 (08:30 - 09:30)', value: '08:30 - 09:30', start: '08:30', end: '09:30' },
-        { period: 2, label: 'อนุบาล/ประถม - คาบ 2 (09:30 - 10:30)', value: '09:30 - 10:30', start: '09:30', end: '10:30' },
-        { period: 3, label: 'อนุบาล/ประถม - คาบ 3 (10:30 - 11:30)', value: '10:30 - 11:30', start: '10:30', end: '11:30' },
-        { period: 4, label: 'อนุบาล/ประถม - คาบ 4 (12:20 - 13:20)', value: '12:20 - 13:20', start: '12:20', end: '13:20' },
-        { period: 5, label: 'อนุบาล/ประถม - คาบ 5 (13:20 - 14:20)', value: '13:20 - 14:20', start: '13:20', end: '14:20' },
-        { period: 6, label: 'อนุบาล/ประถม - คาบ 6 (14:30 - 15:30)', value: '14:30 - 15:30', start: '14:30', end: '15:30' },
-        { period: 7, label: 'อนุบาล/ประถม - คาบ 7 (15:30 - 16:20)', value: '15:30 - 16:20', start: '15:30', end: '16:20' }
+        { period: 1, label: 'คาบ 1 (08:30 - 09:30)', value: '08:30 - 09:30', start: '08:30', end: '09:30' },
+        { period: 2, label: 'คาบ 2 (09:30 - 10:30)', value: '09:30 - 10:30', start: '09:30', end: '10:30' },
+        { period: 3, label: 'คาบ 3 (10:30 - 11:30)', value: '10:30 - 11:30', start: '10:30', end: '11:30' },
+        { period: 4, label: 'คาบ 4 (12:20 - 13:20)', value: '12:20 - 13:20', start: '12:20', end: '13:20' },
+        { period: 5, label: 'คาบ 5 (13:20 - 14:20)', value: '13:20 - 14:20', start: '13:20', end: '14:20' },
+        { period: 6, label: 'คาบ 6 (14:30 - 15:30)', value: '14:30 - 15:30', start: '14:30', end: '15:30' },
+        { period: 7, label: 'คาบ 7 (15:30 - 16:20)', value: '15:30 - 16:20', start: '15:30', end: '16:20' }
       ],
       secondary: [
-        { period: 1, label: 'มัธยม - คาบ 1 (08:30 - 09:20)', value: '08:30 - 09:20', start: '08:30', end: '09:20' },
-        { period: 2, label: 'มัธยม - คาบ 2 (09:20 - 10:10)', value: '09:20 - 10:10', start: '09:20', end: '10:10' },
-        { period: 3, label: 'มัธยม - คาบ 3 (10:30 - 11:20)', value: '10:30 - 11:20', start: '10:30', end: '11:20' },
-        { period: 4, label: 'มัธยม - คาบ 4 (11:20 - 12:10)', value: '11:20 - 12:10', start: '11:20', end: '12:10' },
-        { period: 5, label: 'มัธยม - คาบ 5 (13:00 - 13:50)', value: '13:00 - 13:50', start: '13:00', end: '13:50' },
-        { period: 6, label: 'มัธยม - คาบ 6 (13:50 - 14:40)', value: '13:50 - 14:40', start: '13:50', end: '14:40' },
-        { period: 7, label: 'มัธยม - คาบ 7 (14:40 - 15:30)', value: '14:40 - 15:30', start: '14:40', end: '15:30' },
-        { period: 8, label: 'มัธยม - คาบ 8 (15:30 - 16:20)', value: '15:30 - 16:20', start: '15:30', end: '16:20' }
+        { period: 1, label: 'คาบ 1 (08:30 - 09:20)', value: '08:30 - 09:20', start: '08:30', end: '09:20' },
+        { period: 2, label: 'คาบ 2 (09:20 - 10:10)', value: '09:20 - 10:10', start: '09:20', end: '10:10' },
+        { period: 3, label: 'คาบ 3 (10:30 - 11:20)', value: '10:30 - 11:20', start: '10:30', end: '11:20' },
+        { period: 4, label: 'คาบ 4 (11:20 - 12:10)', value: '11:20 - 12:10', start: '11:20', end: '12:10' },
+        { period: 5, label: 'คาบ 5 (13:00 - 13:50)', value: '13:00 - 13:50', start: '13:00', end: '13:50' },
+        { period: 6, label: 'คาบ 6 (13:50 - 14:40)', value: '13:50 - 14:40', start: '13:50', end: '14:40' },
+        { period: 7, label: 'คาบ 7 (14:40 - 15:30)', value: '14:40 - 15:30', start: '14:40', end: '15:30' },
+        { period: 8, label: 'คาบ 8 (15:30 - 16:20)', value: '15:30 - 16:20', start: '15:30', end: '16:20' }
       ]
     };
 
@@ -892,7 +892,79 @@
       s3_1: 'ชั้น ม.3/1', s3_2: 'ชั้น ม.3/2'
     };
 
-    // Helper: Build Time Preset <select> HTML
+    const SUBJECT_CATALOG = [
+      { key: 'eng_comm', name: 'ภาษาอังกฤษเพื่อการสื่อสาร', codePrefix: 'อ' },
+      { key: 'eng_base', name: 'ภาษาอังกฤษ', codePrefix: 'อ' },
+      { key: 'math', name: 'คณิตศาสตร์', codePrefix: 'ค' },
+      { key: 'sci', name: 'วิทยาศาสตร์และเทคโนโลยี', codePrefix: 'ว' },
+      { key: 'comp', name: 'วิทยาการคำนวณ', codePrefix: 'ว' },
+      { key: 'thai', name: 'ภาษาไทย', codePrefix: 'ท' },
+      { key: 'soc', name: 'สังคมศึกษา ศาสนาฯ', codePrefix: 'ส' },
+      { key: 'hist', name: 'ประวัติศาสตร์', codePrefix: 'ส' },
+      { key: 'health_pe', name: 'สุขศึกษาและพลศึกษา', codePrefix: 'พ' },
+      { key: 'art', name: 'ศิลปะ', codePrefix: 'ศ' },
+      { key: 'career', name: 'การงานอาชีพ', codePrefix: 'ง' },
+      { key: 'kinder', name: 'กิจกรรมพัฒนาผู้เรียน (ปฐมวัย)', codePrefix: 'ก' },
+      { key: 'custom', name: 'กำหนดวิชาเอง (Custom)', codePrefix: 'ว' }
+    ];
+
+    const YEAR_LEVEL_CONFIG = {
+      k1: { label: 'อนุบาล 1 (อ.1)', numCode: '01101', nameSuffix: ' (อ.1)', defaultClasses: ['k1_1', 'k1_2'] },
+      k2: { label: 'อนุบาล 2 (อ.2)', numCode: '02101', nameSuffix: ' (อ.2)', defaultClasses: ['k2_1', 'k2_2'] },
+      k3: { label: 'อนุบาล 3 (อ.3)', numCode: '03101', nameSuffix: ' (อ.3)', defaultClasses: ['k3_1', 'k3_2'] },
+      p1: { label: 'ประถมศึกษาปีที่ 1 (ป.1)', numCode: '11101', nameSuffix: ' 1', defaultClasses: ['p1_1', 'p1_2'] },
+      p2: { label: 'ประถมศึกษาปีที่ 2 (ป.2)', numCode: '12101', nameSuffix: ' 2', defaultClasses: ['p2_1', 'p2_2'] },
+      p3: { label: 'ประถมศึกษาปีที่ 3 (ป.3)', numCode: '13101', nameSuffix: ' 3', defaultClasses: ['p3_1', 'p3_2'] },
+      p4: { label: 'ประถมศึกษาปีที่ 4 (ป.4)', numCode: '14101', nameSuffix: ' 4', defaultClasses: ['p4_1', 'p4_2'] },
+      p5: { label: 'ประถมศึกษาปีที่ 5 (ป.5)', numCode: '15101', nameSuffix: ' 5', defaultClasses: ['p5_1', 'p5_2'] },
+      p6: { label: 'ประถมศึกษาปีที่ 6 (ป.6)', numCode: '16101', nameSuffix: ' 6', defaultClasses: ['p6_1', 'p6_2'] },
+      s1: { label: 'มัธยมศึกษาปีที่ 1 (ม.1)', numCode: '21101', nameSuffix: ' 1', defaultClasses: ['s1_1', 's1_2'] },
+      s2: { label: 'มัธยมศึกษาปีที่ 2 (ม.2)', numCode: '22101', nameSuffix: ' 2', defaultClasses: ['s2_1', 's2_2'] },
+      s3: { label: 'มัธยมศึกษาปีที่ 3 (ม.3)', numCode: '23101', nameSuffix: ' 3', defaultClasses: ['s3_1', 's3_2'] }
+    };
+
+    function detectSubjectAndYear(s) {
+      const code = s.code || '';
+      const name = s.name || '';
+      const classes = s.classes || [];
+
+      let yKey = 'p1';
+      if (classes.length > 0) {
+        const found = Object.keys(YEAR_LEVEL_CONFIG).find(yk => classes[0].startsWith(yk));
+        if (found) yKey = found;
+      } else if (code.length >= 3) {
+        const numPart = code.replace(/[^0-9]/g, '').slice(0, 2);
+        const map = { '01': 'k1', '02': 'k2', '03': 'k3', '11': 'p1', '12': 'p2', '13': 'p3', '14': 'p4', '15': 'p5', '16': 'p6', '21': 's1', '22': 's2', '23': 's3' };
+        if (map[numPart]) yKey = map[numPart];
+      }
+
+      let sKey = 'eng_comm';
+      if (name.includes('ภาษาอังกฤษเพื่อการสื่อสาร')) sKey = 'eng_comm';
+      else if (name.includes('ภาษาอังกฤษ')) sKey = 'eng_base';
+      else if (name.includes('คณิตศาสตร์')) sKey = 'math';
+      else if (name.includes('วิทยาการคำนวณ') || name.includes('คอมพิวเตอร์')) sKey = 'comp';
+      else if (name.includes('วิทยาศาสตร์')) sKey = 'sci';
+      else if (name.includes('ภาษาไทย')) sKey = 'thai';
+      else if (name.includes('ประวัติศาสตร์')) sKey = 'hist';
+      else if (name.includes('สังคม')) sKey = 'soc';
+      else if (name.includes('สุขศึกษา') || name.includes('พลศึกษา')) sKey = 'health_pe';
+      else if (name.includes('ศิลปะ')) sKey = 'art';
+      else if (name.includes('การงาน')) sKey = 'career';
+      else if (name.includes('ปฐมวัย')) sKey = 'kinder';
+      else if (code.startsWith('อ')) sKey = 'eng_base';
+      else if (code.startsWith('ค')) sKey = 'math';
+      else if (code.startsWith('ว')) sKey = 'sci';
+      else if (code.startsWith('ท')) sKey = 'thai';
+      else if (code.startsWith('ส')) sKey = 'soc';
+      else if (code.startsWith('พ')) sKey = 'health_pe';
+      else if (code.startsWith('ศ')) sKey = 'art';
+      else if (code.startsWith('ง')) sKey = 'career';
+      else if (code.startsWith('ก')) sKey = 'kinder';
+
+      return { subjectKey: sKey, yearLevel: yKey };
+    }
+	
+	// Helper: Build Time Preset <select> HTML
     function buildTimePresetOptionsHTML(currentTimeVal) {
       const normalizedCurrent = (currentTimeVal || '').replace(/\s+/g, ' ').trim();
       let foundMatch = false;
@@ -948,7 +1020,7 @@
       const pMatch = PERIOD_PRESETS.primary.find(p => p.value.replace(/\s/g, '') === norm);
       if (pMatch) return `คาบ ${pMatch.period} (${pMatch.value})`;
       const sMatch = PERIOD_PRESETS.secondary.find(p => p.value.replace(/\s/g, '') === norm);
-      if (sMatch) return `คาบ ${sMatch.period} มัธยม (${sMatch.value})`;
+      if (sMatch) return `คาบ ${sMatch.period} (${sMatch.value})`;
       return timeStr;
     }
 
@@ -958,7 +1030,7 @@
         id: "T101",
         name: "ครูวิชัย ใจดี",
         dept: "คณิตศาสตร์",
-        contact: "wichai@watbanchang.ac.th",
+        contact: "wichai@udomwit.ac.th",
         subjects: [
           { code: "ค11101", name: "คณิตศาสตร์ 1", classes: ["p1_1", "p1_2"] },
           { code: "ค12101", name: "คณิตศาสตร์ 2", classes: ["p2_1", "p2_2"] }
@@ -974,7 +1046,7 @@
         id: "T102",
         name: "ครูวรรณา ศรีสุข",
         dept: "ภาษาต่างประเทศ (อังกฤษ)",
-        contact: "wanna@watbanchang.ac.th",
+        contact: "wanna@udomwit.ac.th",
         subjects: [
           { code: "อ11101", name: "ภาษาอังกฤษ 1", classes: ["p1_1", "p1_2"] },
           { code: "อ12101", name: "ภาษาอังกฤษ 2", classes: ["p2_1", "p2_2"] }
@@ -1015,7 +1087,7 @@
         date: '2026-05-18',
         author: 'งานประชาสัมพันธ์โรงเรียน',
         imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=700&q=80',
-        content: 'โรงเรียนวัดบ้านฉางจัดพิธีไหว้ครูประจำปีการศึกษา 2569 เพื่อให้นักเรียนได้แสดงความกตัญญูกตเวทิตาต่อครูบาอาจารย์'
+        content: 'โรงเรียนอุดมวิทยานุกูลจัดพิธีไหว้ครูประจำปีการศึกษา 2569 เพื่อให้นักเรียนได้แสดงความกตัญญูกตเวทิตาต่อครูบาอาจารย์'
       },
       {
         id: 'post_2',
@@ -1126,7 +1198,7 @@
       });
 
       const masterPayload = {
-        schoolName: "โรงเรียนวัดบ้านฉาง",
+        schoolName: "โรงเรียนอุดมวิทยานุกูล",
         district: "สพป.ระยอง เขต 1",
         academicYear: "2569",
         lastUpdated: new Date().toISOString(),
@@ -1293,19 +1365,34 @@
       container.innerHTML = '';
 
       if (activeModalSubjects.length === 0) {
-        container.innerHTML = `<p class="text-slate-400 italic text-[11px]">ยังไม่มีวิชาสอน กรุณากด "เพิ่มวิชาสอน"</p>`;
+        container.innerHTML = `<p class="text-slate-400 italic text-[11px]">ยังไม่มีวิชาสอน กรุณากด "➕ เพิ่มวิชาสอน"</p>`;
         return;
       }
 
       activeModalSubjects.forEach((s, sIdx) => {
+        if (!s.subjectKey || !s.yearLevel) {
+          const detected = detectSubjectAndYear(s);
+          s.subjectKey = s.subjectKey || detected.subjectKey;
+          s.yearLevel = s.yearLevel || detected.yearLevel;
+        }
+
         const div = document.createElement('div');
-        div.className = 'p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2';
+        div.className = 'p-3.5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3';
+
+        let subjectOpts = SUBJECT_CATALOG.map(sub =>
+          `<option value="${sub.key}" ${s.subjectKey === sub.key ? 'selected' : ''}>${sub.name} (${sub.codePrefix})</option>`
+        ).join('');
+
+        let yearOpts = Object.keys(YEAR_LEVEL_CONFIG).map(yk =>
+          `<option value="${yk}" ${s.yearLevel === yk ? 'selected' : ''}>${YEAR_LEVEL_CONFIG[yk].label}</option>`
+        ).join('');
 
         let classCheckboxes = '';
         Object.keys(CLASS_LABELS).forEach(cKey => {
           const isChecked = (s.classes || []).includes(cKey) ? 'checked' : '';
+          const isMatchingLevel = s.yearLevel && cKey.startsWith(s.yearLevel);
           classCheckboxes += `
-            <label class="inline-flex items-center space-x-1 text-[11px] bg-white border border-slate-200 px-2 py-0.5 rounded cursor-pointer hover:border-indigo-400 notranslate" translate="no">
+            <label class="inline-flex items-center space-x-1 text-[11px] px-2 py-0.5 rounded cursor-pointer border notranslate ${isMatchingLevel ? 'bg-indigo-50/80 border-indigo-300 text-indigo-950 font-bold' : 'bg-white border-slate-200 text-slate-700 hover:border-indigo-300'}" translate="no">
               <input type="checkbox" ${isChecked} onchange="toggleSubjectClass(${sIdx}, '${cKey}', this.checked)" class="rounded text-indigo-600">
               <span>${CLASS_LABELS[cKey]}</span>
             </label>
@@ -1313,16 +1400,57 @@
         });
 
         div.innerHTML = `
-          <div class="flex items-center justify-between gap-2">
-            <div class="grid grid-cols-2 gap-2 flex-1">
-              <input type="text" value="${s.code}" placeholder="รหัสวิชา (เช่น ค11101)" onchange="activeModalSubjects[${sIdx}].code = this.value.trim()" class="border border-slate-300 rounded p-1.5 font-semibold text-xs bg-white notranslate" translate="no">
-              <input type="text" value="${s.name}" placeholder="ชื่อวิชา (เช่น คณิตศาสตร์)" onchange="activeModalSubjects[${sIdx}].name = this.value.trim()" class="border border-slate-300 rounded p-1.5 font-semibold text-xs bg-white notranslate" translate="no">
-            </div>
-            <button onclick="removeSubjectRow(${sIdx})" class="text-red-500 hover:text-red-700 font-bold px-2">✕ ลบ</button>
+          <div class="flex items-center justify-between pb-1 border-b border-slate-200/80">
+            <span class="font-bold text-indigo-950 text-xs flex items-center gap-1.5">
+              <span class="w-5 h-5 rounded-full bg-indigo-700 text-white flex items-center justify-center text-[10px]">${sIdx + 1}</span>
+              <span>กำหนดวิชาและระดับชั้น</span>
+            </span>
+            <button onclick="removeSubjectRow(${sIdx})" class="text-rose-500 hover:text-rose-700 font-bold text-xs px-2 py-0.5 rounded hover:bg-rose-50 flex items-center gap-1">
+              🗑️ ลบวิชานี้
+            </button>
           </div>
+
+          <!-- Step 1 & 2: Select Subject, then Year Level -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div>
+              <label class="block font-semibold text-slate-700 text-[11px] mb-1">1. เลือกวิชา (Select Subject):</label>
+              <select onchange="onSubjectSelectChange(${sIdx}, this.value)" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs font-semibold outline-none focus:border-indigo-500">
+                ${subjectOpts}
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold text-slate-700 text-[11px] mb-1">2. เลือกระดับชั้นที่สอน (Year Level):</label>
+              <select onchange="onYearLevelSelectChange(${sIdx}, this.value)" class="w-full border border-slate-300 rounded-lg p-2 bg-white text-xs font-semibold outline-none focus:border-indigo-500">
+                ${yearOpts}
+              </select>
+            </div>
+          </div>
+
+          <!-- Step 3: Auto-Generated Code & Name -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 bg-white p-2.5 rounded-xl border border-indigo-100">
+            <div>
+              <label class="block font-bold text-indigo-900 text-[11px] mb-1 flex items-center justify-between">
+                <span>3. รหัสวิชา (Subject Code - สร้างอัตโนมัติ):</span>
+                <span class="text-[10px] text-slate-400 font-normal">แก้ไขได้</span>
+              </label>
+              <input type="text" value="${s.code || ''}" placeholder="เช่น อ11101" onchange="activeModalSubjects[${sIdx}].code = this.value.trim()" class="w-full border border-slate-300 rounded-lg p-1.5 font-mono font-bold text-xs bg-indigo-50/40 text-indigo-950 outline-none focus:border-indigo-500 notranslate" translate="no">
+            </div>
+            <div>
+              <label class="block font-bold text-indigo-900 text-[11px] mb-1 flex items-center justify-between">
+                <span>ชื่อวิชา (Subject Name):</span>
+                <span class="text-[10px] text-slate-400 font-normal">แก้ไขได้</span>
+              </label>
+              <input type="text" value="${s.name || ''}" placeholder="ชื่อวิชา" onchange="activeModalSubjects[${sIdx}].name = this.value.trim()" class="w-full border border-slate-300 rounded-lg p-1.5 font-semibold text-xs bg-white outline-none focus:border-indigo-500 notranslate" translate="no">
+            </div>
+          </div>
+
+          <!-- Step 4: Class Checkboxes -->
           <div>
-            <label class="block text-[11px] font-semibold text-slate-600 mb-1">เลือกห้องเรียนที่สอนวิชานี้ (เลือกได้หลายห้อง):</label>
-            <div class="flex flex-wrap gap-1 max-h-24 overflow-y-auto custom-scroll p-1 bg-white border border-slate-200 rounded">
+            <div class="flex items-center justify-between mb-1">
+              <label class="block text-[11px] font-semibold text-slate-700">ห้องเรียนที่สอนวิชานี้ (เลือกได้หลายห้อง):</label>
+              <span class="text-[10px] text-indigo-600 font-medium">ห้องที่ตรงกับระดับชั้นจะถูกเลือกและไฮไลต์</span>
+            </div>
+            <div class="flex flex-wrap gap-1 max-h-24 overflow-y-auto custom-scroll p-1 bg-white border border-slate-200 rounded-lg">
               ${classCheckboxes}
             </div>
           </div>
@@ -1331,11 +1459,44 @@
       });
     }
 
+    function onSubjectSelectChange(sIdx, newSubKey) {
+      const s = activeModalSubjects[sIdx];
+      s.subjectKey = newSubKey;
+      const sub = SUBJECT_CATALOG.find(item => item.key === newSubKey);
+      const year = YEAR_LEVEL_CONFIG[s.yearLevel || 'p1'];
+      if (sub && sub.key !== 'custom') {
+        s.code = sub.codePrefix + year.numCode;
+        s.name = sub.name + year.nameSuffix;
+      }
+      renderModalSubjectsList();
+    }
+
+    function onYearLevelSelectChange(sIdx, newYearKey) {
+      const s = activeModalSubjects[sIdx];
+      s.yearLevel = newYearKey;
+      const sub = SUBJECT_CATALOG.find(item => item.key === (s.subjectKey || 'eng_comm'));
+      const year = YEAR_LEVEL_CONFIG[newYearKey];
+      if (year && year.defaultClasses) {
+        s.classes = [...year.defaultClasses];
+      }
+      if (sub && sub.key !== 'custom') {
+        s.code = sub.codePrefix + year.numCode;
+        s.name = sub.name + year.nameSuffix;
+      }
+      renderModalSubjectsList();
+    }
+
     function addTeacherSubjectRow() {
+      const defaultSubKey = 'eng_comm';
+      const defaultYearKey = 'p1';
+      const sub = SUBJECT_CATALOG.find(item => item.key === defaultSubKey);
+      const year = YEAR_LEVEL_CONFIG[defaultYearKey];
       activeModalSubjects.push({
-        code: "ว" + (activeModalSubjects.length + 1) + "1101",
-        name: "วิชาใหม่ " + (activeModalSubjects.length + 1),
-        classes: ["p1_1"]
+        subjectKey: defaultSubKey,
+        yearLevel: defaultYearKey,
+        code: sub.codePrefix + year.numCode,
+        name: sub.name + year.nameSuffix,
+        classes: [...year.defaultClasses]
       });
       renderModalSubjectsList();
     }
@@ -2085,7 +2246,7 @@
             <div class="p-4 space-y-2">
               <div class="flex items-center justify-between text-[11px] text-slate-400">
                 <span>📅 <span class="notranslate" translate="no">${formatThaiDate(post.date)}</span></span>
-                <span>✍️ <span>${post.author || 'โรงเรียนวัดบ้านฉาง'}</span></span>
+                <span>✍️ <span>${post.author || 'โรงเรียนอุดมวิทยานุกูล'}</span></span>
               </div>
               <h4 class="font-bold text-slate-900 text-sm leading-snug">${post.title}</h4>
               <p class="text-slate-600 text-xs line-clamp-3 leading-relaxed">${post.content}</p>
