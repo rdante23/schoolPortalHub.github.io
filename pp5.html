@@ -16,8 +16,8 @@
       font-family: 'JetBrains Mono', monospace;
     }
     .custom-scroll::-webkit-scrollbar {
-      height: 6px;
-      width: 6px;
+      height: 7px;
+      width: 7px;
     }
     .custom-scroll::-webkit-scrollbar-thumb {
       background: #cbd5e1;
@@ -25,6 +25,13 @@
     }
     .custom-scroll::-webkit-scrollbar-thumb:hover {
       background: #94a3b8;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.2s ease-out forwards;
     }
     @media print {
       body * {
@@ -82,7 +89,6 @@
         <div class="flex items-center space-x-1 bg-indigo-800/90 px-2 py-1 rounded-lg border border-indigo-700">
           <span class="text-xs text-indigo-200">ครูผู้สอน:</span>
           <select id="teacherProfileSelect" onchange="switchTeacherProfile(this.value)" class="bg-indigo-950 text-white text-xs font-semibold rounded px-2 py-1 outline-none border border-indigo-600 cursor-pointer max-w-[140px] truncate notranslate" translate="no">
-            <!-- Populated dynamically -->
           </select>
         </div>
 
@@ -90,12 +96,11 @@
         <div class="flex items-center space-x-1 bg-indigo-800/90 px-2 py-1 rounded-lg border border-indigo-700">
           <span class="text-xs text-amber-300 font-bold">ชุดวิชา-ห้อง:</span>
           <select id="workloadSetSelect" onchange="switchWorkloadSet(this.value)" class="bg-indigo-950 text-amber-200 text-xs font-bold rounded px-2 py-1 outline-none border border-indigo-600 cursor-pointer max-w-[220px] truncate notranslate" translate="no">
-            <!-- Populated dynamically -->
           </select>
           <button onclick="openManageWorkloadsModal()" class="text-amber-300 hover:text-white px-1 font-bold text-xs" title="จัดการชุดวิชาที่สอน">⚙️</button>
         </div>
 
-                <!-- Link Back to Master School Hub -->
+        <!-- Link Back to Master School Hub -->
         <a href="index.html" class="px-2.5 py-1.5 bg-indigo-800/90 hover:bg-indigo-700 text-indigo-100 hover:text-white rounded-lg text-xs font-bold border border-indigo-600 flex items-center gap-1 shadow transition">
           🏫 <span>กลับหน้าหลัก (Hub)</span>
         </a>
@@ -152,7 +157,7 @@
         🎯 <span>ประเมินตัวชี้วัด</span>
       </button>
       <button onclick="switchTab('traits')" id="tabBtn-traits" class="py-3 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5 whitespace-nowrap">
-        ⭐ <span>คุณลักษณะ & อ่านคิดเขียน</span>
+        ⭐ <span>คุณลักษณะ 9 ประการ & อ่านคิดเขียน</span>
       </button>
       <button onclick="switchTab('report')" id="tabBtn-report" class="py-3 px-3 border-b-2 border-transparent text-slate-500 hover:text-slate-800 flex items-center gap-1.5 whitespace-nowrap">
         📄 <span>พิมพ์ ปพ.5 (A4)</span>
@@ -163,7 +168,9 @@
   <!-- MAIN APP CONTAINER -->
   <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full">
 
-    <!-- VIEW 1: ROSTER -->
+    <!-- ===================================================================
+         VIEW 1: ROSTER
+         =================================================================== -->
     <div id="view-roster" class="tab-content">
       <div class="flex flex-wrap items-center justify-between mb-4 gap-3">
         <div>
@@ -204,18 +211,25 @@
       </div>
     </div>
 
-    <!-- VIEW 2: ATTENDANCE -->
+    <!-- ===================================================================
+         VIEW 2: ATTENDANCE (WITH EDIT CLASS SCHEDULE & DAILY ATTENDANCE SHEET)
+         =================================================================== -->
     <div id="view-attendance" class="tab-content hidden">
       <div class="flex flex-wrap items-center justify-between mb-4 gap-3">
         <div>
           <h2 class="text-base sm:text-lg font-bold text-slate-800">บันทึกเวลาเรียนรายเดือนและรายวัน (Attendance Register)</h2>
-          <p class="text-xs text-slate-500">บันทึกเวลาเรียนเฉพาะวิชานี้ เกณฑ์เวลาเรียนตามหลักสูตรไม่น้อยกว่าร้อยละ 80</p>
+          <p class="text-xs text-slate-500" id="attendanceScheduleSubtitle">ตารางสอนปัจจุบัน: จันทร์ (1 ชม.), พุธ (1 ชม.), ศุกร์ (2 ชม.) | เกณฑ์เวลาเรียนไม่น้อยกว่าร้อยละ 80</p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
-          <div class="flex items-center gap-1 bg-white p-1 rounded-lg border border-slate-300">
-            <span class="text-xs text-slate-500 pl-1">เลือกเดือน:</span>
-            <select id="quickMonthSelect" class="text-xs bg-slate-50 border border-slate-200 rounded px-2 py-1 outline-none font-medium">
-              <optgroup label="ภาคเรียนที่ 1">
+          <!-- Edit Class Schedule Button (Restored from pp5_good_Nov7.html) -->
+          <button onclick="openScheduleModal()" class="px-3.5 py-1.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs shadow transition flex items-center gap-1.5">
+            🗓️ <span>แก้ไขตารางสอน (Edit Class Schedule)</span>
+          </button>
+
+          <div class="flex items-center gap-1.5 bg-white p-1 rounded-lg border border-slate-300 shadow-sm">
+            <span class="text-xs text-slate-500 pl-1.5 font-semibold">เลือกเดือน:</span>
+            <select id="quickMonthSelect" class="text-xs bg-slate-50 border border-slate-200 rounded px-2 py-1 outline-none font-semibold">
+              <optgroup label="ภาคเรียนที่ 1 (Semester 1)">
                 <option value="may">พฤษภาคม (Term 1)</option>
                 <option value="jun">มิถุนายน (Term 1)</option>
                 <option value="jul">กรกฎาคม (Term 1)</option>
@@ -223,7 +237,7 @@
                 <option value="sep">กันยายน (Term 1)</option>
                 <option value="oct">ตุลาคม (Term 1)</option>
               </optgroup>
-              <optgroup label="ภาคเรียนที่ 2">
+              <optgroup label="ภาคเรียนที่ 2 (Semester 2)">
                 <option value="nov">พฤศจิกายน (Term 2)</option>
                 <option value="dec">ธันวาคม (Term 2)</option>
                 <option value="jan">มกราคม (Term 2)</option>
@@ -232,8 +246,8 @@
                 <option value="apr">เมษายน (Term 2)</option>
               </optgroup>
             </select>
-            <button onclick="openMonthlySheetModal(document.getElementById('quickMonthSelect').value)" class="px-2.5 py-1 bg-indigo-700 hover:bg-indigo-600 text-white rounded text-xs font-semibold shadow">
-              เปิดตารางรายวัน »
+            <button onclick="openMonthlySheetModal(document.getElementById('quickMonthSelect').value)" class="px-3 py-1 bg-emerald-700 hover:bg-emerald-600 text-white rounded text-xs font-bold shadow transition">
+              📋 ตารางเช็กชื่อรายวัน »
             </button>
           </div>
         </div>
@@ -255,18 +269,18 @@
                 <th rowspan="2" class="py-2 px-2 w-20">ผลประเมิน</th>
               </tr>
               <tr class="bg-slate-100/80 text-[11px] text-slate-600 border-b border-slate-200">
-                <th class="py-1 px-1 border-r border-slate-200 w-10">พ.ค.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">มิ.ย.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">ก.ค.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">ส.ค.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">ก.ย.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">ต.ค.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">พ.ย.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">ธ.ค.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">ม.ค.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">ก.พ.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">มี.ค.</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-10">เม.ย.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-blue-100" onclick="openMonthlySheetModal('may')" title="คลิกเพื่อเช็กชื่อเดือนพฤษภาคม">พ.ค.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-blue-100" onclick="openMonthlySheetModal('jun')" title="คลิกเพื่อเช็กชื่อเดือนมิถุนายน">มิ.ย.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-blue-100" onclick="openMonthlySheetModal('jul')" title="คลิกเพื่อเช็กชื่อเดือนกรกฎาคม">ก.ค.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-blue-100" onclick="openMonthlySheetModal('aug')" title="คลิกเพื่อเช็กชื่อเดือนสิงหาคม">ส.ค.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-blue-100" onclick="openMonthlySheetModal('sep')" title="คลิกเพื่อเช็กชื่อเดือนกันยายน">ก.ย.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-blue-100" onclick="openMonthlySheetModal('oct')" title="คลิกเพื่อเช็กชื่อเดือนตุลาคม">ต.ค.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-amber-100" onclick="openMonthlySheetModal('nov')" title="คลิกเพื่อเช็กชื่อเดือนพฤศจิกายน">พ.ย.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-amber-100" onclick="openMonthlySheetModal('dec')" title="คลิกเพื่อเช็กชื่อเดือนธันวาคม">ธ.ค.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-amber-100" onclick="openMonthlySheetModal('jan')" title="คลิกเพื่อเช็กชื่อเดือนมกราคม">ม.ค.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-amber-100" onclick="openMonthlySheetModal('feb')" title="คลิกเพื่อเช็กชื่อเดือนกุมภาพันธ์">ก.พ.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-amber-100" onclick="openMonthlySheetModal('mar')" title="คลิกเพื่อเช็กชื่อเดือนมีนาคม">มี.ค.</th>
+                <th class="py-1 px-1 border-r border-slate-200 w-10 cursor-pointer hover:bg-amber-100" onclick="openMonthlySheetModal('apr')" title="คลิกเพื่อเช็กชื่อเดือนเมษายน">เม.ย.</th>
               </tr>
             </thead>
             <tbody id="attendanceTableBody" class="divide-y divide-slate-100"></tbody>
@@ -275,7 +289,9 @@
       </div>
     </div>
 
-    <!-- VIEW 3: GRADING (70:10:20) -->
+    <!-- ===================================================================
+         VIEW 3: GRADING (70:10:20)
+         =================================================================== -->
     <div id="view-grading" class="tab-content hidden">
       <div class="flex flex-wrap items-center justify-between mb-4 gap-3">
         <div>
@@ -292,7 +308,7 @@
               📊 เทอม 2
             </button>
           </div>
-          <button onclick="openGradingSheetModal(1)" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg text-xs shadow transition flex items-center gap-1.5">
+          <button onclick="openGradingSheetModal(1)" class="px-3.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg text-xs shadow transition flex items-center gap-1.5">
             📝 <span>ตารางคะแนน เทอม 1 (70:10:20)</span>
           </button>
           <button onclick="openGradingSheetModal(2)" class="px-3.5 py-1.5 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded-lg text-xs shadow transition flex items-center gap-1.5">
@@ -331,22 +347,36 @@
       </div>
     </div>
 
-    <!-- VIEW 4: INDICATORS ASSESSMENT -->
-    <div id="view-indicators" class="tab-content hidden">
-      <div class="flex flex-wrap items-center justify-between mb-4 gap-3">
+    <!-- ===================================================================
+         VIEW 4: INDICATORS ASSESSMENT (ประเมินตัวชี้วัด - EDIT LEVEL ONLY)
+         =================================================================== -->
+    <div id="view-indicators" class="tab-content hidden space-y-3">
+      <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 class="text-base sm:text-lg font-bold text-slate-800">ประเมินตัวชี้วัดและผลการเรียนรู้ (Indicator Assessment)</h2>
-          <p class="text-xs text-slate-500">ระดับคุณภาพ: 3 (80% ขึ้นไป) | 2 (60% - 79.99%) | 1 (40% - 59.99%) | 0 (ต่ำกว่า 40%)</p>
+          <p class="text-xs text-slate-500">ระดับคุณภาพ: 3 (80% ขึ้นไป - ดีเยี่ยม) | 2 (60% - 79.99% - ดี) | 1 (40% - 59.99% - ผ่าน) | 0 (ต่ำกว่า 40% - ไม่ผ่าน)</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <div class="inline-flex rounded-lg bg-slate-200 p-0.5 text-xs font-semibold">
-            <button id="indTermBtn1" onclick="switchIndicatorTerm(1)" class="px-3 py-1 rounded bg-indigo-700 text-white shadow-sm transition">ภาคเรียนที่ 1</button>
+            <button id="indTermBtn1" onclick="switchIndicatorTerm(1)" class="px-3 py-1 rounded bg-indigo-900 text-white shadow-sm transition">ภาคเรียนที่ 1</button>
             <button id="indTermBtn2" onclick="switchIndicatorTerm(2)" class="px-3 py-1 rounded text-slate-700 hover:text-black transition">ภาคเรียนที่ 2</button>
           </div>
-          <button onclick="openGradingSheetModal(currentIndicatorTerm)" class="px-3 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-semibold shadow transition">
-            ✏️ แก้ไขคะแนนตัวชี้วัด
+          <button onclick="openIndicatorLevelOverrideModal()" class="px-3.5 py-1.5 bg-indigo-800 hover:bg-indigo-700 text-white rounded-lg text-xs font-bold shadow transition flex items-center gap-1.5">
+            ✏️ <span>แก้ไขระดับตัวชี้วัด (Override Level)</span>
           </button>
         </div>
+      </div>
+
+      <!-- Criteria Legend Banner (Matches ประเมินตัวชี้วัด.JPG) -->
+      <div class="bg-white rounded-xl border border-slate-200 px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs shadow-2xs">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="font-bold text-slate-700">📌 เกณฑ์ระดับคุณภาพการประเมินตัวชี้วัด:</span>
+          <span class="px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-900 font-bold text-[11px]">3 = ร้อยละ 80 ขึ้นไป (ดีเยี่ยม)</span>
+          <span class="px-2.5 py-0.5 rounded-full bg-sky-100 text-sky-900 font-bold text-[11px]">2 = ร้อยละ 60 - 79.99 (ดี)</span>
+          <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 font-bold text-[11px]">1 = ร้อยละ 40 - 59.99 (ผ่าน)</span>
+          <span class="px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-900 font-bold text-[11px]">0 = ต่ำกว่าร้อยละ 40 (ไม่ผ่าน)</span>
+        </div>
+        <span class="text-[11px] text-slate-400 italic">* คะแนนคำนวณจากตารางคะแนน (คลิกที่ช่อง "ระดับ" เพื่อแก้ไขระดับคุณภาพได้โดยตรง)</span>
       </div>
 
       <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
@@ -354,49 +384,78 @@
       </div>
     </div>
 
-    <!-- VIEW 5: TRAITS -->
-    <div id="view-traits" class="tab-content hidden">
-      <div class="flex flex-wrap items-center justify-between mb-4 gap-3">
-        <div>
-          <h2 class="text-base sm:text-lg font-bold text-slate-800">คุณลักษณะอันพึงประสงค์ 8 ประการ และการอ่าน คิดวิเคราะห์ เขียน</h2>
-          <p class="text-xs text-slate-500">ระดับคุณภาพ: 3 (ดีเยี่ยม), 2 (ดี), 1 (ผ่าน), 0 (ไม่ผ่าน)</p>
+    <!-- ===================================================================
+         VIEW 5: TRAITS (9 DESIRABLE TRAITS) & READING/ANALYTICAL THINKING/WRITING
+         =================================================================== -->
+    <div id="view-traits" class="tab-content hidden space-y-6">
+      
+      <!-- PART A: คุณลักษณะอันพึงประสงค์ 9 ประการ -->
+      <div class="space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800">คุณลักษณะอันพึงประสงค์ 9 ประการ (Desirable Characteristics)</h2>
+            <p class="text-xs text-slate-500">ระดับคุณภาพ: 3 (ดีเยี่ยม) | 2 (ดี) | 1 (ผ่าน) | 0 (ไม่ผ่าน) — คลิกที่ตัวเลขเพื่อเปลี่ยนระดับคุณภาพ</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="setAllTraitsLevel(3)" class="px-3 py-1 bg-purple-700 hover:bg-purple-600 text-white rounded-lg text-xs font-bold shadow transition">
+              ⭐ ตั้งค่า 3 (ดีเยี่ยม) ทั้งห้อง
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+          <div class="overflow-x-auto custom-scroll">
+            <table class="w-full text-center text-xs border-collapse">
+              <thead class="bg-slate-50 border-b border-slate-200 text-slate-700 font-semibold">
+                <tr>
+                  <th rowspan="2" class="py-2 px-2 border-r border-slate-200 w-10">ที่</th>
+                  <th rowspan="2" class="py-2 px-3 border-r border-slate-200 text-left min-w-[180px]">ชื่อ - นามสกุล</th>
+                  <th colspan="9" class="py-1.5 px-2 border-r border-slate-200 bg-purple-100/80 text-purple-950 font-bold">คุณลักษณะอันพึงประสงค์ 9 ประการ</th>
+                  <th rowspan="2" class="py-2 px-2 border-r border-slate-200 bg-purple-200/70 font-bold text-purple-950 w-24">สรุประดับ</th>
+                  <th rowspan="2" class="py-2 px-2 bg-purple-50 font-bold text-purple-950 w-24">ผลการประเมิน</th>
+                </tr>
+                <tr class="bg-slate-100/80 text-[10px] text-slate-700 border-b border-slate-200 leading-tight">
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[74px]" title="1. รักชาติ ศาสน์ กษัตริย์">1. รักชาติ ศาสน์ กษัตริย์</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[68px]" title="2. ซื่อสัตย์สุจริต">2. ซื่อสัตย์สุจริต</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[60px]" title="3. มีวินัย">3. มีวินัย</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[64px]" title="4. ใฝ่เรียนรู้">4. ใฝ่เรียนรู้</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[72px]" title="5. อยู่อย่างพอเพียง">5. อยู่อย่างพอเพียง</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[76px]" title="6. มุ่งมั่นในการทำงาน">6. มุ่งมั่นในการทำงาน</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[72px]" title="7. รักความเป็นไทย">7. รักความเป็นไทย</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[72px]" title="8. มีจิตสาธารณะ">8. มีจิตสาธารณะ</th>
+                  <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[82px]" title="9. ปฎิบัติตามกฏของลูกเสือ">9. ปฎิบัติตามกฏของลูกเสือ</th>
+                </tr>
+              </thead>
+              <tbody id="traitsTableBody" class="divide-y divide-slate-100"></tbody>
+            </table>
+          </div>
         </div>
       </div>
-      <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
-        <div class="overflow-x-auto custom-scroll">
-          <table class="w-full text-center text-xs border-collapse">
-            <thead class="bg-slate-50 border-b border-slate-200 text-slate-700 font-semibold">
-              <tr>
-                <th rowspan="2" class="py-2 px-2 border-r border-slate-200 w-10">ที่</th>
-                <th rowspan="2" class="py-2 px-3 border-r border-slate-200 text-left min-w-[170px]">ชื่อ - นามสกุล</th>
-                <th colspan="8" class="py-1 px-1 border-r border-slate-200 bg-purple-50 text-purple-900 font-bold">คุณลักษณะอันพึงประสงค์ 8 ประการ</th>
-                <th rowspan="2" class="py-2 px-2 border-r border-slate-200 bg-purple-100 font-bold text-purple-950 w-20">สรุปคุณลักษณะ</th>
-                <th colspan="5" class="py-1 px-1 border-r border-slate-200 bg-teal-50 text-teal-900 font-bold">การอ่าน คิดวิเคราะห์ และเขียน (5 ข้อ)</th>
-                <th rowspan="2" class="py-2 px-2 bg-teal-100 font-bold text-teal-950 w-20">สรุปอ่านคิดเขียน</th>
-              </tr>
-              <tr class="bg-slate-100/70 text-[11px] text-slate-600 border-b border-slate-200">
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="รักชาติ ศาสน์ กษัตริย์">1</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="ซื่อสัตย์สุจริต">2</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="มีวินัย">3</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="ใฝ่เรียนรู้">4</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="อยู่อย่างพอเพียง">5</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="มุ่งมั่นในการทำงาน">6</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="รักความเป็นไทย">7</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="มีจิตสาธารณะ">8</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="การอ่าน">1</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="การทำความเข้าใจ">2</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="การวิเคราะห์">3</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="การสังเคราะห์">4</th>
-                <th class="py-1 px-1 border-r border-slate-200 w-8" title="การเขียนสื่อความ">5</th>
-              </tr>
-            </thead>
-            <tbody id="traitsTableBody" class="divide-y divide-slate-100"></tbody>
-          </table>
+
+      <!-- PART B: การอ่าน คิดวิเคราะห์ และเขียน (Matches การอ่าน คิดวิเคราะห์ และเขียน.JPG) -->
+      <div class="space-y-3 pt-2 border-t border-slate-200">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800">การอ่าน คิดวิเคราะห์ และเขียน (Reading, Analytical Thinking & Writing)</h2>
+            <p class="text-xs text-slate-500">ประเมิน 3 ด้านหลัก (การอ่าน, การคิดวิเคราะห์, การเขียนสื่อความ) ภาคเรียนละ 4 ครั้ง — คลิกที่ช่องระดับคุณภาพ (3, 2, 1, 0) เพื่อแก้ไขได้โดยตรง</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <button onclick="setAllRTWLevel(3)" class="px-3 py-1 bg-teal-700 hover:bg-teal-600 text-white rounded-lg text-xs font-bold shadow transition">
+              ⭐ ตั้งค่า 3 (ดีเยี่ยม) ทั้งห้อง
+            </button>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-xl shadow-sm border border-slate-300 overflow-hidden">
+          <div class="overflow-x-auto custom-scroll" id="rtwTableContainer"></div>
         </div>
       </div>
+
     </div>
 
-    <!-- VIEW 6: PRINTABLE A4 REPORT (ปพ.5) -->
+    <!-- ===================================================================
+         VIEW 6: PRINTABLE A4 REPORT (ปพ.5)
+         =================================================================== -->
     <div id="view-report" class="tab-content hidden">
       <div class="flex flex-wrap items-center justify-between mb-4 gap-3 no-print">
         <div>
@@ -438,7 +497,7 @@
               <th class="border-r border-slate-900 py-1.5 px-1 w-14">เทอม 2 (100)</th>
               <th class="border-r border-slate-900 py-1.5 px-1 w-14">เฉลี่ยทั้งปี</th>
               <th class="border-r border-slate-900 py-1.5 px-1 w-12">เกรด</th>
-              <th class="border-r border-slate-900 py-1.5 px-1 w-16">คุณลักษณะ</th>
+              <th class="border-r border-slate-900 py-1.5 px-1 w-16">คุณลักษณะ (9)</th>
               <th class="py-1.5 px-1 w-16">อ่านคิดเขียน</th>
             </tr>
           </thead>
@@ -462,6 +521,295 @@
 
   </main>
 
+  <!-- =====================================================================
+       MODAL A: ASSIGNING TEACHING DAYS OF THE WEEK (EDIT CLASS SCHEDULE)
+       Matches Assigning_Teaching_Days_of _the_Week.JPG & Edit_the_class_schedule.JPG
+       ===================================================================== -->
+  <div id="scheduleModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[92vh]">
+      <div class="bg-amber-400 px-5 py-3.5 text-slate-950 flex justify-between items-center">
+        <h3 class="font-extrabold text-sm flex items-center gap-2">
+          📅 <span>กำหนดวันสอนประจำสัปดาห์ (Assigning teaching days of the week)</span>
+        </h3>
+        <button onclick="closeScheduleModal()" class="text-slate-800 hover:text-black text-lg font-bold leading-none">✕</button>
+      </div>
+      <div class="p-5 space-y-4 text-xs overflow-y-auto custom-scroll flex-1">
+        <p class="text-slate-600 leading-relaxed">
+          เลือกวันในสัปดาห์และระบุจำนวนชั่วโมงที่สอนต่อวัน ระบบจะสร้างตารางเช็กชื่อเฉพาะวันที่สอนจริงให้อัตโนมัติ
+        </p>
+
+        <!-- 6 Days Grid (Mon - Sat) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <!-- Monday -->
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50/60">
+            <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+              <input type="checkbox" id="schedDay-mon" onchange="toggleSchedDayInput('mon')" class="w-4 h-4 rounded text-indigo-600">
+              <span>🟡 วันจันทร์ (Monday)</span>
+            </label>
+            <div class="flex items-center gap-1.5">
+              <input type="number" id="schedHrs-mon" min="1" max="8" value="1" class="w-12 text-center border border-slate-300 rounded-lg p-1 font-bold bg-white notranslate" translate="no">
+              <span class="text-slate-500">ชม.</span>
+            </div>
+          </div>
+
+          <!-- Tuesday -->
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50/60">
+            <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+              <input type="checkbox" id="schedDay-tue" onchange="toggleSchedDayInput('tue')" class="w-4 h-4 rounded text-indigo-600">
+              <span>🌸 วันอังคาร (Tuesday)</span>
+            </label>
+            <div class="flex items-center gap-1.5">
+              <input type="number" id="schedHrs-tue" min="1" max="8" value="1" class="w-12 text-center border border-slate-300 rounded-lg p-1 font-bold bg-white notranslate" translate="no">
+              <span class="text-slate-500">ชม.</span>
+            </div>
+          </div>
+
+          <!-- Wednesday -->
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50/60">
+            <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+              <input type="checkbox" id="schedDay-wed" onchange="toggleSchedDayInput('wed')" class="w-4 h-4 rounded text-indigo-600">
+              <span>🟢 วันพุธ (Wednesday)</span>
+            </label>
+            <div class="flex items-center gap-1.5">
+              <input type="number" id="schedHrs-wed" min="1" max="8" value="1" class="w-12 text-center border border-slate-300 rounded-lg p-1 font-bold bg-white notranslate" translate="no">
+              <span class="text-slate-500">ชม.</span>
+            </div>
+          </div>
+
+          <!-- Thursday -->
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50/60">
+            <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+              <input type="checkbox" id="schedDay-thu" onchange="toggleSchedDayInput('thu')" class="w-4 h-4 rounded text-indigo-600">
+              <span>🟠 วันพฤหัสบดี (Thursday)</span>
+            </label>
+            <div class="flex items-center gap-1.5">
+              <input type="number" id="schedHrs-thu" min="1" max="8" value="1" class="w-12 text-center border border-slate-300 rounded-lg p-1 font-bold bg-white notranslate" translate="no">
+              <span class="text-slate-500">ชม.</span>
+            </div>
+          </div>
+
+          <!-- Friday -->
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50/60">
+            <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+              <input type="checkbox" id="schedDay-fri" onchange="toggleSchedDayInput('fri')" class="w-4 h-4 rounded text-indigo-600">
+              <span>🔵 วันศุกร์ (Friday)</span>
+            </label>
+            <div class="flex items-center gap-1.5">
+              <input type="number" id="schedHrs-fri" min="1" max="8" value="2" class="w-12 text-center border border-slate-300 rounded-lg p-1 font-bold bg-white notranslate" translate="no">
+              <span class="text-slate-500">ชม.</span>
+            </div>
+          </div>
+
+          <!-- Saturday (Make-up) -->
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-200 bg-slate-50/60">
+            <label class="flex items-center gap-2 font-bold text-slate-800 cursor-pointer">
+              <input type="checkbox" id="schedDay-sat" onchange="toggleSchedDayInput('sat')" class="w-4 h-4 rounded text-indigo-600">
+              <span>🟣 วันเสาร์ <span class="text-[10px] font-normal text-slate-500">(สอนชดเชย)</span></span>
+            </label>
+            <div class="flex items-center gap-1.5">
+              <input type="number" id="schedHrs-sat" min="1" max="8" value="1" class="w-12 text-center border border-slate-300 rounded-lg p-1 font-bold bg-white notranslate" translate="no">
+              <span class="text-slate-500">ชม.</span>
+            </div>
+          </div>
+        </div>
+
+        <hr class="border-slate-200">
+
+        <!-- Exclusion days / Special make-up teaching days (Overrides) -->
+        <div class="space-y-2.5">
+          <div class="font-bold text-slate-800">วันหยุดยกเว้น / วันสอนชดเชยพิเศษ (Overrides)</div>
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+            <div class="flex flex-wrap sm:flex-nowrap items-center gap-2">
+              <input type="date" id="schedOverrideDate" class="border border-slate-300 rounded-lg p-1.5 bg-white text-xs notranslate" translate="no">
+              <select id="schedOverrideType" class="border border-slate-300 rounded-lg p-1.5 bg-white text-xs font-semibold flex-1">
+                <option value="exclude">🚫 วันหยุด/งดสอน (Exclude)</option>
+                <option value="makeup">➕ วันสอนชดเชย (Make-up)</option>
+              </select>
+              <input type="number" id="schedOverrideHours" min="1" max="8" value="1" class="w-14 text-center border border-slate-300 rounded-lg p-1.5 font-bold bg-white notranslate" translate="no">
+            </div>
+            <div class="flex items-center gap-2">
+              <input type="text" id="schedOverrideNote" placeholder="หมายเหตุ (เช่น วันมาฆบูชา)" class="flex-1 border border-slate-300 rounded-lg p-1.5 bg-white text-xs">
+              <button onclick="addScheduleOverride()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg shadow text-xs">
+                เพิ่ม
+              </button>
+            </div>
+          </div>
+
+          <div id="schedOverridesList" class="space-y-1.5 max-h-32 overflow-y-auto custom-scroll">
+            <p class="text-slate-400 italic text-[11px]">ยังไม่มีการกำหนดวันหยุดหรือวันสอนชดเชยพิเศษ</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
+        <button onclick="closeScheduleModal()" class="px-4 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
+        <button onclick="saveScheduleModal()" class="px-4 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-950 font-extrabold rounded-lg shadow">บันทึกตารางสอน</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL B: DAILY ATTENDANCE SHEET (MONTHLY ATTENDANCE SHEET)
+       Matches Daily_Attendance_Sheet.JPG
+       ===================================================================== -->
+  <div id="monthlySheetModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-6xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[94vh]">
+      <div class="bg-emerald-800 px-5 py-3 text-white flex justify-between items-center">
+        <div>
+          <h3 class="font-bold text-sm flex items-center gap-2">
+            📋 <span>ตารางบันทึกเวลาเรียนรายวัน (Daily Attendance Sheet)</span>
+          </h3>
+          <p class="text-[11px] text-emerald-200 notranslate" translate="no" id="monthlyModalSubtitle">ชั้น ป.1/1 | คณิตศาสตร์ | มีนาคม (ภาคเรียนที่ 2)</p>
+        </div>
+        <button onclick="closeMonthlySheetModal()" class="text-emerald-200 hover:text-white text-lg font-bold">✕</button>
+      </div>
+
+      <div class="bg-slate-50 p-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex flex-wrap items-center gap-2">
+          <label class="font-bold text-slate-700">เลือกเดือน:</label>
+          <select id="sheetMonthSelect" onchange="renderMonthlySheetGrid(this.value)" class="border border-slate-300 rounded-lg px-2.5 py-1.5 text-xs font-semibold bg-white shadow-2xs">
+            <optgroup label="ภาคเรียนที่ 1">
+              <option value="may">พฤษภาคม (Term 1)</option>
+              <option value="jun">มิถุนายน (Term 1)</option>
+              <option value="jul">กรกฎาคม (Term 1)</option>
+              <option value="aug">สิงหาคม (Term 1)</option>
+              <option value="sep">กันยายน (Term 1)</option>
+              <option value="oct">ตุลาคม (Term 1)</option>
+            </optgroup>
+            <optgroup label="ภาคเรียนที่ 2">
+              <option value="nov">พฤศจิกายน (Term 2)</option>
+              <option value="dec">ธันวาคม (Term 2)</option>
+              <option value="jan">มกราคม (Term 2)</option>
+              <option value="feb">กุมภาพันธ์ (Term 2)</option>
+              <option value="mar" selected>มีนาคม (Term 2)</option>
+              <option value="apr">เมษายน (Term 2)</option>
+            </optgroup>
+          </select>
+
+          <span id="dailyTeachingDaysBadge" class="bg-indigo-100 text-indigo-900 font-bold px-2.5 py-1 rounded-lg text-[11px]">
+            มีวันสอน 12 วัน
+          </span>
+          <span id="dailyTotalHoursBadge" class="bg-amber-100 text-amber-950 font-bold px-2.5 py-1 rounded-lg text-[11px]">
+            รวมทั้งหมด 16 ชั่วโมง
+          </span>
+        </div>
+
+        <div class="flex items-center gap-1.5">
+          <span class="text-slate-500 text-[11px] hidden sm:inline">ตั้งค่าทั้งห้องอย่างรวดเร็ว:</span>
+          <button onclick="setQuickAllMonth('ม')" class="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-xs font-bold shadow-2xs transition">✓ ม (มาทุกคน)</button>
+          <button onclick="setQuickAllMonth('')" class="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-xs font-semibold transition">ล้างเซลล์ว่าง</button>
+        </div>
+      </div>
+
+      <div id="monthlyGridContainer" class="p-3 overflow-x-auto overflow-y-auto custom-scroll flex-1 text-xs"></div>
+
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex flex-wrap items-center gap-3 text-[11px] text-slate-600">
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span> <strong>ม</strong> = มาเรียน</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span> <strong>ข</strong> = ขาดเรียน</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> <strong>ป</strong> = ลาป่วย</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-blue-500"></span> <strong>ล</strong> = ลากิจ</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> <strong>ส</strong> = มาสาย</span>
+          <span class="inline-flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-teal-500"></span> <strong>ก</strong> = กิจกรรม</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="closeMonthlySheetModal()" class="px-4 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ปิด</button>
+          <button onclick="saveMonthlyAttendanceGrid()" class="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-lg shadow">💾 บันทึกข้อมูลทั้งเดือน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL C: SCORE RECORDING & EVALUATION (70:10:20)
+       Matches Score_Recording_and_Evaluation.JPG
+       ===================================================================== -->
+  <div id="gradingSheetModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-6xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[94vh]">
+      <div class="bg-indigo-900 px-5 py-3 text-white flex justify-between items-center">
+        <div>
+          <h3 class="font-bold text-sm flex items-center gap-2" id="gradingModalTitle">
+            📊 ตารางบันทึกคะแนนและประเมินผล: ภาคเรียนที่ 1
+          </h3>
+          <p class="text-[11px] text-indigo-200 notranslate" translate="no" id="gradingModalSubtitle">
+            รายวิชา: คณิตศาสตร์ | สัดส่วนคะแนน: 70% (เก็บระหว่างภาค) : 10% (กลางภาค) : 20% (ปลายภาค) (รวม 100 คะแนน)
+          </p>
+        </div>
+        <button onclick="closeGradingSheetModal()" class="text-indigo-300 hover:text-white text-lg font-bold">✕</button>
+      </div>
+
+      <div class="bg-slate-50 p-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex flex-wrap items-center gap-2">
+          <label class="font-bold text-slate-700">ภาคเรียน:</label>
+          <div class="inline-flex rounded-lg bg-slate-200 p-0.5 text-xs font-semibold">
+            <button id="btnTermToggle1" onclick="switchGradingModalTerm(1)" class="px-3 py-1 rounded bg-indigo-700 text-white shadow-sm transition">ภาคเรียนที่ 1</button>
+            <button id="btnTermToggle2" onclick="switchGradingModalTerm(2)" class="px-3 py-1 rounded text-slate-700 hover:text-black transition">ภาคเรียนที่ 2</button>
+          </div>
+          <span id="gradeColCountBadge" class="bg-indigo-100 text-indigo-900 font-bold px-2.5 py-1 rounded-lg text-[11px]">ช่องประเมิน: 5 ช่อง (สูงสุด 20)</span>
+          <span id="gradeTotalRawBadge" class="bg-amber-100 text-amber-950 font-bold px-2.5 py-1 rounded-lg text-[11px]">คะแนนดิบรวม: 50 คะแนน</span>
+        </div>
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="exportGradesToCSV(activeGradingTerm)" class="px-2.5 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[11px] font-bold shadow-2xs transition">
+            📥 ส่งออก CSV (เทอมนี้)
+          </button>
+          <button onclick="addAssessmentColumn()" class="px-2.5 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white rounded-lg text-[11px] font-bold shadow-2xs transition">
+            ➕ เพิ่มช่องประเมิน (สูงสุด 20)
+          </button>
+          <button onclick="removeAssessmentColumn()" class="px-2.5 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg text-[11px] font-semibold transition">
+            ➖ ลดช่อง
+          </button>
+        </div>
+      </div>
+
+      <div id="gradingGridContainer" class="p-3 overflow-x-auto overflow-y-auto custom-scroll flex-1 text-xs"></div>
+
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 space-y-2 text-xs">
+        <div class="text-[11px] text-slate-500">
+          💡 <strong>สูตรคำนวณ:</strong> คะแนนเก็บ (70%) = (คะแนนประเมินรวมที่ได้ ÷ คะแนนเต็มรวม) × 70 | คะแนนรวมเทอม = เก็บ (70) + กลางภาค (10) + ปลายภาค (20)
+        </div>
+        <div class="flex justify-end space-x-2">
+          <button onclick="closeGradingSheetModal()" class="px-4 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ยกเลิก</button>
+          <button onclick="saveGradingSheetModal()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg shadow">💾 บันทึกคะแนนเทอมนี้</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL D: OVERRIDE INDICATOR QUALITY LEVELS ("ระดับ" ONLY, NOT "คะแนน")
+       Requirement #5: Edit "ระดับ" (3, 2, 1, 0) while "คะแนน" stays locked
+       ===================================================================== -->
+  <div id="indicatorOverrideModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 hidden">
+    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full overflow-hidden border border-slate-200 animate-fadeIn flex flex-col max-h-[94vh]">
+      <div class="bg-indigo-900 px-5 py-3 text-white flex justify-between items-center">
+        <div>
+          <h3 class="font-bold text-sm flex items-center gap-2">
+            🎯 <span>แก้ไขระดับคุณภาพตัวชี้วัด (Override Quality Level Only)</span>
+          </h3>
+          <p class="text-[11px] text-indigo-200">ช่อง "คะแนน" ถูกล็อกตามคะแนนเก็บจริง — สามารถปรับแก้เฉพาะช่อง "ระดับ" (3, 2, 1, 0) เพื่อ Override ค่าอัตโนมัติ</p>
+        </div>
+        <button onclick="closeIndicatorLevelOverrideModal()" class="text-indigo-300 hover:text-white text-lg font-bold">✕</button>
+      </div>
+
+      <div class="bg-slate-50 p-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
+        <div class="flex items-center gap-2">
+          <span class="font-bold text-slate-700" id="indOverrideTermLabel">ภาคเรียนที่ 1</span>
+          <span class="text-[11px] text-slate-500">| เลือกระดับคุณภาพรายตัวชี้วัด (3 = ดีเยี่ยม, 2 = ดี, 1 = ผ่าน, 0 = ไม่ผ่าน)</span>
+        </div>
+        <button onclick="resetAllIndicatorOverrides()" class="px-3 py-1 bg-amber-100 hover:bg-amber-200 text-amber-950 font-bold rounded-lg text-[11px] border border-amber-300 transition">
+          🔄 รีเซ็ตกลับเป็นค่าคำนวณอัตโนมัติทั้งหมด
+        </button>
+      </div>
+
+      <div id="indicatorOverrideGridContainer" class="p-3 overflow-x-auto overflow-y-auto custom-scroll flex-1 text-xs"></div>
+
+      <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
+        <button onclick="closeIndicatorLevelOverrideModal()" class="px-4 py-1.5 rounded-lg border border-slate-300 text-slate-700 hover:bg-slate-100 font-semibold">ปิด</button>
+        <button onclick="saveIndicatorLevelOverrides()" class="px-4 py-1.5 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg shadow">💾 บันทึกระดับตัวชี้วัด</button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL: SYNC PORTAL DATA & DIAGNOSTIC -->
   <div id="syncPortalModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white rounded-2xl shadow-2xl max-w-lg w-full overflow-hidden border border-slate-200">
@@ -476,7 +824,7 @@
           <label class="block font-bold text-slate-800">1. ที่อยู่ URL ของไฟล์ master_data บน GitHub:</label>
           <input type="text" id="syncCustomUrlInput" placeholder="school_master_data.json หรือ https://<user>.github.io/<repo>/school_master_data.json" class="w-full border border-slate-300 rounded p-2 text-xs font-mono bg-white notranslate" translate="no">
           <p class="text-[11px] text-slate-500">
-            * หากฝังใน Google Sites ควรระบุลิงก์เต็มของ GitHub Pages เพื่อหลีกเลี่ยงข้อจำกัด Sandbox
+            * หากวางในโฟลเดอร์เดียวกันบน GitHub Pages ใช้ค่า <code class="font-mono notranslate" translate="no">school_master_data.json</code> ได้ทันที
           </p>
         </div>
 
@@ -493,14 +841,13 @@
         </div>
 
         <div class="p-3 bg-indigo-50/60 border border-indigo-200 rounded-xl text-center space-y-2">
-          <p class="text-slate-700 font-semibold text-[11px]">หากเบราว์เซอร์บล็อกการเชื่อมต่อ ให้เลือกไฟล์จากเครื่องโดยตรง:</p>
+          <p class="text-slate-700 font-semibold text-[11px]">เลือกไฟล์ <span class="notranslate" translate="no">school_master_data.json</span> จากเครื่องโดยตรง:</p>
           <label class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-indigo-700 hover:bg-indigo-600 text-white font-bold rounded-lg cursor-pointer shadow transition text-xs">
             📂 <span>เลือกไฟล์ school_master_data.json</span>
             <input type="file" accept=".json" onchange="handleDirectMasterJsonUpload(event)" class="hidden">
           </label>
         </div>
 
-        <!-- Sync Status Console -->
         <div id="syncConsoleLog" class="p-2.5 bg-slate-900 text-emerald-400 font-mono text-[11px] rounded-lg max-h-28 overflow-y-auto hidden notranslate" translate="no"></div>
       </div>
       <div class="bg-slate-50 px-5 py-3 border-t border-slate-200 flex justify-end text-xs">
@@ -628,81 +975,12 @@
     </div>
   </div>
 
-  <!-- MODAL: GRADING SHEET (70:10:20) -->
-  <div id="gradingSheetModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full overflow-hidden border border-slate-200 flex flex-col max-h-[94vh]">
-      <div class="bg-indigo-900 px-5 py-3 text-white flex justify-between items-center">
-        <h3 class="font-bold text-sm" id="gradingModalTitle">บันทึกคะแนนตัวชี้วัดและการประเมิน (70 : 10 : 20)</h3>
-        <button onclick="closeGradingSheetModal()" class="text-indigo-300 hover:text-white text-lg font-bold">✕</button>
-      </div>
-      <div class="bg-slate-50 p-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
-        <div class="flex items-center gap-2">
-          <label class="font-bold text-slate-700">ภาคเรียน:</label>
-          <div class="inline-flex rounded-lg bg-slate-200 p-0.5 text-xs font-semibold">
-            <button id="btnTermToggle1" onclick="switchGradingModalTerm(1)" class="px-3 py-1 rounded bg-blue-600 text-white shadow-sm transition">ภาคเรียนที่ 1</button>
-            <button id="btnTermToggle2" onclick="switchGradingModalTerm(2)" class="px-3 py-1 rounded text-slate-700 hover:text-black transition">ภาคเรียนที่ 2</button>
-          </div>
-          <span id="gradeColCountBadge" class="bg-indigo-100 text-indigo-900 font-bold px-2 py-0.5 rounded text-[11px]">5 ช่อง</span>
-        </div>
-        <div class="flex items-center gap-1.5">
-          <button onclick="addAssessmentColumn()" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-[11px] font-bold shadow">
-            ➕ เพิ่มช่อง (สูงสุด 20)
-          </button>
-          <button onclick="removeAssessmentColumn()" class="px-2 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded text-[11px] border">
-            ➖ ลดช่อง
-          </button>
-        </div>
-      </div>
-      <div id="gradingGridContainer" class="p-3 overflow-x-auto overflow-y-auto custom-scroll flex-1 text-xs"></div>
-      <div class="bg-slate-50 p-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
-        <button onclick="closeGradingSheetModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700">ยกเลิก</button>
-        <button onclick="saveGradingSheetModal()" class="px-4 py-1.5 bg-blue-700 hover:bg-blue-600 text-white font-bold rounded-lg shadow">💾 บันทึกคะแนน</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL: MONTHLY ATTENDANCE SHEET -->
-  <div id="monthlySheetModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-2 hidden">
-    <div class="bg-white rounded-2xl shadow-2xl max-w-5xl w-full overflow-hidden border border-slate-200 flex flex-col max-h-[94vh]">
-      <div class="bg-indigo-900 px-5 py-3 text-white flex justify-between items-center">
-        <h3 class="font-bold text-sm" id="monthlyModalTitle">บันทึกเวลาเรียนรายวัน</h3>
-        <button onclick="closeMonthlySheetModal()" class="text-indigo-300 hover:text-white text-lg font-bold">✕</button>
-      </div>
-      <div class="bg-slate-50 p-3 border-b border-slate-200 flex flex-wrap items-center justify-between gap-2 text-xs">
-        <div class="flex items-center gap-2">
-          <label class="font-bold text-slate-700">เลือกเดือน:</label>
-          <select id="sheetMonthSelect" onchange="renderMonthlySheetGrid(this.value)" class="border border-slate-300 rounded px-2 py-1 text-xs font-semibold bg-white">
-            <optgroup label="ภาคเรียนที่ 1">
-              <option value="may">พฤษภาคม (Term 1)</option><option value="jun">มิถุนายน (Term 1)</option>
-              <option value="jul">กรกฎาคม (Term 1)</option><option value="aug">สิงหาคม (Term 1)</option>
-              <option value="sep">กันยายน (Term 1)</option><option value="oct">ตุลาคม (Term 1)</option>
-            </optgroup>
-            <optgroup label="ภาคเรียนที่ 2">
-              <option value="nov">พฤศจิกายน (Term 2)</option><option value="dec">ธันวาคม (Term 2)</option>
-              <option value="jan">มกราคม (Term 2)</option><option value="feb">กุมภาพันธ์ (Term 2)</option>
-              <option value="mar" selected>มีนาคม (Term 2)</option><option value="apr">เมษายน (Term 2)</option>
-            </optgroup>
-          </select>
-        </div>
-        <div class="flex items-center gap-1.5">
-          <button onclick="setQuickAllMonth('ม')" class="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded text-[11px] font-bold">✓ ม (มาทุกคน)</button>
-          <button onclick="setQuickAllMonth('')" class="px-2 py-1 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded text-[11px]">ล้างเซลล์ว่าง</button>
-        </div>
-      </div>
-      <div id="monthlyGridContainer" class="p-3 overflow-x-auto overflow-y-auto custom-scroll flex-1 text-xs"></div>
-      <div class="bg-slate-50 p-3 border-t border-slate-200 flex justify-end space-x-2 text-xs">
-        <button onclick="closeMonthlySheetModal()" class="px-3.5 py-1.5 rounded-lg border border-slate-300 text-slate-700">ปิด</button>
-        <button onclick="saveMonthlyAttendanceGrid()" class="px-4 py-1.5 bg-emerald-700 hover:bg-emerald-600 text-white font-bold rounded-lg shadow">💾 บันทึกเวลาเรียน</button>
-      </div>
-    </div>
-  </div>
-
   <!-- JAVASCRIPT APPLICATION LOGIC -->
   <script>
     /* =====================================================================
        1. DATA STRUCTURES & CONSTANTS (24 CLASSES)
        ===================================================================== */
-    const STORAGE_KEY = 'pp5_online_state_v4';
+    const STORAGE_KEY = 'pp5_online_state_v5';
     const PORTAL_FALLBACK_URL = 'school_master_data.json';
 
     const CLASS_LABELS = {
@@ -719,6 +997,39 @@
       s2_1: 'ชั้น ม.2/1', s2_2: 'ชั้น ม.2/2',
       s3_1: 'ชั้น ม.3/1', s3_2: 'ชั้น ม.3/2'
     };
+
+    const MONTH_META = {
+      may: { name: 'พฤษภาคม', term: 1, year: 2026, monthIdx: 4 },
+      jun: { name: 'มิถุนายน', term: 1, year: 2026, monthIdx: 5 },
+      jul: { name: 'กรกฎาคม', term: 1, year: 2026, monthIdx: 6 },
+      aug: { name: 'สิงหาคม', term: 1, year: 2026, monthIdx: 7 },
+      sep: { name: 'กันยายน', term: 1, year: 2026, monthIdx: 8 },
+      oct: { name: 'ตุลาคม', term: 1, year: 2026, monthIdx: 9 },
+      nov: { name: 'พฤศจิกายน', term: 2, year: 2026, monthIdx: 10 },
+      dec: { name: 'ธันวาคม', term: 2, year: 2026, monthIdx: 11 },
+      jan: { name: 'มกราคม', term: 2, year: 2027, monthIdx: 0 },
+      feb: { name: 'กุมภาพันธ์', term: 2, year: 2027, monthIdx: 1 },
+      mar: { name: 'มีนาคม', term: 2, year: 2027, monthIdx: 2 },
+      apr: { name: 'เมษายน', term: 2, year: 2027, monthIdx: 3 }
+    };
+
+    const DAY_KEYS_BY_JS_DAY = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+    const DAY_SHORT_TH = { sun: 'อา', mon: 'จ', tue: 'อ', wed: 'พ', thu: 'พฤ', fri: 'ศ', sat: 'ส' };
+    const DAY_FULL_TH = { mon: 'จันทร์', tue: 'อังคาร', wed: 'พุธ', thu: 'พฤหัสบดี', fri: 'ศุกร์', sat: 'เสาร์' };
+
+    const ATTENDANCE_CODES = ['ม', 'ข', 'ป', 'ล', 'ส', 'ก'];
+
+    const TRAIT_NAMES_9 = [
+      '1. รักชาติ ศาสน์ กษัตริย์',
+      '2. ซื่อสัตย์สุจริต',
+      '3. มีวินัย',
+      '4. ใฝ่เรียนรู้',
+      '5. อยู่อย่างพอเพียง',
+      '6. มุ่งมั่นในการทำงาน',
+      '7. รักความเป็นไทย',
+      '8. มีจิตสาธารณะ',
+      '9. ปฎิบัติตามกฏของลูกเสือ'
+    ];
 
     let appState = {
       schoolName: "โรงเรียนอุดมวิทยานุกูล",
@@ -746,6 +1057,7 @@
     let currentIndicatorTerm = 1;
     let activeGradingTerm = 1;
     let activeSheetMonth = 'mar';
+    let tempScheduleOverrides = [];
 
     /* =====================================================================
        2. DATABASE INITIALIZATION & SYNC ENGINE
@@ -792,12 +1104,49 @@
     function ensureWorkloadDataContainer(workloadKey) {
       if (!appState.workloadData[workloadKey]) {
         appState.workloadData[workloadKey] = {
-          term1: { columns: [{ id: 'c1', name: 'ตัวชี้วัด 1.1', max: 10 }, { id: 'c2', name: 'ตัวชี้วัด 1.2', max: 10 }, { id: 'c3', name: 'ตัวชี้วัด 1.3', max: 10 }, { id: 'c4', name: 'ตัวชี้วัด 1.4', max: 10 }, { id: 'c5', name: 'ตัวชี้วัด 1.5', max: 10 }], midtermMax: 10, finalMax: 20, scores: {} },
-          term2: { columns: [{ id: 'c1', name: 'ตัวชี้วัด 2.1', max: 10 }, { id: 'c2', name: 'ตัวชี้วัด 2.2', max: 10 }, { id: 'c3', name: 'ตัวชี้วัด 2.3', max: 10 }, { id: 'c4', name: 'ตัวชี้วัด 2.4', max: 10 }, { id: 'c5', name: 'ตัวชี้วัด 2.5', max: 10 }], midtermMax: 10, finalMax: 20, scores: {} },
+          schedule: {
+            days: { mon: 1, wed: 1, fri: 2 },
+            overrides: []
+          },
+          term1: {
+            columns: [
+              { id: 'c1', name: 'ตัวชี้วัด อ 1.1 ป.1/1', max: 10 },
+              { id: 'c2', name: 'ตัวชี้วัด อ 1.1 ป.1/2', max: 10 },
+              { id: 'c3', name: 'ตัวชี้วัด อ 1.2 ป.1/1', max: 10 },
+              { id: 'c4', name: 'ตัวชี้วัด อ 2.1 ป.1/1', max: 10 },
+              { id: 'c5', name: 'ตัวชี้วัด อ 3.1 ป.1/1', max: 10 }
+            ],
+            midtermMax: 10,
+            finalMax: 20,
+            scores: {},
+            levelOverrides: {}
+          },
+          term2: {
+            columns: [
+              { id: 'c1', name: 'ตัวชี้วัด อ 1.1 ป.1/3', max: 10 },
+              { id: 'c2', name: 'ตัวชี้วัด อ 1.2 ป.1/2', max: 10 },
+              { id: 'c3', name: 'ตัวชี้วัด อ 2.2 ป.1/1', max: 10 },
+              { id: 'c4', name: 'ตัวชี้วัด อ 3.1 ป.1/1', max: 10 },
+              { id: 'c5', name: 'ตัวชี้วัด อ 4.1 ป.1/1', max: 10 }
+            ],
+            midtermMax: 10,
+            finalMax: 20,
+            scores: {},
+            levelOverrides: {}
+          },
           attendance: {},
-          traits: {}
+          dailyAttendance: {},
+          traits9: {},
+          rtw: {}
         };
       }
+      const wd = appState.workloadData[workloadKey];
+      if (!wd.schedule) wd.schedule = { days: { mon: 1, wed: 1, fri: 2 }, overrides: [] };
+      if (!wd.term1.levelOverrides) wd.term1.levelOverrides = {};
+      if (!wd.term2.levelOverrides) wd.term2.levelOverrides = {};
+      if (!wd.dailyAttendance) wd.dailyAttendance = {};
+      if (!wd.traits9) wd.traits9 = {};
+      if (!wd.rtw) wd.rtw = {};
     }
 
     function sortStudentsById(studentsList) {
@@ -836,18 +1185,16 @@
     }
 
     /* =====================================================================
-       3. REFINED GITHUB PORTAL SYNC ENGINE
+       3. GITHUB PORTAL SYNC ENGINE
        ===================================================================== */
     function openSyncPortalModal() {
       const modal = document.getElementById('syncPortalModal');
       const urlInput = document.getElementById('syncCustomUrlInput');
-      
       let targetUrl = PORTAL_FALLBACK_URL;
       if (window.location.hostname.includes('github.io')) {
         targetUrl = window.location.origin + window.location.pathname.replace(/\/[^\/]*$/, '/') + 'school_master_data.json';
       }
       urlInput.value = targetUrl;
-
       document.getElementById('syncConsoleLog').classList.add('hidden');
       modal.classList.remove('hidden');
     }
@@ -883,7 +1230,6 @@
     function handleDirectMasterJsonUpload(event) {
       const file = event.target.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(e) {
         try {
@@ -901,12 +1247,10 @@
 
     function applyMasterDataPayload(data) {
       if (!data) return;
-
       if (data.schoolName) appState.schoolName = data.schoolName;
       if (data.district) appState.district = data.district;
       if (data.academicYear) appState.academicYear = data.academicYear;
 
-      // 1. Process Rosters for all 24 classes
       if (data.rosters && typeof data.rosters === 'object') {
         Object.keys(data.rosters).forEach(classKey => {
           const list = data.rosters[classKey];
@@ -919,7 +1263,6 @@
         });
       }
 
-      // 2. Process Teachers and Workloads
       if (Array.isArray(data.teachers) && data.teachers.length > 0) {
         appState.teachers = data.teachers.map(t => {
           const workloads = [];
@@ -934,7 +1277,6 @@
               });
             });
           });
-
           return {
             id: t.id,
             name: t.name,
@@ -958,7 +1300,6 @@
     function populateTeacherDropdown() {
       const select = document.getElementById('teacherProfileSelect');
       select.innerHTML = '';
-
       appState.teachers.forEach(t => {
         const opt = document.createElement('option');
         opt.value = t.id;
@@ -968,7 +1309,6 @@
         if (t.id === appState.activeTeacherId) opt.selected = true;
         select.appendChild(opt);
       });
-
       if (!appState.teachers.some(t => t.id === appState.activeTeacherId)) {
         appState.activeTeacherId = appState.teachers[0].id;
       }
@@ -989,10 +1329,8 @@
     function populateWorkloadDropdown() {
       const select = document.getElementById('workloadSetSelect');
       select.innerHTML = '';
-
       const t = appState.teachers.find(item => item.id === appState.activeTeacherId) || appState.teachers[0];
       const workloads = t.workloads || [];
-
       workloads.forEach(wl => {
         const opt = document.createElement('option');
         opt.value = wl.key;
@@ -1002,7 +1340,6 @@
         if (wl.key === appState.activeWorkloadKey) opt.selected = true;
         select.appendChild(opt);
       });
-
       if (!workloads.some(wl => wl.key === appState.activeWorkloadKey) && workloads.length > 0) {
         appState.activeWorkloadKey = workloads[0].key;
       }
@@ -1052,7 +1389,6 @@
       document.getElementById('stripAcademicYear').innerText = appState.academicYear;
       document.getElementById('rosterClassBadge').innerText = classLabel;
 
-      // Print Elements
       document.getElementById('printSchoolName').innerText = appState.schoolName;
       document.getElementById('printDistrictName').innerText = appState.district;
       document.getElementById('printAcademicYear').innerText = appState.academicYear;
@@ -1065,7 +1401,7 @@
     }
 
     /* =====================================================================
-       5. VIEW RENDERING (ROSTER, ATTENDANCE, GRADING, INDICATORS, TRAITS)
+       5. TAB ROUTING & RENDERING
        ===================================================================== */
     let currentActiveTab = 'roster';
 
@@ -1095,7 +1431,10 @@
       else if (currentActiveTab === 'attendance') renderAttendanceView(students, wl);
       else if (currentActiveTab === 'grading') renderGradingView(students, wl);
       else if (currentActiveTab === 'indicators') renderIndicatorsView(students, wl);
-      else if (currentActiveTab === 'traits') renderTraitsView(students, wl);
+      else if (currentActiveTab === 'traits') {
+        renderTraitsView(students, wl);
+        renderRTWView(students, wl);
+      }
       else if (currentActiveTab === 'report') renderPrintReportView(students, wl);
     }
 
@@ -1131,19 +1470,128 @@
       });
     }
 
-    /* 5.2 ATTENDANCE */
+    /* =====================================================================
+       5.2 SCHEDULE & DAILY ATTENDANCE ENGINE (REQUIREMENTS #1, #2, #3)
+       ===================================================================== */
+    function getScheduledSessionsForMonth(wlKey, monthKey) {
+      const wData = appState.workloadData[wlKey];
+      const sched = (wData && wData.schedule) || { days: { mon: 1, wed: 1, fri: 2 }, overrides: [] };
+      const meta = MONTH_META[monthKey] || MONTH_META.mar;
+      const year = meta.year;
+      const monthIdx = meta.monthIdx;
+      const daysInMonth = new Date(year, monthIdx + 1, 0).getDate();
+
+      const overridesMap = {};
+      (sched.overrides || []).forEach(ov => {
+        if (ov.date) overridesMap[ov.date] = ov;
+      });
+
+      const sessions = [];
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dt = new Date(year, monthIdx, d);
+        const jsDay = dt.getDay();
+        const dayKey = DAY_KEYS_BY_JS_DAY[jsDay];
+        const isoDate = `${year}-${String(monthIdx + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+
+        if (overridesMap[isoDate]) {
+          const ov = overridesMap[isoDate];
+          if (ov.type === 'exclude') continue;
+          if (ov.type === 'makeup') {
+            sessions.push({
+              day: d,
+              isoDate,
+              dayShort: DAY_SHORT_TH[dayKey] || '',
+              hours: Number(ov.hours) || 1,
+              isMakeup: true
+            });
+            continue;
+          }
+        }
+
+        const hrs = sched.days && sched.days[dayKey] ? Number(sched.days[dayKey]) : 0;
+        if (hrs > 0) {
+          sessions.push({
+            day: d,
+            isoDate,
+            dayShort: DAY_SHORT_TH[dayKey] || '',
+            hours: hrs,
+            isMakeup: false
+          });
+        }
+      }
+
+      return sessions;
+    }
+
+    function computeStudentMonthAttendedHours(wlKey, monthKey, studentId) {
+      const wData = appState.workloadData[wlKey];
+      const sessions = getScheduledSessionsForMonth(wlKey, monthKey);
+      const totalScheduledHrs = sessions.reduce((acc, s) => acc + s.hours, 0);
+
+      // If dailyAttendance records exist for this month, compute directly from them
+      const monthDaily = wData.dailyAttendance && wData.dailyAttendance[monthKey];
+      if (monthDaily && monthDaily[studentId]) {
+        const stuRec = monthDaily[studentId];
+        let attended = 0;
+        sessions.forEach(sess => {
+          const code = stuRec[sess.day] !== undefined ? stuRec[sess.day] : 'ม';
+          if (code === 'ม' || code === 'ส' || code === 'ก') {
+            attended += sess.hours;
+          }
+        });
+        return attended;
+      }
+
+      // Check manual summary override if set
+      if (wData.attendance && wData.attendance[studentId] && wData.attendance[studentId][monthKey] !== undefined) {
+        return Number(wData.attendance[studentId][monthKey]);
+      }
+
+      // Default: April has 0 scheduled classes unless configured; other months default to full scheduled hours
+      if (monthKey === 'apr') return 0;
+      return totalScheduledHrs;
+    }
+
+    function computeStudentTotalScheduledHours(wlKey) {
+      let total = 0;
+      Object.keys(MONTH_META).forEach(mKey => {
+        if (mKey === 'apr') return;
+        const sessions = getScheduledSessionsForMonth(wlKey, mKey);
+        total += sessions.reduce((acc, s) => acc + s.hours, 0);
+      });
+      return total > 0 ? total : 200;
+    }
+
     function renderAttendanceView(students, wl) {
       const tbody = document.getElementById('attendanceTableBody');
       tbody.innerHTML = '';
-      const wData = appState.workloadData[wl.key].attendance || {};
+      const wData = appState.workloadData[wl.key];
+      const sched = wData.schedule || { days: { mon: 1, wed: 1, fri: 2 }, overrides: [] };
+
+      // Update schedule subtitle
+      const activeDayText = Object.keys(DAY_FULL_TH)
+        .filter(dk => sched.days && sched.days[dk] > 0)
+        .map(dk => `${DAY_FULL_TH[dk]} (${sched.days[dk]} ชม.)`)
+        .join(', ');
+      const subEl = document.getElementById('attendanceScheduleSubtitle');
+      if (subEl) {
+        subEl.innerText = `ตารางสอนปัจจุบัน: ${activeDayText || 'ยังไม่ได้กำหนดวันสอน'} | เกณฑ์เวลาเรียนไม่น้อยกว่าร้อยละ 80`;
+      }
+
+      const totalReq = computeStudentTotalScheduledHours(wl.key);
+      const t1Months = ['may', 'jun', 'jul', 'aug', 'sep', 'oct'];
+      const t2Months = ['nov', 'dec', 'jan', 'feb', 'mar', 'apr'];
 
       students.forEach(s => {
-        const att = wData[s.id] || { may: 18, jun: 20, jul: 19, aug: 20, sep: 21, oct: 10, nov: 20, dec: 18, jan: 20, feb: 19, mar: 15, apr: 0 };
-        const t1Total = (att.may || 0) + (att.jun || 0) + (att.jul || 0) + (att.aug || 0) + (att.sep || 0) + (att.oct || 0);
-        const t2Total = (att.nov || 0) + (att.dec || 0) + (att.jan || 0) + (att.feb || 0) + (att.mar || 0) + (att.apr || 0);
+        const mVals = {};
+        [...t1Months, ...t2Months].forEach(mk => {
+          mVals[mk] = computeStudentMonthAttendedHours(wl.key, mk, s.id);
+        });
+
+        const t1Total = t1Months.reduce((sum, mk) => sum + mVals[mk], 0);
+        const t2Total = t2Months.reduce((sum, mk) => sum + mVals[mk], 0);
         const yearTotal = t1Total + t2Total;
-        const totalReq = wl.totalHours || 200;
-        const pct = Math.min(100, Math.round((yearTotal / totalReq) * 100));
+        const pct = totalReq > 0 ? Math.min(100, Math.round((yearTotal / totalReq) * 100)) : 100;
         const passed = pct >= 80;
 
         const tr = document.createElement('tr');
@@ -1151,19 +1599,9 @@
         tr.innerHTML = `
           <td class="py-2 px-2 border-r border-slate-200 font-bold text-slate-600 notranslate" translate="no">${s.no}</td>
           <td class="py-2 px-3 border-r border-slate-200 text-left font-semibold text-slate-800 notranslate" translate="no">${s.prefix}${s.name}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.may || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.jun || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.jul || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.aug || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.sep || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.oct || 0}</td>
+          ${t1Months.map(mk => `<td class="py-1 px-1 border-r border-slate-200 cursor-pointer hover:bg-blue-50 notranslate" translate="no" onclick="openMonthlySheetModal('${mk}')">${mVals[mk]}</td>`).join('')}
           <td class="py-1 px-1 border-r border-slate-200 font-bold bg-blue-50/70 text-blue-950 notranslate" translate="no">${t1Total}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.nov || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.dec || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.jan || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.feb || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.mar || 0}</td>
-          <td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${att.apr || 0}</td>
+          ${t2Months.map(mk => `<td class="py-1 px-1 border-r border-slate-200 cursor-pointer hover:bg-amber-50 notranslate" translate="no" onclick="openMonthlySheetModal('${mk}')">${mVals[mk]}</td>`).join('')}
           <td class="py-1 px-1 border-r border-slate-200 font-bold bg-amber-50/70 text-amber-950 notranslate" translate="no">${t2Total}</td>
           <td class="py-1 px-1 border-r border-slate-200 font-black bg-emerald-50 text-emerald-950 notranslate" translate="no">${yearTotal}</td>
           <td class="py-1 px-1 border-r border-slate-200 font-bold ${passed ? 'text-indigo-900' : 'text-rose-600'} notranslate" translate="no">${pct}%</td>
@@ -1173,7 +1611,262 @@
       });
     }
 
-    /* 5.3 GRADING (70:10:20) */
+    /* SCHEDULE MODAL (Assigning Teaching Days of the Week) */
+    function openScheduleModal() {
+      const wl = getActiveWorkload();
+      ensureWorkloadDataContainer(wl.key);
+      const sched = appState.workloadData[wl.key].schedule;
+
+      ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'].forEach(dk => {
+        const hrs = sched.days && sched.days[dk] ? Number(sched.days[dk]) : 0;
+        const cb = document.getElementById(`schedDay-${dk}`);
+        const inp = document.getElementById(`schedHrs-${dk}`);
+        cb.checked = hrs > 0;
+        inp.value = hrs > 0 ? hrs : (dk === 'fri' ? 2 : 1);
+        inp.disabled = hrs <= 0;
+        inp.classList.toggle('opacity-40', hrs <= 0);
+      });
+
+      tempScheduleOverrides = JSON.parse(JSON.stringify(sched.overrides || []));
+      renderScheduleOverridesList();
+      document.getElementById('scheduleModal').classList.remove('hidden');
+    }
+
+    function closeScheduleModal() {
+      document.getElementById('scheduleModal').classList.add('hidden');
+    }
+
+    function toggleSchedDayInput(dk) {
+      const cb = document.getElementById(`schedDay-${dk}`);
+      const inp = document.getElementById(`schedHrs-${dk}`);
+      inp.disabled = !cb.checked;
+      inp.classList.toggle('opacity-40', !cb.checked);
+    }
+
+    function renderScheduleOverridesList() {
+      const listEl = document.getElementById('schedOverridesList');
+      if (!tempScheduleOverrides || tempScheduleOverrides.length === 0) {
+        listEl.innerHTML = `<p class="text-slate-400 italic text-[11px]">ยังไม่มีการกำหนดวันหยุดหรือวันสอนชดเชยพิเศษ</p>`;
+        return;
+      }
+
+      listEl.innerHTML = tempScheduleOverrides.map((ov, idx) => `
+        <div class="flex items-center justify-between p-2 rounded-lg border ${ov.type === 'exclude' ? 'bg-rose-50/70 border-rose-200 text-rose-950' : 'bg-emerald-50/70 border-emerald-200 text-emerald-950'} text-[11px]">
+          <div>
+            <span class="font-bold notranslate" translate="no">${ov.date}</span> —
+            <span>${ov.type === 'exclude' ? '🚫 งดสอน/วันหยุด' : `➕ สอนชดเชย (${ov.hours} ชม.)`}</span>
+            ${ov.note ? `<span class="text-slate-600">(${ov.note})</span>` : ''}
+          </div>
+          <button onclick="removeScheduleOverride(${idx})" class="text-rose-600 hover:text-rose-800 font-bold px-1.5">✕</button>
+        </div>
+      `).join('');
+    }
+
+    function addScheduleOverride() {
+      const date = document.getElementById('schedOverrideDate').value;
+      const type = document.getElementById('schedOverrideType').value;
+      const hours = Number(document.getElementById('schedOverrideHours').value) || 1;
+      const note = document.getElementById('schedOverrideNote').value.trim();
+
+      if (!date) {
+        alert('กรุณาเลือกวันที่ก่อนกดเพิ่ม');
+        return;
+      }
+
+      tempScheduleOverrides.push({ date, type, hours, note });
+      document.getElementById('schedOverrideDate').value = '';
+      document.getElementById('schedOverrideNote').value = '';
+      renderScheduleOverridesList();
+    }
+
+    function removeScheduleOverride(idx) {
+      tempScheduleOverrides.splice(idx, 1);
+      renderScheduleOverridesList();
+    }
+
+    function saveScheduleModal() {
+      const wl = getActiveWorkload();
+      const days = {};
+      ['mon', 'tue', 'wed', 'thu', 'fri', 'sat'].forEach(dk => {
+        const cb = document.getElementById(`schedDay-${dk}`);
+        const inp = document.getElementById(`schedHrs-${dk}`);
+        if (cb.checked) {
+          days[dk] = Math.max(1, Number(inp.value) || 1);
+        }
+      });
+
+      appState.workloadData[wl.key].schedule = {
+        days,
+        overrides: tempScheduleOverrides
+      };
+
+      saveState();
+      closeScheduleModal();
+      renderActiveView();
+      alert('บันทึกตารางสอนประจำสัปดาห์เรียบร้อยแล้ว');
+    }
+
+    /* DAILY ATTENDANCE SHEET MODAL */
+    function openMonthlySheetModal(monthKey) {
+      activeSheetMonth = monthKey;
+      document.getElementById('sheetMonthSelect').value = monthKey;
+      renderMonthlySheetGrid(monthKey);
+      document.getElementById('monthlySheetModal').classList.remove('hidden');
+    }
+
+    function closeMonthlySheetModal() {
+      document.getElementById('monthlySheetModal').classList.add('hidden');
+    }
+
+    function getAttendanceCodeStyle(code) {
+      switch (code) {
+        case 'ม': return 'border-emerald-300 bg-emerald-50 text-emerald-700';
+        case 'ข': return 'border-rose-300 bg-rose-50 text-rose-700';
+        case 'ป': return 'border-amber-300 bg-amber-50 text-amber-700';
+        case 'ล': return 'border-blue-300 bg-blue-50 text-blue-700';
+        case 'ส': return 'border-purple-300 bg-purple-50 text-purple-700';
+        case 'ก': return 'border-teal-300 bg-teal-50 text-teal-700';
+        default: return 'border-slate-200 bg-white text-slate-400';
+      }
+    }
+
+    function renderMonthlySheetGrid(monthKey) {
+      activeSheetMonth = monthKey;
+      const container = document.getElementById('monthlyGridContainer');
+      const students = getActiveStudents();
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      const meta = MONTH_META[monthKey] || MONTH_META.mar;
+      const classLabel = CLASS_LABELS[wl.classKey] || wl.classKey;
+
+      document.getElementById('monthlyModalSubtitle').innerText =
+        `${classLabel} | ${wl.subjectName} (${wl.subjectCode}) | ${meta.name} (ภาคเรียนที่ ${meta.term})`;
+
+      const sessions = getScheduledSessionsForMonth(wl.key, monthKey);
+      const totalScheduledHours = sessions.reduce((acc, s) => acc + s.hours, 0);
+
+      document.getElementById('dailyTeachingDaysBadge').innerText = `มีวันสอน ${sessions.length} วัน`;
+      document.getElementById('dailyTotalHoursBadge').innerText = `รวมทั้งหมด ${totalScheduledHours} ชั่วโมง`;
+
+      if (sessions.length === 0) {
+        container.innerHTML = `
+          <div class="py-10 text-center text-slate-500 space-y-2">
+            <p class="font-bold text-sm">ไม่มีตารางสอนในเดือน ${meta.name}</p>
+            <p class="text-xs">คุณสามารถกดปุ่ม "🗓️ แก้ไขตารางสอน" เพื่อกำหนดวันสอนประจำสัปดาห์หรือวันสอนชดเชยพิเศษ</p>
+          </div>
+        `;
+        return;
+      }
+
+      if (!wData.dailyAttendance[monthKey]) wData.dailyAttendance[monthKey] = {};
+
+      let dHeaders = sessions.map(sess => `
+        <th class="py-1.5 px-1.5 border-r border-slate-200 min-w-[44px] text-center leading-tight notranslate" translate="no">
+          <div class="text-[10px] text-slate-500 font-semibold">${sess.dayShort}</div>
+          <div class="text-xs font-extrabold text-slate-800">${sess.day}</div>
+          <div class="text-[9px] text-indigo-700 font-semibold">${sess.hours} ชม.</div>
+        </th>
+      `).join('');
+
+      let trs = students.map(s => {
+        if (!wData.dailyAttendance[monthKey][s.id]) {
+          wData.dailyAttendance[monthKey][s.id] = {};
+          sessions.forEach(sess => {
+            wData.dailyAttendance[monthKey][s.id][sess.day] = 'ม';
+          });
+        }
+        const stuDaily = wData.dailyAttendance[monthKey][s.id];
+
+        let attendedHrs = 0;
+        let cells = sessions.map(sess => {
+          const code = stuDaily[sess.day] !== undefined ? stuDaily[sess.day] : 'ม';
+          if (code === 'ม' || code === 'ส' || code === 'ก') attendedHrs += sess.hours;
+          const badgeCls = getAttendanceCodeStyle(code);
+          return `
+            <td class="p-1 border-r border-slate-200 text-center">
+              <button type="button" onclick="cycleDailyAttendanceCell('${s.id}', ${sess.day})" class="w-7 h-7 rounded-lg border font-bold text-xs transition hover:scale-105 ${badgeCls} notranslate" translate="no" title="คลิกเพื่อเปลี่ยนสถานะ (ม / ข / ป / ล / ส / ก)">
+                ${code || '-'}
+              </button>
+            </td>
+          `;
+        }).join('');
+
+        return `
+          <tr class="hover:bg-slate-50 border-b border-slate-100">
+            <td class="py-1.5 px-2 text-center font-bold border-r border-slate-200 text-slate-600 notranslate" translate="no">${s.no}</td>
+            <td class="py-1.5 px-3 text-left font-semibold border-r border-slate-200 text-slate-900 whitespace-nowrap notranslate" translate="no">${s.prefix}${s.name}</td>
+            ${cells}
+            <td class="py-1.5 px-2 text-center font-extrabold text-emerald-900 bg-emerald-50/70 notranslate" translate="no" id="dailyRowTotal-${s.id}">${attendedHrs}</td>
+          </tr>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <table class="w-full text-center text-xs border-collapse">
+          <thead class="bg-slate-100 border-b border-slate-200 font-semibold sticky top-0 z-10">
+            <tr>
+              <th class="py-2 px-2 border-r border-slate-200 w-10">ที่</th>
+              <th class="py-2 px-3 border-r border-slate-200 text-left min-w-[170px]">ชื่อ - นามสกุล</th>
+              ${dHeaders}
+              <th class="py-2 px-2 bg-emerald-100/70 text-emerald-950 font-bold w-16">รวม (ชม.)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">${trs}</tbody>
+        </table>
+      `;
+    }
+
+    function cycleDailyAttendanceCell(studentId, dayNum) {
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      if (!wData.dailyAttendance[activeSheetMonth]) wData.dailyAttendance[activeSheetMonth] = {};
+      if (!wData.dailyAttendance[activeSheetMonth][studentId]) wData.dailyAttendance[activeSheetMonth][studentId] = {};
+
+      const current = wData.dailyAttendance[activeSheetMonth][studentId][dayNum] || '';
+      const order = ['ม', 'ข', 'ป', 'ล', 'ส', 'ก', ''];
+      const next = order[(order.indexOf(current) + 1) % order.length];
+      wData.dailyAttendance[activeSheetMonth][studentId][dayNum] = next;
+
+      renderMonthlySheetGrid(activeSheetMonth);
+    }
+
+    function setQuickAllMonth(symbol) {
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      const students = getActiveStudents();
+      const sessions = getScheduledSessionsForMonth(wl.key, activeSheetMonth);
+
+      if (!wData.dailyAttendance[activeSheetMonth]) wData.dailyAttendance[activeSheetMonth] = {};
+      students.forEach(s => {
+        if (!wData.dailyAttendance[activeSheetMonth][s.id]) wData.dailyAttendance[activeSheetMonth][s.id] = {};
+        sessions.forEach(sess => {
+          wData.dailyAttendance[activeSheetMonth][s.id][sess.day] = symbol;
+        });
+      });
+
+      renderMonthlySheetGrid(activeSheetMonth);
+    }
+
+    function saveMonthlyAttendanceGrid() {
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      const students = getActiveStudents();
+
+      if (!wData.attendance) wData.attendance = {};
+      students.forEach(s => {
+        if (!wData.attendance[s.id]) wData.attendance[s.id] = {};
+        wData.attendance[s.id][activeSheetMonth] = computeStudentMonthAttendedHours(wl.key, activeSheetMonth, s.id);
+      });
+
+      saveState();
+      closeMonthlySheetModal();
+      renderActiveView();
+      alert('บันทึกข้อมูลเวลาเรียนทั้งเดือนเรียบร้อยแล้ว');
+    }
+
+    /* =====================================================================
+       5.3 GRADING (70:10:20) — MATCHES Score_Recording_and_Evaluation.JPG
+       ===================================================================== */
     function renderGradingView(students, wl) {
       const tbody = document.getElementById('gradingTableBody');
       tbody.innerHTML = '';
@@ -1182,8 +1875,8 @@
       students.forEach(s => {
         const g1 = calculateTermScore(wData.term1, s.id);
         const g2 = calculateTermScore(wData.term2, s.id);
-        const yearAvg = Math.round((g1.total + g2.total) / 2);
-        const grade = calculateThaiGrade(yearAvg);
+        const yearAvg = Math.round(((g1.total + g2.total) / 2) * 10) / 10;
+        const grade = calculateThaiGrade(Math.round(yearAvg));
 
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-slate-50 border-b border-slate-100 text-[11px]';
@@ -1207,23 +1900,26 @@
     }
 
     function calculateTermScore(termObj, studentId) {
-      if (!termObj) return { formative70: 0, midterm: 0, final: 0, total: 0 };
+      if (!termObj) return { rawSum: 0, totalRaw: 0, formative70: 0, midterm: 0, final: 0, total: 0 };
       const rawCols = termObj.columns || [];
       const studentScores = (termObj.scores && termObj.scores[studentId]) || {};
 
       let earnedRaw = 0;
       let totalRaw = 0;
       rawCols.forEach(col => {
-        totalRaw += (col.max || 10);
-        earnedRaw += (studentScores[col.id] !== undefined ? Number(studentScores[col.id]) : (col.max * 0.8));
+        const colMax = Number(col.max) || 10;
+        totalRaw += colMax;
+        const val = studentScores[col.id] !== undefined ? Number(studentScores[col.id]) : Math.round(colMax * 0.8 * 10) / 10;
+        earnedRaw += val;
       });
 
-      const formative70 = totalRaw > 0 ? Math.round((earnedRaw / totalRaw) * 70) : 0;
+      earnedRaw = Math.round(earnedRaw * 10) / 10;
+      const formative70 = totalRaw > 0 ? Math.round(((earnedRaw / totalRaw) * 70) * 10) / 10 : 0;
       const midterm = studentScores.midterm !== undefined ? Number(studentScores.midterm) : 8;
       const final = studentScores.final !== undefined ? Number(studentScores.final) : 16;
-      const total = Math.min(100, formative70 + midterm + final);
+      const total = Math.min(100, Math.round((formative70 + midterm + final) * 10) / 10);
 
-      return { formative70, midterm, final, total };
+      return { rawSum: earnedRaw, totalRaw, formative70, midterm, final, total };
     }
 
     function calculateThaiGrade(score) {
@@ -1237,40 +1933,260 @@
       return 0;
     }
 
-    /* 5.4 INDICATORS VIEW */
-    function renderIndicatorsView(students, wl) {
-      const container = document.getElementById('indicatorsTableContainer');
-      const wData = appState.workloadData[wl.key];
-      const termObj = currentIndicatorTerm === 1 ? wData.term1 : wData.term2;
-      const cols = termObj.columns || [];
+    function openGradingSheetModal(term) {
+      activeGradingTerm = term;
+      const wl = getActiveWorkload();
+      const classLabel = CLASS_LABELS[wl.classKey] || wl.classKey;
 
-      let ths = cols.map(c => `<th class="py-2 px-2 border-r border-slate-200 min-w-[70px] notranslate" translate="no">${c.name}<br><span class="text-[10px] text-slate-500">เต็ม ${c.max}</span></th>`).join('');
+      document.getElementById('gradingModalTitle').innerText =
+        `📊 ตารางบันทึกคะแนนและประเมินผล: ภาคเรียนที่ ${term} (${classLabel})`;
+      document.getElementById('gradingModalSubtitle').innerText =
+        `รายวิชา: ${wl.subjectName} (${wl.subjectCode}) | สัดส่วนคะแนน: 70% (เก็บระหว่างภาค) : 10% (กลางภาค) : 20% (ปลายภาค) (รวม 100 คะแนน)`;
+
+      document.getElementById('btnTermToggle1').className = term === 1 ? 'px-3 py-1 rounded bg-indigo-700 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
+      document.getElementById('btnTermToggle2').className = term === 2 ? 'px-3 py-1 rounded bg-amber-600 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
+      renderGradingModalGrid();
+      document.getElementById('gradingSheetModal').classList.remove('hidden');
+    }
+
+    function closeGradingSheetModal() {
+      document.getElementById('gradingSheetModal').classList.add('hidden');
+    }
+
+    function switchGradingModalTerm(term) {
+      openGradingSheetModal(term);
+    }
+
+    function renderGradingModalGrid() {
+      const container = document.getElementById('gradingGridContainer');
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      const termObj = activeGradingTerm === 1 ? wData.term1 : wData.term2;
+      const cols = termObj.columns || [];
+      const students = getActiveStudents();
+
+      const totalRawMax = cols.reduce((acc, c) => acc + (Number(c.max) || 10), 0);
+      document.getElementById('gradeColCountBadge').innerText = `ช่องประเมิน: ${cols.length} ช่อง (สูงสุด 20)`;
+      document.getElementById('gradeTotalRawBadge').innerText = `คะแนนดิบรวม: ${totalRawMax} คะแนน`;
+
+      let ths = cols.map((c, i) => `
+        <th class="py-2 px-1.5 border-r border-slate-200 min-w-[105px]">
+          <input type="text" value="${c.name}" onchange="updateGradingColName(${i}, this.value)" class="w-full text-center font-bold bg-transparent border-b border-dashed border-slate-400 text-[11px] text-slate-800 notranslate" translate="no">
+          <div class="mt-1 flex items-center justify-center gap-1 text-[10px] text-slate-500 font-normal">
+            <span>เต็ม:</span>
+            <input type="number" min="1" max="100" value="${c.max}" onchange="updateGradingColMax(${i}, this.value)" class="w-11 text-center border border-slate-300 rounded bg-white font-bold text-slate-800 py-0.5 notranslate" translate="no">
+          </div>
+        </th>
+      `).join('');
 
       let trs = students.map(s => {
-        const studentScores = (termObj.scores && termObj.scores[s.id]) || {};
-        let tds = cols.map(c => {
-          const val = studentScores[c.id] !== undefined ? studentScores[c.id] : (c.max * 0.8);
-          const pct = (val / c.max) * 100;
-          let level = pct >= 80 ? 3 : pct >= 60 ? 2 : pct >= 40 ? 1 : 0;
-          return `<td class="py-1 px-1 border-r border-slate-200 font-semibold notranslate" translate="no">${val} <span class="text-[10px] text-slate-400">(${level})</span></td>`;
+        const scores = (termObj.scores && termObj.scores[s.id]) || {};
+        const calc = calculateTermScore(termObj, s.id);
+
+        let colInputs = cols.map(c => {
+          const defaultVal = Math.round((Number(c.max) || 10) * 0.8 * 10) / 10;
+          const val = scores[c.id] !== undefined ? scores[c.id] : defaultVal;
+          return `
+            <td class="py-1.5 px-1 border-r border-slate-200">
+              <input type="number" step="0.5" min="0" max="${c.max}" value="${val}" onchange="onGradingInputChange('${s.id}', '${c.id}', this.value)" class="w-14 text-center border border-slate-300 rounded-lg p-1 bg-white font-semibold text-slate-800 focus:border-indigo-500 outline-none notranslate" translate="no">
+            </td>
+          `;
         }).join('');
 
         return `
-          <tr class="hover:bg-slate-50 border-b border-slate-100 text-[11px]">
-            <td class="py-2 px-2 border-r border-slate-200 font-bold text-slate-600 text-center notranslate" translate="no">${s.no}</td>
-            <td class="py-2 px-3 border-r border-slate-200 text-left font-semibold text-slate-800 notranslate" translate="no">${s.prefix}${s.name}</td>
-            ${tds}
+          <tr class="hover:bg-slate-50 border-b border-slate-100">
+            <td class="py-1.5 px-2 text-center font-bold border-r border-slate-200 text-slate-600 notranslate" translate="no">${s.no}</td>
+            <td class="py-1.5 px-3 text-left font-semibold border-r border-slate-200 text-slate-900 whitespace-nowrap notranslate" translate="no">${s.prefix}${s.name}</td>
+            ${colInputs}
+            <td class="py-1.5 px-2 border-r border-slate-200 font-bold text-slate-700 bg-slate-50 notranslate" translate="no" id="gRowRaw-${s.id}">${calc.rawSum}</td>
+            <td class="py-1.5 px-2 border-r border-slate-200 font-bold text-indigo-900 bg-indigo-50/70 notranslate" translate="no" id="gRowF70-${s.id}">${calc.formative70}</td>
+            <td class="py-1.5 px-1 border-r border-slate-200 bg-purple-50/40">
+              <input type="number" step="0.5" min="0" max="10" value="${calc.midterm}" onchange="onGradingInputChange('${s.id}', 'midterm', this.value)" class="w-14 text-center border border-purple-300 rounded-lg p-1 bg-white font-bold text-purple-950 focus:border-purple-600 outline-none notranslate" translate="no">
+            </td>
+            <td class="py-1.5 px-1 border-r border-slate-200 bg-blue-50/40">
+              <input type="number" step="0.5" min="0" max="20" value="${calc.final}" onchange="onGradingInputChange('${s.id}', 'final', this.value)" class="w-14 text-center border border-blue-300 rounded-lg p-1 bg-white font-bold text-blue-950 focus:border-blue-600 outline-none notranslate" translate="no">
+            </td>
+            <td class="py-1.5 px-2 font-black text-emerald-900 bg-emerald-50 notranslate" translate="no" id="gRowTotal-${s.id}">${calc.total}</td>
           </tr>
         `;
       }).join('');
 
       container.innerHTML = `
         <table class="w-full text-center text-xs border-collapse">
-          <thead class="bg-slate-50 border-b border-slate-200 text-slate-700 font-semibold">
+          <thead class="bg-slate-100 border-b border-slate-200 font-semibold sticky top-0 z-10">
             <tr>
               <th class="py-2 px-2 border-r border-slate-200 w-10">ที่</th>
-              <th class="py-2 px-3 border-r border-slate-200 text-left min-w-[170px]">ชื่อ - นามสกุล</th>
+              <th class="py-2 px-3 border-r border-slate-200 text-left min-w-[165px]">ชื่อ - นามสกุล</th>
               ${ths}
+              <th class="py-2 px-2 border-r border-slate-200 w-16 bg-slate-200/70 text-slate-800">รวมดิบ<br><span class="text-[10px]">(${totalRawMax})</span></th>
+              <th class="py-2 px-2 border-r border-slate-200 w-16 bg-indigo-100/80 text-indigo-950">เก็บ 70%<br><span class="text-[10px]">(70)</span></th>
+              <th class="py-2 px-1 border-r border-slate-200 w-16 bg-purple-100/70 text-purple-950">กลางภาค<br><span class="text-[10px]">(10)</span></th>
+              <th class="py-2 px-1 border-r border-slate-200 w-16 bg-blue-100/70 text-blue-950">ปลายภาค<br><span class="text-[10px]">(20)</span></th>
+              <th class="py-2 px-2 w-16 bg-emerald-100/80 text-emerald-950 font-extrabold">รวมเทอม<br><span class="text-[10px]">(100)</span></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">${trs}</tbody>
+        </table>
+      `;
+    }
+
+    function onGradingInputChange(studentId, colKey, val) {
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      const termObj = activeGradingTerm === 1 ? wData.term1 : wData.term2;
+      if (!termObj.scores) termObj.scores = {};
+      if (!termObj.scores[studentId]) termObj.scores[studentId] = {};
+      termObj.scores[studentId][colKey] = Number(val);
+
+      const calc = calculateTermScore(termObj, studentId);
+      const rawEl = document.getElementById(`gRowRaw-${studentId}`);
+      const f70El = document.getElementById(`gRowF70-${studentId}`);
+      const totEl = document.getElementById(`gRowTotal-${studentId}`);
+      if (rawEl) rawEl.innerText = calc.rawSum;
+      if (f70El) f70El.innerText = calc.formative70;
+      if (totEl) totEl.innerText = calc.total;
+    }
+
+    function addAssessmentColumn() {
+      const wl = getActiveWorkload();
+      const termObj = activeGradingTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      if (termObj.columns.length >= 20) {
+        alert("รองรับสูงสุด 20 ช่องการประเมิน");
+        return;
+      }
+      const nextIdx = termObj.columns.length + 1;
+      termObj.columns.push({ id: 'c' + Date.now(), name: `ตัวชี้วัด ${activeGradingTerm}.${nextIdx}`, max: 10 });
+      renderGradingModalGrid();
+    }
+
+    function removeAssessmentColumn() {
+      const wl = getActiveWorkload();
+      const termObj = activeGradingTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      if (termObj.columns.length <= 1) return;
+      termObj.columns.pop();
+      renderGradingModalGrid();
+    }
+
+    function updateGradingColName(colIdx, newName) {
+      const wl = getActiveWorkload();
+      const termObj = activeGradingTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      if (termObj.columns[colIdx]) termObj.columns[colIdx].name = newName;
+    }
+
+    function updateGradingColMax(colIdx, newMax) {
+      const wl = getActiveWorkload();
+      const termObj = activeGradingTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      if (termObj.columns[colIdx]) {
+        termObj.columns[colIdx].max = Math.max(1, Number(newMax) || 10);
+        renderGradingModalGrid();
+      }
+    }
+
+    function saveGradingSheetModal() {
+      saveState();
+      closeGradingSheetModal();
+      renderActiveView();
+      alert("บันทึกคะแนนเรียบร้อยแล้ว");
+    }
+
+    /* =====================================================================
+       5.4 INDICATORS VIEW & LEVEL-ONLY OVERRIDE (REQUIREMENT #5)
+       Matches ประเมินตัวชี้วัด.JPG
+       ===================================================================== */
+    function getAutoIndicatorLevel(scoreVal, maxVal) {
+      const pct = maxVal > 0 ? (scoreVal / maxVal) * 100 : 0;
+      if (pct >= 80) return 3;
+      if (pct >= 60) return 2;
+      if (pct >= 40) return 1;
+      return 0;
+    }
+
+    function getLevelPillStyle(level) {
+      if (level === 3) return 'bg-emerald-100 text-emerald-900 border-emerald-300';
+      if (level === 2) return 'bg-sky-100 text-sky-900 border-sky-300';
+      if (level === 1) return 'bg-amber-100 text-amber-900 border-amber-300';
+      return 'bg-rose-100 text-rose-900 border-rose-300';
+    }
+
+    function getEffectiveIndicatorLevel(termObj, studentId, col) {
+      const studentScores = (termObj.scores && termObj.scores[studentId]) || {};
+      const defaultScore = Math.round((Number(col.max) || 10) * 0.8 * 10) / 10;
+      const scoreVal = studentScores[col.id] !== undefined ? Number(studentScores[col.id]) : defaultScore;
+      const autoLevel = getAutoIndicatorLevel(scoreVal, Number(col.max) || 10);
+
+      const overrides = (termObj.levelOverrides && termObj.levelOverrides[studentId]) || {};
+      const isOverridden = overrides[col.id] !== undefined && overrides[col.id] !== null;
+      const effectiveLevel = isOverridden ? Number(overrides[col.id]) : autoLevel;
+
+      return { scoreVal, autoLevel, effectiveLevel, isOverridden };
+    }
+
+    function renderIndicatorsView(students, wl) {
+      const container = document.getElementById('indicatorsTableContainer');
+      const wData = appState.workloadData[wl.key];
+      const termObj = currentIndicatorTerm === 1 ? wData.term1 : wData.term2;
+      const cols = termObj.columns || [];
+
+      let topHeaders = cols.map(c => `
+        <th colspan="2" class="py-2 px-2 border-r border-slate-200 min-w-[105px] bg-slate-50">
+          <div class="font-bold text-slate-800 text-[11px] notranslate" translate="no">${c.name}</div>
+          <div class="text-[10px] text-slate-400 font-normal">เต็ม: ${c.max} คะแนน</div>
+        </th>
+      `).join('');
+
+      let subHeaders = cols.map(() => `
+        <th class="py-1 px-1.5 border-r border-slate-200 text-[10px] text-slate-600 bg-slate-100/70 w-12">คะแนน</th>
+        <th class="py-1 px-1.5 border-r border-slate-200 text-[10px] text-indigo-900 bg-indigo-50/70 w-12">ระดับ</th>
+      `).join('');
+
+      let trs = students.map(s => {
+        let levelSum = 0;
+        let tds = cols.map(c => {
+          const { scoreVal, effectiveLevel, isOverridden } = getEffectiveIndicatorLevel(termObj, s.id, c);
+          levelSum += effectiveLevel;
+          const pillStyle = getLevelPillStyle(effectiveLevel);
+
+          return `
+            <td class="py-1.5 px-1.5 border-r border-slate-200 font-semibold text-slate-700 notranslate" translate="no">${scoreVal}</td>
+            <td class="py-1.5 px-1 border-r border-slate-200 bg-slate-50/30">
+              <button type="button" onclick="cycleIndicatorLevelOverride('${s.id}', '${c.id}')" class="w-7 h-6 rounded border font-extrabold text-xs transition hover:scale-105 ${pillStyle} ${isOverridden ? 'ring-2 ring-indigo-500' : ''} notranslate" translate="no" title="${isOverridden ? 'ปรับแก้ระดับด้วยตนเอง (คลิกเพื่อเปลี่ยน 3/2/1/0)' : 'คำนวณอัตโนมัติ (คลิกเพื่อปรับแก้ระดับ 3/2/1/0)'}">
+                ${effectiveLevel}
+              </button>
+            </td>
+          `;
+        }).join('');
+
+        const overallLevel = cols.length > 0 ? Math.round(levelSum / cols.length) : 0;
+        const overallPassed = overallLevel >= 1 && cols.every(c => getEffectiveIndicatorLevel(termObj, s.id, c).effectiveLevel >= 1);
+        const summaryStyle = getLevelPillStyle(overallLevel);
+
+        return `
+          <tr class="hover:bg-slate-50 border-b border-slate-100 text-xs">
+            <td class="py-2 px-2 border-r border-slate-200 font-bold text-slate-600 text-center notranslate" translate="no">${s.no}</td>
+            <td class="py-2 px-3 border-r border-slate-200 text-left font-semibold text-slate-800 whitespace-nowrap notranslate" translate="no">${s.prefix}${s.name}</td>
+            ${tds}
+            <td class="py-1.5 px-2 border-r border-slate-200 text-center">
+              <span class="inline-flex items-center justify-center w-7 h-6 rounded border font-extrabold text-xs ${summaryStyle} notranslate" translate="no">${overallLevel}</span>
+            </td>
+            <td class="py-1.5 px-2 text-center font-bold ${overallPassed ? 'text-emerald-700' : 'text-rose-600'}">
+              ${overallPassed ? 'ผ่าน' : 'ไม่ผ่าน'}
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <table class="w-full text-center text-xs border-collapse">
+          <thead class="border-b border-slate-200 text-slate-700 font-semibold">
+            <tr class="border-b border-slate-200">
+              <th rowspan="2" class="py-2 px-2 border-r border-slate-200 w-10 bg-slate-50">ที่</th>
+              <th rowspan="2" class="py-2 px-3 border-r border-slate-200 text-left min-w-[175px] bg-slate-50">ชื่อ - นามสกุล</th>
+              ${topHeaders}
+              <th rowspan="2" class="py-2 px-2 border-r border-slate-200 bg-emerald-50/70 text-emerald-950 font-bold w-24">สรุปรวม<br><span class="text-[10px] font-normal">ระดับคุณภาพ</span></th>
+              <th rowspan="2" class="py-2 px-2 bg-slate-50 text-slate-800 font-bold w-24">ผลการตัดสิน<br><span class="text-[10px] font-normal">ผ่าน/ไม่ผ่าน</span></th>
+            </tr>
+            <tr>
+              ${subHeaders}
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100">${trs}</tbody>
@@ -1280,57 +2196,456 @@
 
     function switchIndicatorTerm(termNum) {
       currentIndicatorTerm = termNum;
-      document.getElementById('indTermBtn1').className = termNum === 1 ? 'px-3 py-1 rounded bg-indigo-700 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
-      document.getElementById('indTermBtn2').className = termNum === 2 ? 'px-3 py-1 rounded bg-indigo-700 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
+      document.getElementById('indTermBtn1').className = termNum === 1 ? 'px-3 py-1 rounded bg-indigo-900 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
+      document.getElementById('indTermBtn2').className = termNum === 2 ? 'px-3 py-1 rounded bg-indigo-900 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
       renderIndicatorsView(getActiveStudents(), getActiveWorkload());
     }
 
-    /* 5.5 TRAITS VIEW */
+    function cycleIndicatorLevelOverride(studentId, colId) {
+      const wl = getActiveWorkload();
+      const termObj = currentIndicatorTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      if (!termObj.levelOverrides) termObj.levelOverrides = {};
+      if (!termObj.levelOverrides[studentId]) termObj.levelOverrides[studentId] = {};
+
+      const col = termObj.columns.find(c => c.id === colId);
+      const { effectiveLevel } = getEffectiveIndicatorLevel(termObj, studentId, col);
+      const nextMap = { 3: 2, 2: 1, 1: 0, 0: 3 };
+      termObj.levelOverrides[studentId][colId] = nextMap[effectiveLevel] !== undefined ? nextMap[effectiveLevel] : 3;
+
+      saveState();
+      renderIndicatorsView(getActiveStudents(), wl);
+    }
+
+    /* Dedicated Modal to Edit "ระดับ" ONLY (never "คะแนน") */
+    function openIndicatorLevelOverrideModal() {
+      document.getElementById('indOverrideTermLabel').innerText = `ภาคเรียนที่ ${currentIndicatorTerm}`;
+      renderIndicatorOverrideModalGrid();
+      document.getElementById('indicatorOverrideModal').classList.remove('hidden');
+    }
+
+    function closeIndicatorLevelOverrideModal() {
+      document.getElementById('indicatorOverrideModal').classList.add('hidden');
+    }
+
+    function renderIndicatorOverrideModalGrid() {
+      const container = document.getElementById('indicatorOverrideGridContainer');
+      const wl = getActiveWorkload();
+      const termObj = currentIndicatorTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      const cols = termObj.columns || [];
+      const students = getActiveStudents();
+
+      let topHeaders = cols.map(c => `
+        <th colspan="2" class="py-2 px-2 border-r border-slate-200 min-w-[115px] bg-slate-50">
+          <div class="font-bold text-slate-800 text-[11px] notranslate" translate="no">${c.name}</div>
+          <div class="text-[10px] text-slate-400 font-normal">เต็ม: ${c.max}</div>
+        </th>
+      `).join('');
+
+      let subHeaders = cols.map(() => `
+        <th class="py-1 px-1 border-r border-slate-200 text-[10px] text-slate-400 bg-slate-100 w-12">คะแนน (ล็อก)</th>
+        <th class="py-1 px-1 border-r border-slate-200 text-[10px] text-indigo-950 bg-indigo-100 w-14">แก้ไขระดับ</th>
+      `).join('');
+
+      let trs = students.map(s => {
+        let tds = cols.map(c => {
+          const { scoreVal, effectiveLevel, isOverridden } = getEffectiveIndicatorLevel(termObj, s.id, c);
+          return `
+            <td class="py-1.5 px-1 border-r border-slate-200 text-slate-400 bg-slate-50/70 font-mono select-none notranslate" translate="no" title="ไม่สามารถแก้ไขคะแนนในหน้านี้ได้">${scoreVal}</td>
+            <td class="py-1 px-1 border-r border-slate-200 bg-indigo-50/30">
+              <select onchange="setIndicatorLevelOverride('${s.id}', '${c.id}', this.value)" class="w-12 text-center border ${isOverridden ? 'border-indigo-500 bg-indigo-50 font-extrabold text-indigo-950' : 'border-slate-300 bg-white font-bold'} rounded p-1 text-xs notranslate" translate="no">
+                <option value="3" ${effectiveLevel === 3 ? 'selected' : ''}>3</option>
+                <option value="2" ${effectiveLevel === 2 ? 'selected' : ''}>2</option>
+                <option value="1" ${effectiveLevel === 1 ? 'selected' : ''}>1</option>
+                <option value="0" ${effectiveLevel === 0 ? 'selected' : ''}>0</option>
+              </select>
+            </td>
+          `;
+        }).join('');
+
+        return `
+          <tr class="hover:bg-slate-50 border-b border-slate-100">
+            <td class="py-1.5 px-2 text-center font-bold border-r border-slate-200 text-slate-600 notranslate" translate="no">${s.no}</td>
+            <td class="py-1.5 px-3 text-left font-semibold border-r border-slate-200 text-slate-900 whitespace-nowrap notranslate" translate="no">${s.prefix}${s.name}</td>
+            ${tds}
+          </tr>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <table class="w-full text-center text-xs border-collapse">
+          <thead class="border-b border-slate-200 font-semibold sticky top-0 z-10">
+            <tr class="border-b border-slate-200">
+              <th rowspan="2" class="py-2 px-2 border-r border-slate-200 w-10 bg-slate-50">ที่</th>
+              <th rowspan="2" class="py-2 px-3 border-r border-slate-200 text-left min-w-[165px] bg-slate-50">ชื่อ - นามสกุล</th>
+              ${topHeaders}
+            </tr>
+            <tr>${subHeaders}</tr>
+          </thead>
+          <tbody class="divide-y divide-slate-100">${trs}</tbody>
+        </table>
+      `;
+    }
+
+    function setIndicatorLevelOverride(studentId, colId, newLevelStr) {
+      const wl = getActiveWorkload();
+      const termObj = currentIndicatorTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      if (!termObj.levelOverrides) termObj.levelOverrides = {};
+      if (!termObj.levelOverrides[studentId]) termObj.levelOverrides[studentId] = {};
+      termObj.levelOverrides[studentId][colId] = Number(newLevelStr);
+    }
+
+    function resetAllIndicatorOverrides() {
+      if (!confirm('ยืนยันการล้างค่าที่ปรับแก้ระดับด้วยตนเองทั้งหมด และกลับไปใช้ค่าคำนวณอัตโนมัติจากคะแนน?')) return;
+      const wl = getActiveWorkload();
+      const termObj = currentIndicatorTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
+      termObj.levelOverrides = {};
+      saveState();
+      renderIndicatorOverrideModalGrid();
+      renderIndicatorsView(getActiveStudents(), wl);
+    }
+
+    function saveIndicatorLevelOverrides() {
+      saveState();
+      closeIndicatorLevelOverrideModal();
+      renderIndicatorsView(getActiveStudents(), getActiveWorkload());
+      alert('บันทึกระดับคุณภาพตัวชี้วัดเรียบร้อยแล้ว');
+    }
+
+    /* =====================================================================
+       5.5 TRAITS (9 DESIRABLE CHARACTERISTICS) — REQUIREMENT #6
+       ===================================================================== */
+    function getQualityLabelTh(level) {
+      if (level === 3) return 'ดีเยี่ยม';
+      if (level === 2) return 'ดี';
+      if (level === 1) return 'ผ่าน';
+      return 'ไม่ผ่าน';
+    }
+
+    function computeTraitSummaryLevel(arr) {
+      if (!arr || arr.length === 0) return 3;
+      if (arr.some(v => v === 0)) return 0;
+      const avg = arr.reduce((a, b) => a + b, 0) / arr.length;
+      if (avg >= 2.5) return 3;
+      if (avg >= 1.5) return 2;
+      return 1;
+    }
+
     function renderTraitsView(students, wl) {
       const tbody = document.getElementById('traitsTableBody');
       tbody.innerHTML = '';
-      const wData = appState.workloadData[wl.key].traits || {};
+      const wData = appState.workloadData[wl.key];
+      if (!wData.traits9) wData.traits9 = {};
 
       students.forEach(s => {
-        const t = wData[s.id] || { t: [3,3,3,3,3,3,3,3], r: [3,3,3,3,3] };
+        if (!Array.isArray(wData.traits9[s.id]) || wData.traits9[s.id].length !== 9) {
+          wData.traits9[s.id] = [3, 3, 3, 3, 3, 3, 3, 3, 3];
+        }
+        const vals = wData.traits9[s.id];
+        const summaryLvl = computeTraitSummaryLevel(vals);
+        const pillStyle = getLevelPillStyle(summaryLvl);
+
+        const cellsHtml = vals.map((v, tIdx) => {
+          const cStyle = getLevelPillStyle(v);
+          return `
+            <td class="py-1.5 px-1 border-r border-slate-200">
+              <button type="button" onclick="cycleTrait9Cell('${s.id}', ${tIdx})" class="w-7 h-6 rounded border font-extrabold text-xs transition hover:scale-105 ${cStyle} notranslate" translate="no" title="${TRAIT_NAMES_9[tIdx]} (คลิกเพื่อเปลี่ยน 3/2/1/0)">
+                ${v}
+              </button>
+            </td>
+          `;
+        }).join('');
+
         const tr = document.createElement('tr');
-        tr.className = 'hover:bg-slate-50 border-b border-slate-100 text-[11px]';
+        tr.className = 'hover:bg-slate-50 border-b border-slate-100 text-xs';
         tr.innerHTML = `
           <td class="py-2 px-2 border-r border-slate-200 font-bold text-slate-600 notranslate" translate="no">${s.no}</td>
-          <td class="py-2 px-3 border-r border-slate-200 text-left font-semibold text-slate-800 notranslate" translate="no">${s.prefix}${s.name}</td>
-          ${t.t.map(v => `<td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${v}</td>`).join('')}
-          <td class="py-1 px-2 border-r border-slate-200 font-bold bg-purple-50 text-purple-950">ดีเยี่ยม (3)</td>
-          ${t.r.map(v => `<td class="py-1 px-1 border-r border-slate-200 notranslate" translate="no">${v}</td>`).join('')}
-          <td class="py-1 px-2 font-bold bg-teal-50 text-teal-950">ดีเยี่ยม (3)</td>
+          <td class="py-2 px-3 border-r border-slate-200 text-left font-semibold text-slate-800 whitespace-nowrap notranslate" translate="no">${s.prefix}${s.name}</td>
+          ${cellsHtml}
+          <td class="py-1.5 px-2 border-r border-slate-200 bg-purple-50/50">
+            <span class="inline-flex items-center justify-center w-7 h-6 rounded border font-extrabold text-xs ${pillStyle} notranslate" translate="no">${summaryLvl}</span>
+          </td>
+          <td class="py-1.5 px-2 font-bold ${summaryLvl > 0 ? 'text-purple-900' : 'text-rose-600'} bg-purple-50/30">
+            ${getQualityLabelTh(summaryLvl)}
+          </td>
         `;
         tbody.appendChild(tr);
       });
     }
 
-    /* 5.6 PRINT A4 REPORT */
+    function cycleTrait9Cell(studentId, traitIdx) {
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      if (!Array.isArray(wData.traits9[studentId]) || wData.traits9[studentId].length !== 9) {
+        wData.traits9[studentId] = [3, 3, 3, 3, 3, 3, 3, 3, 3];
+      }
+      const cur = wData.traits9[studentId][traitIdx];
+      const nextMap = { 3: 2, 2: 1, 1: 0, 0: 3 };
+      wData.traits9[studentId][traitIdx] = nextMap[cur] !== undefined ? nextMap[cur] : 3;
+      saveState();
+      renderTraitsView(getActiveStudents(), wl);
+    }
+
+    function setAllTraitsLevel(lvl) {
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      getActiveStudents().forEach(s => {
+        wData.traits9[s.id] = [lvl, lvl, lvl, lvl, lvl, lvl, lvl, lvl, lvl];
+      });
+      saveState();
+      renderTraitsView(getActiveStudents(), wl);
+    }
+
+    /* =====================================================================
+       5.6 READING, ANALYTICAL THINKING & WRITING (REQUIREMENT #7)
+       Matches การอ่าน คิดวิเคราะห์ และเขียน.JPG
+       ===================================================================== */
+    function ensureStudentRTWRecord(wData, studentId) {
+      if (!wData.rtw) wData.rtw = {};
+      if (!wData.rtw[studentId]) {
+        wData.rtw[studentId] = {
+          reading: { t1: [3, 3, 3, 3], t2: [3, 3, 3, 3], overrideT1: null, overrideT2: null, overrideFinal: null },
+          thinking: { t1: [3, 3, 3, 3], t2: [3, 3, 3, 3], overrideT1: null, overrideT2: null, overrideFinal: null },
+          writing: { t1: [3, 3, 3, 3], t2: [3, 3, 3, 3], overrideT1: null, overrideT2: null, overrideFinal: null },
+          overrideOverall: null
+        };
+      }
+      return wData.rtw[studentId];
+    }
+
+    function computeRTWSkillStats(skillObj) {
+      const avg1 = skillObj.t1.reduce((a, b) => a + b, 0) / 4;
+      const autoLevel1 = Math.round(avg1);
+      const level1 = skillObj.overrideT1 !== null && skillObj.overrideT1 !== undefined ? Number(skillObj.overrideT1) : autoLevel1;
+
+      const avg2 = skillObj.t2.reduce((a, b) => a + b, 0) / 4;
+      const autoLevel2 = Math.round(avg2);
+      const level2 = skillObj.overrideT2 !== null && skillObj.overrideT2 !== undefined ? Number(skillObj.overrideT2) : autoLevel2;
+
+      const avg2Terms = (avg1 + avg2) / 2;
+      const autoFinal = Math.round(avg2Terms);
+      const finalLevel = skillObj.overrideFinal !== null && skillObj.overrideFinal !== undefined ? Number(skillObj.overrideFinal) : autoFinal;
+
+      return {
+        avg1: avg1.toFixed(2),
+        level1,
+        avg2: avg2.toFixed(2),
+        level2,
+        avg2Terms: avg2Terms.toFixed(2),
+        finalLevel
+      };
+    }
+
+    function computeStudentOverallRTW(rtwRec) {
+      const rStats = computeRTWSkillStats(rtwRec.reading);
+      const tStats = computeRTWSkillStats(rtwRec.thinking);
+      const wStats = computeRTWSkillStats(rtwRec.writing);
+
+      const overallAvg = (Number(rStats.avg2Terms) + Number(tStats.avg2Terms) + Number(wStats.avg2Terms)) / 3;
+      const autoOverallLevel = Math.round(overallAvg);
+      const overallLevel = rtwRec.overrideOverall !== null && rtwRec.overrideOverall !== undefined ? Number(rtwRec.overrideOverall) : autoOverallLevel;
+
+      return { rStats, tStats, wStats, overallAvg: overallAvg.toFixed(2), overallLevel };
+    }
+
+    function renderRTWView(students, wl) {
+      const container = document.getElementById('rtwTableContainer');
+      const wData = appState.workloadData[wl.key];
+
+      const skillSections = [
+        { key: 'reading', title: 'ประเมินการอ่าน', headerBg: 'bg-emerald-600 text-white', subBg: 'bg-emerald-50 text-emerald-950', avgBg: 'bg-pink-100/80 text-pink-950', resBg: 'bg-emerald-100/80 text-emerald-950' },
+        { key: 'thinking', title: 'ประเมินการคิดวิเคราะห์', headerBg: 'bg-blue-700 text-white', subBg: 'bg-blue-50 text-blue-950', avgBg: 'bg-pink-100/80 text-pink-950', resBg: 'bg-blue-100/80 text-blue-950' },
+        { key: 'writing', title: 'ประเมินการเขียนสื่อความ', headerBg: 'bg-rose-600 text-white', subBg: 'bg-rose-50 text-rose-950', avgBg: 'bg-pink-100/80 text-pink-950', resBg: 'bg-rose-100/80 text-rose-950' }
+      ];
+
+      // Row 1: Main Skill Group Headers (each spans 14 columns: T1[4+2] + T2[4+2] + 2Term[2])
+      let row1Headers = skillSections.map(sec =>
+        `<th colspan="14" class="py-2 px-2 border-r-2 border-slate-400 font-bold text-xs ${sec.headerBg}">${sec.title}</th>`
+      ).join('');
+
+      // Row 2: Semester 1 (colspan 6), Semester 2 (colspan 6), Avg 2 Terms (rowspan 2), Result (rowspan 2)
+      let row2Headers = skillSections.map(sec => `
+        <th colspan="6" class="py-1 px-1 border-r border-slate-300 ${sec.subBg} font-bold text-[11px]">ภาคเรียนที่ 1</th>
+        <th colspan="6" class="py-1 px-1 border-r border-slate-300 ${sec.subBg} font-bold text-[11px]">ภาคเรียนที่ 2</th>
+        <th rowspan="2" class="py-1 px-1 border-r border-slate-300 ${sec.avgBg} font-bold text-[10px] w-14 leading-tight">คะแนนเฉลี่ย<br>2 ภาคเรียน</th>
+        <th rowspan="2" class="py-1 px-1 border-r-2 border-slate-400 ${sec.resBg} font-bold text-[10px] w-12 leading-tight">ผลการ<br>ประเมิน</th>
+      `).join('');
+
+      // Row 3: ครั้งที่ประเมิน (colspan 4) + คะแนนเฉลี่ย (rowspan 2) + ผลการประเมิน (rowspan 2) for T1 and T2
+      let row3Headers = skillSections.map(sec => `
+        <th colspan="4" class="py-1 px-1 border-r border-slate-300 bg-slate-100 text-[10px] text-slate-700">ครั้งที่ประเมิน</th>
+        <th rowspan="2" class="py-1 px-1 border-r border-slate-300 ${sec.avgBg} text-[10px] w-12 leading-tight">คะแนน<br>เฉลี่ย</th>
+        <th rowspan="2" class="py-1 px-1 border-r border-slate-300 ${sec.resBg} text-[10px] w-11 leading-tight">ผลการ<br>ประเมิน</th>
+        <th colspan="4" class="py-1 px-1 border-r border-slate-300 bg-slate-100 text-[10px] text-slate-700">ครั้งที่ประเมิน</th>
+        <th rowspan="2" class="py-1 px-1 border-r border-slate-300 ${sec.avgBg} text-[10px] w-12 leading-tight">คะแนน<br>เฉลี่ย</th>
+        <th rowspan="2" class="py-1 px-1 border-r border-slate-300 ${sec.resBg} text-[10px] w-11 leading-tight">ผลการ<br>ประเมิน</th>
+      `).join('');
+
+      // Row 4: 1, 2, 3, 4 for T1 and 1, 2, 3, 4 for T2
+      let row4Headers = skillSections.map(() => `
+        <th class="py-1 px-1 border-r border-slate-200 bg-slate-50 text-[10px] w-7">1</th>
+        <th class="py-1 px-1 border-r border-slate-200 bg-slate-50 text-[10px] w-7">2</th>
+        <th class="py-1 px-1 border-r border-slate-200 bg-slate-50 text-[10px] w-7">3</th>
+        <th class="py-1 px-1 border-r border-slate-300 bg-slate-50 text-[10px] w-7">4</th>
+        <th class="py-1 px-1 border-r border-slate-200 bg-slate-50 text-[10px] w-7">1</th>
+        <th class="py-1 px-1 border-r border-slate-200 bg-slate-50 text-[10px] w-7">2</th>
+        <th class="py-1 px-1 border-r border-slate-200 bg-slate-50 text-[10px] w-7">3</th>
+        <th class="py-1 px-1 border-r border-slate-300 bg-slate-50 text-[10px] w-7">4</th>
+      `).join('');
+
+      let trs = students.map(s => {
+        const rec = ensureStudentRTWRecord(wData, s.id);
+        const { rStats, tStats, wStats, overallAvg, overallLevel } = computeStudentOverallRTW(rec);
+        const statsByKey = { reading: rStats, thinking: tStats, writing: wStats };
+
+        let skillTds = skillSections.map(sec => {
+          const skObj = rec[sec.key];
+          const st = statsByKey[sec.key];
+
+          const t1Cells = skObj.t1.map((v, i) => `
+            <td class="py-1 px-0.5 border-r border-slate-200 bg-emerald-50/20">
+              <button type="button" onclick="cycleRTWAttempt('${s.id}', '${sec.key}', 't1', ${i})" class="w-6 h-6 rounded font-bold text-[11px] hover:bg-indigo-100 text-slate-800 notranslate" translate="no" title="คลิกเพื่อเปลี่ยนระดับ (3/2/1/0)">${v}</button>
+            </td>
+          `).join('');
+
+          const t2Cells = skObj.t2.map((v, i) => `
+            <td class="py-1 px-0.5 border-r border-slate-200 bg-emerald-50/20">
+              <button type="button" onclick="cycleRTWAttempt('${s.id}', '${sec.key}', 't2', ${i})" class="w-6 h-6 rounded font-bold text-[11px] hover:bg-indigo-100 text-slate-800 notranslate" translate="no" title="คลิกเพื่อเปลี่ยนระดับ (3/2/1/0)">${v}</button>
+            </td>
+          `).join('');
+
+          return `
+            ${t1Cells}
+            <td class="py-1 px-1 border-r border-slate-300 bg-pink-50/70 font-semibold text-slate-700 text-[11px] notranslate" translate="no">${st.avg1}</td>
+            <td class="py-1 px-1 border-r border-slate-300 ${sec.resBg}">
+              <button type="button" onclick="cycleRTWResultOverride('${s.id}', '${sec.key}', 'overrideT1')" class="w-6 h-6 rounded font-extrabold text-[11px] hover:scale-105 transition ${skObj.overrideT1 !== null ? 'ring-1 ring-indigo-600' : ''} notranslate" translate="no" title="คลิกเพื่อปรับแก้ระดับผลการประเมิน">${st.level1}</button>
+            </td>
+            ${t2Cells}
+            <td class="py-1 px-1 border-r border-slate-300 bg-pink-50/70 font-semibold text-slate-700 text-[11px] notranslate" translate="no">${st.avg2}</td>
+            <td class="py-1 px-1 border-r border-slate-300 ${sec.resBg}">
+              <button type="button" onclick="cycleRTWResultOverride('${s.id}', '${sec.key}', 'overrideT2')" class="w-6 h-6 rounded font-extrabold text-[11px] hover:scale-105 transition ${skObj.overrideT2 !== null ? 'ring-1 ring-indigo-600' : ''} notranslate" translate="no" title="คลิกเพื่อปรับแก้ระดับผลการประเมิน">${st.level2}</button>
+            </td>
+            <td class="py-1 px-1 border-r border-slate-300 bg-pink-50 font-bold text-slate-800 text-[11px] notranslate" translate="no">${st.avg2Terms}</td>
+            <td class="py-1 px-1 border-r-2 border-slate-400 ${sec.resBg}">
+              <button type="button" onclick="cycleRTWResultOverride('${s.id}', '${sec.key}', 'overrideFinal')" class="w-6 h-6 rounded font-extrabold text-[11px] hover:scale-105 transition ${skObj.overrideFinal !== null ? 'ring-1 ring-indigo-600' : ''} notranslate" translate="no" title="คลิกเพื่อปรับแก้ระดับผลการประเมินรวม 2 ภาคเรียน">${st.finalLevel}</button>
+            </td>
+          `;
+        }).join('');
+
+        return `
+          <tr class="hover:bg-slate-50 border-b border-slate-200 text-xs">
+            <td class="py-1.5 px-2 border-r border-slate-300 font-bold text-slate-700 bg-slate-50 sticky left-0 z-10 notranslate" translate="no">${s.no}</td>
+            <td class="py-1.5 px-3 border-r-2 border-slate-400 text-left font-semibold text-slate-900 bg-white whitespace-nowrap sticky left-8 z-10 notranslate" translate="no">${s.prefix}${s.name}</td>
+            ${skillTds}
+            <td class="py-1.5 px-1.5 border-r border-slate-300 bg-pink-100/80 font-extrabold text-slate-900 text-[11px] notranslate" translate="no">${overallAvg}</td>
+            <td class="py-1.5 px-1.5 bg-emerald-200/80 font-black text-emerald-950">
+              <button type="button" onclick="cycleRTWOverallOverride('${s.id}')" class="w-7 h-6 rounded font-black text-xs hover:scale-105 transition ${rec.overrideOverall !== null ? 'ring-2 ring-indigo-600' : ''} notranslate" translate="no" title="คลิกเพื่อปรับแก้ระดับสรุปอ่านคิดเขียน (${getQualityLabelTh(overallLevel)})">${overallLevel}</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <table class="w-full text-center text-xs border-collapse">
+          <thead class="border-b-2 border-slate-400 font-semibold">
+            <tr class="border-b border-slate-300">
+              <th rowspan="4" class="py-2 px-2 border-r border-slate-300 w-8 bg-amber-100 text-slate-900 sticky left-0 z-20">ที่</th>
+              <th rowspan="4" class="py-2 px-3 border-r-2 border-slate-400 text-left min-w-[175px] bg-amber-100 text-slate-900 sticky left-8 z-20">ชื่อ - นามสกุล</th>
+              ${row1Headers}
+              <th rowspan="4" class="py-2 px-1.5 border-r border-slate-300 bg-pink-200 text-pink-950 font-bold w-16 text-[10px] leading-tight">คะแนนเฉลี่ย<br>อ่านคิดเขียน</th>
+              <th rowspan="4" class="py-2 px-1.5 bg-emerald-300 text-emerald-950 font-bold w-16 text-[10px] leading-tight">ผลการประเมิน<br>อ่านคิดเขียน</th>
+            </tr>
+            <tr class="border-b border-slate-300">${row2Headers}</tr>
+            <tr class="border-b border-slate-300">${row3Headers}</tr>
+            <tr>${row4Headers}</tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">${trs}</tbody>
+        </table>
+      `;
+    }
+
+    function cycleRTWAttempt(studentId, skillKey, termKey, idx) {
+      const wl = getActiveWorkload();
+      const rec = ensureStudentRTWRecord(appState.workloadData[wl.key], studentId);
+      const cur = rec[skillKey][termKey][idx];
+      const nextMap = { 3: 2, 2: 1, 1: 0, 0: 3 };
+      rec[skillKey][termKey][idx] = nextMap[cur] !== undefined ? nextMap[cur] : 3;
+      saveState();
+      renderRTWView(getActiveStudents(), wl);
+    }
+
+    function cycleRTWResultOverride(studentId, skillKey, overrideField) {
+      const wl = getActiveWorkload();
+      const rec = ensureStudentRTWRecord(appState.workloadData[wl.key], studentId);
+      const st = computeRTWSkillStats(rec[skillKey]);
+      const curVal = overrideField === 'overrideT1' ? st.level1 : overrideField === 'overrideT2' ? st.level2 : st.finalLevel;
+      const nextMap = { 3: 2, 2: 1, 1: 0, 0: 3 };
+      rec[skillKey][overrideField] = nextMap[curVal] !== undefined ? nextMap[curVal] : 3;
+      saveState();
+      renderRTWView(getActiveStudents(), wl);
+    }
+
+    function cycleRTWOverallOverride(studentId) {
+      const wl = getActiveWorkload();
+      const rec = ensureStudentRTWRecord(appState.workloadData[wl.key], studentId);
+      const { overallLevel } = computeStudentOverallRTW(rec);
+      const nextMap = { 3: 2, 2: 1, 1: 0, 0: 3 };
+      rec.overrideOverall = nextMap[overallLevel] !== undefined ? nextMap[overallLevel] : 3;
+      saveState();
+      renderRTWView(getActiveStudents(), wl);
+    }
+
+    function setAllRTWLevel(lvl) {
+      const wl = getActiveWorkload();
+      const wData = appState.workloadData[wl.key];
+      getActiveStudents().forEach(s => {
+        wData.rtw[s.id] = {
+          reading: { t1: [lvl, lvl, lvl, lvl], t2: [lvl, lvl, lvl, lvl], overrideT1: null, overrideT2: null, overrideFinal: null },
+          thinking: { t1: [lvl, lvl, lvl, lvl], t2: [lvl, lvl, lvl, lvl], overrideT1: null, overrideT2: null, overrideFinal: null },
+          writing: { t1: [lvl, lvl, lvl, lvl], t2: [lvl, lvl, lvl, lvl], overrideT1: null, overrideT2: null, overrideFinal: null },
+          overrideOverall: null
+        };
+      });
+      saveState();
+      renderRTWView(getActiveStudents(), wl);
+    }
+
+    /* =====================================================================
+       5.7 PRINT A4 REPORT
+       ===================================================================== */
     function renderPrintReportView(students, wl) {
       const tbody = document.getElementById('printReportTableBody');
       tbody.innerHTML = '';
       const wData = appState.workloadData[wl.key];
+      const totalReq = computeStudentTotalScheduledHours(wl.key);
+      const allMonths = Object.keys(MONTH_META);
 
       students.forEach(s => {
         const g1 = calculateTermScore(wData.term1, s.id);
         const g2 = calculateTermScore(wData.term2, s.id);
-        const yearAvg = Math.round((g1.total + g2.total) / 2);
-        const grade = calculateThaiGrade(yearAvg);
+        const yearAvg = Math.round(((g1.total + g2.total) / 2) * 10) / 10;
+        const grade = calculateThaiGrade(Math.round(yearAvg));
+
+        const yearAtt = allMonths.reduce((sum, mk) => sum + computeStudentMonthAttendedHours(wl.key, mk, s.id), 0);
+        const attPct = totalReq > 0 ? Math.min(100, Math.round((yearAtt / totalReq) * 100)) : 100;
+
+        const tVals = (wData.traits9 && wData.traits9[s.id]) || [3, 3, 3, 3, 3, 3, 3, 3, 3];
+        const traitLvl = computeTraitSummaryLevel(tVals);
+
+        const rtwRec = ensureStudentRTWRecord(wData, s.id);
+        const { overallLevel: rtwLvl } = computeStudentOverallRTW(rtwRec);
 
         const tr = document.createElement('tr');
         tr.className = 'border-b border-slate-300';
         tr.innerHTML = `
           <td class="py-1 px-1 border-r border-slate-400 font-bold text-center notranslate" translate="no">${s.no}</td>
           <td class="py-1 px-2 border-r border-slate-400 text-left notranslate" translate="no">${s.prefix}${s.name}</td>
-          <td class="py-1 px-1 border-r border-slate-400 text-center notranslate" translate="no">95%</td>
+          <td class="py-1 px-1 border-r border-slate-400 text-center notranslate" translate="no">${attPct}%</td>
           <td class="py-1 px-1 border-r border-slate-400 text-center notranslate" translate="no">${g1.total}</td>
           <td class="py-1 px-1 border-r border-slate-400 text-center notranslate" translate="no">${g2.total}</td>
           <td class="py-1 px-1 border-r border-slate-400 text-center font-bold notranslate" translate="no">${yearAvg}</td>
           <td class="py-1 px-1 border-r border-slate-400 text-center font-black notranslate" translate="no">${grade}</td>
-          <td class="py-1 px-1 border-r border-slate-400 text-center">ดีเยี่ยม</td>
-          <td class="py-1 px-1 text-center">ดีเยี่ยม</td>
+          <td class="py-1 px-1 border-r border-slate-400 text-center">${getQualityLabelTh(traitLvl)}</td>
+          <td class="py-1 px-1 text-center">${getQualityLabelTh(rtwLvl)}</td>
         `;
         tbody.appendChild(tr);
       });
@@ -1385,14 +2700,10 @@
 
       const wl = getActiveWorkload();
       let list = appState.classes[wl.classKey].students || [];
-
       const record = { no: idx + 1, id, idCard, prefix, name, gender, status };
 
-      if (idx === -1) {
-        list.push(record);
-      } else {
-        list[idx] = record;
-      }
+      if (idx === -1) list.push(record);
+      else list[idx] = record;
 
       appState.classes[wl.classKey].students = sortStudentsById(list);
       saveState();
@@ -1411,183 +2722,8 @@
     }
 
     /* =====================================================================
-       7. GRADING & ATTENDANCE MODALS & EXPORTS
+       7. CSV EXPORTS & JSON BACKUP
        ===================================================================== */
-    function openGradingSheetModal(term) {
-      activeGradingTerm = term;
-      document.getElementById('btnTermToggle1').className = term === 1 ? 'px-3 py-1 rounded bg-blue-600 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
-      document.getElementById('btnTermToggle2').className = term === 2 ? 'px-3 py-1 rounded bg-amber-600 text-white shadow-sm' : 'px-3 py-1 rounded text-slate-700';
-      renderGradingModalGrid();
-      document.getElementById('gradingSheetModal').classList.remove('hidden');
-    }
-
-    function closeGradingSheetModal() {
-      document.getElementById('gradingSheetModal').classList.add('hidden');
-    }
-
-    function switchGradingModalTerm(term) {
-      activeGradingTerm = term;
-      openGradingSheetModal(term);
-    }
-
-    function renderGradingModalGrid() {
-      const container = document.getElementById('gradingGridContainer');
-      const wl = getActiveWorkload();
-      const wData = appState.workloadData[wl.key];
-      const termObj = activeGradingTerm === 1 ? wData.term1 : wData.term2;
-      const cols = termObj.columns || [];
-      const students = getActiveStudents();
-
-      document.getElementById('gradeColCountBadge').innerText = `${cols.length} ช่อง`;
-
-      let ths = cols.map((c, i) => `
-        <th class="py-2 px-1 border-r border-slate-200 w-16">
-          <input type="text" value="${c.name}" onchange="updateGradingColName(${i}, this.value)" class="w-full text-center font-bold bg-transparent border-b border-dashed border-slate-400 text-[10px] notranslate" translate="no">
-          <span class="text-[10px] text-slate-500 font-normal">เต็ม ${c.max}</span>
-        </th>
-      `).join('');
-
-      let trs = students.map(s => {
-        const scores = (termObj.scores && termObj.scores[s.id]) || {};
-        let colInputs = cols.map(c => `
-          <td class="py-1 px-1 border-r border-slate-200">
-            <input type="number" min="0" max="${c.max}" value="${scores[c.id] !== undefined ? scores[c.id] : ''}" placeholder="${c.max}" onchange="setStudentScore('${s.id}', '${c.id}', this.value)" class="w-12 text-center border border-slate-300 rounded p-1 bg-white font-semibold notranslate" translate="no">
-          </td>
-        `).join('');
-
-        return `
-          <tr class="hover:bg-slate-50 border-b border-slate-100">
-            <td class="py-1.5 px-2 text-center font-bold border-r border-slate-200 notranslate" translate="no">${s.no}</td>
-            <td class="py-1.5 px-2 text-left font-semibold border-r border-slate-200 truncate max-w-[140px] notranslate" translate="no">${s.prefix}${s.name}</td>
-            ${colInputs}
-            <td class="py-1 px-1 border-r border-slate-200">
-              <input type="number" min="0" max="10" value="${scores.midterm !== undefined ? scores.midterm : 8}" onchange="setStudentScore('${s.id}', 'midterm', this.value)" class="w-12 text-center border border-blue-300 rounded p-1 bg-blue-50 font-bold notranslate" translate="no">
-            </td>
-            <td class="py-1 px-1 border-r border-slate-200">
-              <input type="number" min="0" max="20" value="${scores.final !== undefined ? scores.final : 16}" onchange="setStudentScore('${s.id}', 'final', this.value)" class="w-12 text-center border border-indigo-300 rounded p-1 bg-indigo-50 font-bold notranslate" translate="no">
-            </td>
-          </tr>
-        `;
-      }).join('');
-
-      container.innerHTML = `
-        <table class="w-full text-center text-xs border-collapse">
-          <thead class="bg-slate-100 border-b border-slate-200 font-semibold sticky top-0">
-            <tr>
-              <th class="py-2 px-2 border-r border-slate-200 w-10">ที่</th>
-              <th class="py-2 px-3 border-r border-slate-200 text-left min-w-[150px]">ชื่อ - นามสกุล</th>
-              ${ths}
-              <th class="py-2 px-1 border-r border-slate-200 w-16 bg-blue-100/60">กลาง (10)</th>
-              <th class="py-2 px-1 border-r border-slate-200 w-16 bg-indigo-100/60">ปลาย (20)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">${trs}</tbody>
-        </table>
-      `;
-    }
-
-    function setStudentScore(studentId, colKey, val) {
-      const wl = getActiveWorkload();
-      const wData = appState.workloadData[wl.key];
-      const termObj = activeGradingTerm === 1 ? wData.term1 : wData.term2;
-      if (!termObj.scores) termObj.scores = {};
-      if (!termObj.scores[studentId]) termObj.scores[studentId] = {};
-      termObj.scores[studentId][colKey] = Number(val);
-    }
-
-    function addAssessmentColumn() {
-      const wl = getActiveWorkload();
-      const termObj = activeGradingTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
-      if (termObj.columns.length >= 20) {
-        alert("รองรับสูงสุด 20 ช่องการประเมิน");
-        return;
-      }
-      const nextIdx = termObj.columns.length + 1;
-      termObj.columns.push({ id: 'c' + Date.now(), name: `ตัวชี้วัด ${activeGradingTerm}.${nextIdx}`, max: 10 });
-      renderGradingModalGrid();
-    }
-
-    function removeAssessmentColumn() {
-      const wl = getActiveWorkload();
-      const termObj = activeGradingTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
-      if (termObj.columns.length <= 1) return;
-      termObj.columns.pop();
-      renderGradingModalGrid();
-    }
-
-    function updateGradingColName(colIdx, newName) {
-      const wl = getActiveWorkload();
-      const termObj = activeGradingTerm === 1 ? appState.workloadData[wl.key].term1 : appState.workloadData[wl.key].term2;
-      if (termObj.columns[colIdx]) termObj.columns[colIdx].name = newName;
-    }
-
-    function saveGradingSheetModal() {
-      saveState();
-      closeGradingSheetModal();
-      renderActiveView();
-      alert("บันทึกคะแนนเรียบร้อยแล้ว");
-    }
-
-    /* MONTHLY ATTENDANCE MODAL */
-    function openMonthlySheetModal(monthKey) {
-      activeSheetMonth = monthKey;
-      document.getElementById('sheetMonthSelect').value = monthKey;
-      renderMonthlySheetGrid(monthKey);
-      document.getElementById('monthlySheetModal').classList.remove('hidden');
-    }
-
-    function closeMonthlySheetModal() {
-      document.getElementById('monthlySheetModal').classList.add('hidden');
-    }
-
-    function renderMonthlySheetGrid(monthKey) {
-      const container = document.getElementById('monthlyGridContainer');
-      const students = getActiveStudents();
-      const wl = getActiveWorkload();
-      const daysInMonth = 20;
-
-      let dHeaders = Array.from({ length: daysInMonth }, (_, i) => `<th class="py-1 px-1 border-r border-slate-200 w-6 font-mono text-[10px] notranslate" translate="no">${i + 1}</th>`).join('');
-
-      let trs = students.map(s => {
-        let cells = Array.from({ length: daysInMonth }, () => `
-          <td class="p-0.5 border-r border-slate-200 text-center font-bold text-emerald-700 notranslate" translate="no">ม</td>
-        `).join('');
-
-        return `
-          <tr class="hover:bg-slate-50 border-b border-slate-100">
-            <td class="py-1 px-1 text-center font-bold border-r border-slate-200 notranslate" translate="no">${s.no}</td>
-            <td class="py-1 px-2 text-left font-semibold border-r border-slate-200 truncate max-w-[140px] notranslate" translate="no">${s.prefix}${s.name}</td>
-            ${cells}
-          </tr>
-        `;
-      }).join('');
-
-      container.innerHTML = `
-        <table class="w-full text-center text-xs border-collapse">
-          <thead class="bg-slate-100 border-b border-slate-200 font-semibold sticky top-0">
-            <tr>
-              <th class="py-2 px-1 border-r border-slate-200 w-8">ที่</th>
-              <th class="py-2 px-2 border-r border-slate-200 text-left min-w-[140px]">ชื่อ - นามสกุล</th>
-              ${dHeaders}
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-slate-100">${trs}</tbody>
-        </table>
-      `;
-    }
-
-    function saveMonthlyAttendanceGrid() {
-      saveState();
-      closeMonthlySheetModal();
-      renderActiveView();
-      alert("บันทึกเวลาเรียนเรียบร้อยแล้ว");
-    }
-
-    function setQuickAllMonth(symbol) {
-      alert(`ทำเครื่องหมาย "${symbol}" ให้ทุกคนเรียบร้อยแล้ว`);
-    }
-
-    /* CSV EXPORTS */
     function exportGradesToCSV(termNumber) {
       const students = getActiveStudents();
       const wl = getActiveWorkload();
@@ -1600,7 +2736,7 @@
 
       students.forEach(s => {
         const g = calculateTermScore(termObj, s.id);
-        const grade = calculateThaiGrade(g.total);
+        const grade = calculateThaiGrade(Math.round(g.total));
         rows.push([s.id, g.formative70, g.midterm, g.final, grade, "", s.name].map(escape).join(','));
       });
 
@@ -1616,7 +2752,6 @@
       URL.revokeObjectURL(url);
     }
 
-    /* BACKUP JSON */
     function exportDataBackup() {
       const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState, null, 2));
       const a = document.createElement('a');
@@ -1630,7 +2765,6 @@
     function importDataBackup(event) {
       const file = event.target.files[0];
       if (!file) return;
-
       const reader = new FileReader();
       reader.onload = function(e) {
         try {
